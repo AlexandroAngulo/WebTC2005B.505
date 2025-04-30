@@ -1,0 +1,49 @@
+@page
+@model InicioModel
+@{
+    ViewData["Title"] = "Estadisticas de Lider de Tienda";
+}
+<body>
+    <h1 class="color_letras">@ViewData["Title"]</h1>
+    <div class="d-flex align-items-center">
+        <img src="https://previews.123rf.com/images/spaxia/spaxia1206/spaxia120600038/14011204-sonrisa-hombre-trabajador-de-la-construcci%C3%B3n-aislada-en-blanco.jpg" alt="Foto de Trabajador" class="rounded-circle me-3" width="150" height="150">
+        <figure class="mb-0">
+            <blockquote class="blockquote">
+                <p class="fs-2">Diego Garcia</p>
+            </blockquote>
+            <figcaption class="blockquote-footer fs-3">
+                Líder de Tienda
+            </figcaption>
+        </figure>
+    </div>
+    <br />
+    <h3>Estadisticas</h3>
+    <div class="container-fluid my-4">
+        <div class="row align-items-center">
+            
+            <!-- Imagen de estadísticas -->
+            <div class="col-12 col-md-4 text-center mb-3 mb-md-0">
+                <img src="https://images.ctfassets.net/w6r2i5d8q73s/3xqYOKQFkVwwqrlOztcg7Y/ce254af6cde821a7b08bfbb44bb60003/grafico_de_barras_ventas.png?fm=webp&q=75" alt="Estadísticas" class="img-fluid w-100">
+            </div>
+            
+            <!-- Detalles de puntos, estrella y monedas -->
+            <div class="col-12 col-md-8">
+                <h4 class="mb-3">Puntos</h4>
+                
+                        <!-- Estrella -->
+                <div class="d-flex align-items-center mb-2">
+                    <i class="fa-solid fa-star text-warning me-2 fa-5x"></i>
+                    <p class="mb-0 fs-3">x 6</p>
+                </div>
+                
+                <!-- Monedas -->
+                <div class="d-flex align-items-center">
+                    <i class="fa-solid fa-coins text-warning me-2 fa-5x "></i>
+                    <p class="mb-0 fs-3">x 255</p>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</figure>
+</body>

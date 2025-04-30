@@ -21,6 +21,7 @@ body {
   margin: 0;
   padding: 0;
   font-family: 'Roboto', sans-serif;
+  color: #57708C;
 }
 
 .form-floating > .form-control-plaintext::placeholder, .form-floating > .form-control::placeholder {

@@ -47,13 +47,10 @@ button.accept-policy {
   line-height: 60px;
 }
 
-body {
-  margin: 0;
-  padding: 0;
-  font-family: 'Roboto', sans-serif;
-}
 
+
+/* Esta parte nos ayuda a crear un espacio entre el menu lateral y demas contenido de la pagina*/
 main, section {
   margin-left: 250px;
-  padding: 1rem;
+  padding: 2rem;
 }
