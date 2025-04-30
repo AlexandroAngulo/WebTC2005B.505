@@ -46,3 +46,14 @@ button.accept-policy {
   white-space: nowrap;
   line-height: 60px;
 }
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Roboto', sans-serif;
+}
+
+main, section {
+  margin-left: 250px;
+  padding: 1rem;
+}

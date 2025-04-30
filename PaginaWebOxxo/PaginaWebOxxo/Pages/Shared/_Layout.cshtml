@@ -8,14 +8,29 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/PaginaWebOxxo.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+    <script src="https://kit.fontawesome.com/7425508e16.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=home" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=settings" />
 </head>
 <body>
-   
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
+    <!-- Sidebar fija para todas las páginas -->
+
+    <div class="sidebar">
+        <br />
+        <ul>
+            <li><a href="#"><i class="fas fa-home"></i>Inicio</a></li>
+            <li><a href="#"><i class="fas fa-user"></i>Lider de tienda</a></li>
+            <li><a href="#"><i class="fas fa-users"></i>Empleados</a></li>
+            <li><a href="#"><i class="fa-regular fa-file-lines"></i>Capacitaciones</a></li>
+            <li><a href="#"><i class="fa-regular fa-sun"></i>Configuracion</a></li>
+        </ul>
     </div>
+
+    <!-- Contenido dinámico -->
+    <main role="main">
+        @RenderBody()
+    </main>
 
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
