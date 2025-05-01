@@ -1,22 +1,15 @@
 @page
 @model InicioModel
 @{
-    ViewData["Title"] = "Estadisticas de Lider de Tienda";
+    ViewData["Title"] = "Estadísticas del Líder de Tienda";
 }
-<!--
-<head>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cal+Sans&display=swap" rel="stylesheet">
-</head>
---!-->
 <body>
     <h1 class="color_letras cal-sans-regular">@ViewData["Title"]</h1>
     <div class="d-flex align-items-center">
         <img src="https://previews.123rf.com/images/spaxia/spaxia1206/spaxia120600038/14011204-sonrisa-hombre-trabajador-de-la-construcci%C3%B3n-aislada-en-blanco.jpg" alt="Foto de Trabajador" class="rounded-circle me-3" width="150" height="150">
         <figure class="mb-0">
             <blockquote class="blockquote">
-                <p class="fs-2 cal-sans-regular">Diego Garcia</p>
+                <p class="fs-2 cal-sans-regular">Diego García</p>
             </blockquote>
             <figcaption class="blockquote-footer fs-3">
                 Líder de Tienda
@@ -24,17 +17,17 @@
         </figure>
     </div>
     <br />
-    <h3>Estadisticas</h3>
+    <h3>Estadísticas</h3>
     <div class="container-fluid my-4">
-        <div class="row align-items-center">
+        <div class="row align-items-center gx-5">
             
             <!-- Imagen de estadísticas -->
-            <div class="col-12 col-md-4 text-center mb-3 mb-md-0">
-                <img src="https://images.ctfassets.net/w6r2i5d8q73s/3xqYOKQFkVwwqrlOztcg7Y/ce254af6cde821a7b08bfbb44bb60003/grafico_de_barras_ventas.png?fm=webp&q=75" alt="Estadísticas" class="img-fluid w-100">
+            <div class="col-12 col-md-5 text-center mb-3 mb-md-0">
+                <img src="https://images.ctfassets.net/w6r2i5d8q73s/3xqYOKQFkVwwqrlOztcg7Y/ce254af6cde821a7b08bfbb44bb60003/grafico_de_barras_ventas.png?fm=webp&q=75" alt="Estadísticas" class="img-fluid" />
             </div>
             
             <!-- Detalles de puntos, estrella y monedas -->
-            <div class="col-12 col-md-8">
+            <div class="col-12 col-md-7">
                 <h4 class="mb-3">Puntos</h4>
                 
                 <!-- Estrella -->
@@ -45,12 +38,10 @@
                 
                 <!-- Monedas -->
                 <div class="d-flex align-items-center">
-                    <i class="fa-solid fa-coins text-warning me-2 fa-6x "></i>
+                    <i class="fa-solid fa-coins text-warning me-2 fa-6x"></i>
                     <p class="mb-0 fs-3">x 255</p>
                 </div>
             </div>
-            
         </div>
     </div>
-</figure>
 </body>
