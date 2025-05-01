@@ -6,6 +6,7 @@ namespace PaginaWebOxxo.Pages;
 public class CapacitacionesModel : PageModel
 {
     public int Id { get; set; }
+    public int numeroDePartida { get; set; }
     public int EmpleadoId { get; set; }
     public int Minijuego { get; set; }
     public int PuntosObtenidos { get; set;}
