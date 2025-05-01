@@ -15,10 +15,13 @@ namespace PaginaWebOxxo.Pages
         }
 
         public Estadisticas EstadisticasUsuario { get; set; }
+
+        public Usuarios Usuario {get; set;}
         public void OnGet()
         {
-            int numEmpleado = 12345; // Aquí iría el ID del usuario actual (lo puedes obtener de sesión más adelante)
+            int numEmpleado = 12345; 
             EstadisticasUsuario = _context.ObtenerMonedasPorEmpleado(numEmpleado);
+            Usuario = _context.ObtenerUsuarioPorEmpleados(numEmpleado);
         }
 
     }
