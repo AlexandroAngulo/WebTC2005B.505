@@ -68,6 +68,7 @@ body {
   background: #ED1C24;
   z-index: 1000;
 }
+
 .sidebar header {
   font-size: 22px;
   color: white;
@@ -121,3 +122,31 @@ section{
   height: 100vh;
   transition: all .5s;
 }
+
+/*!
+ * Styles para el menu de capacitaiones
+ */
+
+ .barra{
+  border-radius: 20px;
+  height: 35px;
+  width: 500px;
+  margin-top: 0px;
+  background: #ED1C24;
+ }
+
+ .barra-cap{
+  border-radius: 20px;
+  background: #FAB110;
+ }
+
+ .estrella-cap{
+  position: relative;
+  right: 200px;
+  bottom: 10px;
+ }
+
+ .estrella{
+  width: 100px;
+  height: 100px;
+ }
