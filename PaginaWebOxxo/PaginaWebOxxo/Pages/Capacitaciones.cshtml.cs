@@ -8,11 +8,21 @@ public class CapacitacionesModel : PageModel
 {
     public int EmpleadoId { get; set; } = 1;
     public List<NivelUsuario> Progresos { get; set; }
+    private readonly DataBaseContext _context;
+
+    public CapacitacionesModel(DataBaseContext context)
+    {
+        _context = context;
+    }
+    public Usuarios Usuario {get; set;}
+
 
     public void OnGet()
     {
+        int numEmpleado = 12345; 
         var db = new DataBaseContext();
-        Progresos = db.ObtenerProgresoPorEmpleado(12345);
+        Progresos = db.ObtenerProgresoPorEmpleado(numEmpleado);
+        Usuario = _context.ObtenerUsuarioPorEmpleados(numEmpleado);
     }
 
     public string ObtenerPorcentajeBarra(int estrellas)
