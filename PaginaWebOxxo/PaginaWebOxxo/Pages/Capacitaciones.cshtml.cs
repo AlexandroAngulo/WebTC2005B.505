@@ -6,13 +6,13 @@ namespace PaginaWebOxxo.Pages;
 
 public class CapacitacionesModel : PageModel
 {
-    public int EmpleadoId { get; set; } = 1;
+    public int EmpleadoId { get; set; } = 12345;
     public List<NivelUsuario> Progresos { get; set; }
 
     public void OnGet()
     {
         var db = new DataBaseContext();
-        Progresos = db.ObtenerProgresoPorEmpleado(12345);
+        Progresos = db.ObtenerProgresoPorEmpleado(EmpleadoId);
     }
 
     public string ObtenerPorcentajeBarra(int estrellas)
