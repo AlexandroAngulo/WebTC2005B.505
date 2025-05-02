@@ -6,7 +6,6 @@ namespace PaginaWebOxxo.Pages;
 
 public class CapacitacionesModel : PageModel
 {
-    public int EmpleadoId { get; set; } = 12345;
     public List<NivelUsuario> Progresos { get; set; }
     private readonly DataBaseContext _context;
 
@@ -19,8 +18,9 @@ public class CapacitacionesModel : PageModel
 
     public void OnGet()
     {
+        int numEmpleado = 12345; 
         var db = new DataBaseContext();
-        Progresos = db.ObtenerProgresoPorEmpleado(EmpleadoId);
+        Progresos = db.ObtenerProgresoPorEmpleado(numEmpleado);
         Usuario = _context.ObtenerUsuarioPorEmpleados(numEmpleado);
     }
 
