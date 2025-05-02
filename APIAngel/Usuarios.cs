@@ -1,3 +1,4 @@
+namespace APIAngel;
 public class Usuarios
 {
     public int NumEmpleado {get;set;}
