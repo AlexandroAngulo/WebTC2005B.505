@@ -1,0 +1,6 @@
+@APIAngel_HostAddress = http://localhost:5180
+
+GET {{APIAngel_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
