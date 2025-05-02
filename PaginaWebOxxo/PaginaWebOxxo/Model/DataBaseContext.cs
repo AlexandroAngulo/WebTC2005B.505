@@ -38,8 +38,43 @@ namespace PaginaWebOxxo.Model
             }
             return estadisticas;
         }
+        
+        public List<NivelUsuario> ObtenerProgresoPorEmpleado(int numEmpleado)
+        {
+            List<NivelUsuario> progresos = new List<NivelUsuario>();
 
+            using (MySqlConnection conexion = GetConnection())
+            {
+                conexion.Open();
+                string query = @"SELECT NumEmpleado, IdNivel, FechaIntento, Estrellas, Puntuacion, TiempoNivel 
+                                FROM nivelusuario 
+                                WHERE NumEmpleado = @NumEmpleado";
+
+                using (MySqlCommand cmd = new MySqlCommand(query, conexion))
+                {
+                    cmd.Parameters.AddWithValue("@NumEmpleado", numEmpleado);
+
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            NivelUsuario nivel = new NivelUsuario
+                            {
+                                NumEmpleado = Convert.ToInt32(reader["NumEmpleado"]),
+                                IdNivel = Convert.ToInt32(reader["IdNivel"]),
+                                FechaIntento = Convert.ToDateTime(reader["FechaIntento"]),
+                                Estrellas = Convert.ToInt32(reader["Estrellas"]),
+                                Puntuacion = Convert.ToInt32(reader["Puntuacion"]),
+                                TiempoNivel = Convert.ToInt32(reader["TiempoNivel"])
+                            };
+                            progresos.Add(nivel);
+                        }
+                    }
+                }
+            }
+            return progresos;
+        }
     }
-    
+
 }
 

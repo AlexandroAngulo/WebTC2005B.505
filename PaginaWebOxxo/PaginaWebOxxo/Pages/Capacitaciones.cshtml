@@ -2,12 +2,6 @@
 @model CapacitacionesModel
 @{
     ViewData["Title"] = "Avance de capacitaciones";
-    var progreso1 = Model.Progresos[0];
-    var progreso2 = Model.Progresos[1];
-    var progreso3 = Model.Progresos[2];
-    var lista1 = Model.ObtenerEstadoEstrellas(progreso1.EstrellasObtenidas);
-    var lista2 = Model.ObtenerEstadoEstrellas(progreso2.EstrellasObtenidas);
-    var lista3 = Model.ObtenerEstadoEstrellas(progreso3.EstrellasObtenidas);
 }
 
 <body>
@@ -25,73 +19,31 @@
     </div>
     <br />
 
-    <div class="mb-4">
-        <h4 class="fw-bold">Minijuego 1 </h4>
-        <div class="d-flex justify-content-between align-items-center mb-2">
-            <div class="progress barra flew-grow-1 me-3">
-                <div class="progress-bar bg-warining text-dark barra-cap" style="width:@Model.ObtenerPorcentajeBarra(progreso1.EstrellasObtenidas)">
-                    @progreso1.EstrellasObtenidas / 3
+    @foreach (var progreso in Model.Progresos)
+    {
+        var estrellas = Model.ObtenerEstadoEstrellas(progreso.Estrellas);
+        <div class="mb-4">
+            <h4 class="fw-bold">Minijuego @progreso.IdNivel</h4>
+            <div class="d-flex justify-content-between align-items-center mb-2">
+                <div class="progress barra flew-grow-1 me-3">
+                    <div class="progress-bar bg-warining text-dark barra-cap" style="width:@Model.ObtenerPorcentajeBarra(progreso.Estrellas)">
+                        @progreso.Estrellas / 3
+                    </div>
+                </div>
+                <div class="mt-2 estrella-cap">
+                    @foreach (var estrella in estrellas)
+                    {
+                        if (estrella)
+                        {
+                            <img src="~/imagenes/Estrella.jpeg" alt="Estrella" class="img-fluid mx-2 estrella">
+                        }
+                        else
+                        {
+                            <img src="~/imagenes/EstrellaVacia.jpg" alt="Estrella" class="img-fluid mx-2 estrella">
+                        }
+                    }
                 </div>
             </div>
-            <div class="mt-2 estrella-cap">
-                @for (int i = 0; i < lista1.Count; i++)
-                {
-                    if (lista1[i])
-                    {
-                        <img src="~/imagenes/Estrella.jpeg" alt="Estrella" class="img-fluid mx-2 estrella">
-                    }
-                    else
-                    {
-                        <img src="~/imagenes/EstrellaVacia.jpg" alt="Estrella" class="img-fluid mx-2 estrella">
-                    }
-                }
-            </div>
         </div>
-    </div>
-    <div class="mb-4"></div>
-        <h4 class="fw-bold">Minijuego 2</h4>
-        <div class="d-flex justify-content-between align-items-center mb-2">
-            <div class="progress barra flew-grow-1 me-3">
-                <div class="progress-bar bg-warining text-dark barra-cap" style="width:@Model.ObtenerPorcentajeBarra(progreso2.EstrellasObtenidas)">
-                    @progreso2.EstrellasObtenidas / 3
-                </div>
-            </div>
-            <div class="mt-2 estrella-cap">
-                @for (int i = 0; i < lista2.Count; i++)
-                {
-                    if (lista2[i])
-                    {
-                        <img src="~/imagenes/Estrella.jpeg" alt="Estrella" class="img-fluid mx-2 estrella">
-                    }
-                    else
-                    {
-                        <img src="~/imagenes/EstrellaVacia.jpg" alt="Estrella" class="img-fluid mx-2 estrella">
-                    }
-                }
-            </div>
-        </div>
-    </div>
-    <div class="mb-4"></div>
-        <h4 class="fw-bold">Minijuego 3</h4>
-        <div class="d-flex justify-content-between align-items-center mb-2">
-            <div class="progress barra flew-grow-1 me-3">
-                <div class="progress-bar bg-warining text-dark barra-cap" style="width:@Model.ObtenerPorcentajeBarra(progreso3.EstrellasObtenidas)">
-                    @progreso3.EstrellasObtenidas / 3
-                </div>
-            </div>
-            <div class="mt-2 estrella-cap">
-                @for (int i = 0; i < lista3.Count; i++)
-                {
-                    if (lista3[i])
-                    {
-                        <img src="~/imagenes/Estrella.jpeg" alt="Estrella" class="img-fluid mx-2 estrella">
-                    }
-                    else
-                    {
-                        <img src="~/imagenes/EstrellaVacia.jpg" alt="Estrella" class="img-fluid mx-2 estrella">
-                    }
-                }
-            </div>
-        </div>
-    </div>
+    }
 </body>

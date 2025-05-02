@@ -1,27 +1,18 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using PaginaWebOxxo.Model;
 
 namespace PaginaWebOxxo.Pages;
 
 public class CapacitacionesModel : PageModel
 {
-    public int Id { get; set; }
-    public int numeroDePartida { get; set; }
-    public int EmpleadoId { get; set; }
-    public int Minijuego { get; set; }
-    public int PuntosObtenidos { get; set;}
-    public int EstrellasObtenidas { get; set; }
-
-    public List<(int Minijuego, int EstrellasObtenidas)> Progresos { get; set; }
+    public int EmpleadoId { get; set; } = 1;
+    public List<NivelUsuario> Progresos { get; set; }
 
     public void OnGet()
     {
-        Progresos = new List<(int, int)>
-        {
-            (1, 3), 
-            (2, 2), 
-            (3, 1)
-        };
+        var db = new DataBaseContext();
+        Progresos = db.ObtenerProgresoPorEmpleado(12345);
     }
 
     public string ObtenerPorcentajeBarra(int estrellas)
