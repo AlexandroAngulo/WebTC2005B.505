@@ -9,7 +9,7 @@ namespace PaginaWebOxxo.Model
         public string ConnectionString { get; set; }
         
         public DataBaseContext(){
-            ConnectionString = "Server=127.0.0.1;Port=3306;Database=BD.TC2005B.505;Uid=root;password=;";
+            ConnectionString = "Server=127.0.0.1;Port=3306;Database=Proyecto;Uid=root;password=Csggen2022uni$;";
         }
         private MySqlConnection GetConnection()
         {
