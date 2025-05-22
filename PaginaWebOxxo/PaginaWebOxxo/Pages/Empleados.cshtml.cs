@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace PaginaWebOxxo.Pages;
 
-public class Empleados : PageModel
+public class EmpleadosModel : PageModel
 {
 
     public void OnGet()
