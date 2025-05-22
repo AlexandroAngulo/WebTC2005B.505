@@ -1,21 +1,145 @@
 @page
 @model LiderModel
 @{
-    ViewData["Title"] = "Estadisticas de Lider de Tienda";
+    ViewData["Title"] = "Perfil de Líder de Tienda";
 }
 
-<body>
+
+
+<div class="container-fluid px-5">
     <h1 class="color_letras cal-sans-regular">@ViewData["Title"]</h1>
-    <div class="d-flex align-items-center">
-        <img src="https://previews.123rf.com/images/spaxia/spaxia1206/spaxia120600038/14011204-sonrisa-hombre-trabajador-de-la-construcci%C3%B3n-aislada-en-blanco.jpg" alt="Foto de Trabajador" class="rounded-circle me-3" width="150" height="150">
-        <figure class="mb-0">
-            <blockquote class="blockquote">
-                <p class="fs-2 cal-sans-regular">Diego Garcia</p>
-            </blockquote>
-            <figcaption class="blockquote-footer fs-3">
-                Líder de Tienda
-            </figcaption>
-        </figure>
+
+    <!-- Sección superior -->
+    <div class="top-section">
+        <!-- Foto y nombre-->
+        <div class="d-flex align-items-center gap-4">
+            <img src="https://previews.123rf.com/images/spaxia/spaxia1206/spaxia120600038/14011204-sonrisa-hombre-trabajador-de-la-construcci%C3%B3n-aislada-en-blanco.jpg"
+                 alt="Foto de Trabajador" class="imagenperfil">
+            <div>
+                <h3 class="fw-bold mb-1">@Model.Usuario.Nombre  @Model.Usuario.ApellidoP</h3>
+            </div>
+        </div>
+
+        <!-- Badges Sexo/Ocupación/Edad -->
+        <div class="badges-top pe-3">
+            <div class="badge bg-warning text-dark badge-custom">Masculino<small>Sexo</small></div>
+            <div class="badge bg-warning text-dark badge-custom">Líder De Tienda<small>Ocupación</small></div>
+            <div class="badge bg-warning text-dark badge-custom">33 Años<small>Edad</small></div>
+        </div>
     </div>
-    <br />
-</body>
+
+    <!-- Botón de ayuda arriba-->
+    <button class="botonayuda" title="este boton aun no sirve">?</button>
+
+   
+    <div class="row gx-5">
+        <!-- Formulario -->
+        <div class="col-lg-7">
+            <form>
+                <div class="mb-4">
+                    <label class="form-label">Teléfono</label>
+                    <input type="text" class="form-control rounded-4" />
+                </div>
+                <div class="mb-4">
+                    <label class="form-label">Correo electrónico</label>
+                    <input type="email" class="form-control rounded-4" />
+                </div>
+                <div class="mb-4">
+                    <label class="form-label">Número de empleado</label>
+                    <input type="text" class="form-control rounded-4" />
+                </div>
+                <div class="mb-4">
+                    <label class="form-label">Dirección</label>
+                    <textarea class="form-control rounded-4" rows="3"></textarea>
+                </div>
+            </form>
+        </div>
+
+        <!-- Insignias obtenidas -->
+        <div class="col-lg-5 ps-5" style="padding-left: 8rem !important;">
+            <h4 class="mb-4 fw-semibold text-center">Insignias obtenidas</h4>
+            <div class="d-flex flex-column gap-4 align-items-center">
+                <img src="/images/level1.png" alt="Level 1" class="insigniaimagen">
+                <img src="/images/level2.png" alt="Level 2" class="insigniaimagen">
+                <img src="/images/level3.png" alt="Level 3" class="insigniaimagen" style="opacity: 0.5;">
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .form-label {
+        font-size: 1.2rem;
+        font-weight: 500;
+    }
+
+    .form-control {
+        font-size: 1.1rem;
+        padding: 0.8rem 1.2rem;
+    }
+
+    textarea.form-control {
+        resize: none;
+    }
+
+    .badge-custom {
+        font-size: 1rem;
+        padding: 0.6rem 1rem;
+        border-radius: 0.75rem;
+        text-align: center;
+        line-height: 1.2;
+        white-space: nowrap;
+    }
+
+    .badge-custom small {
+        font-size: 0.75rem;
+        display: block;
+    }
+
+    .imagenperfil {
+        width: 130px;
+        height: 130px;
+        object-fit: cover;
+        border-radius: 50%;
+    }
+
+    .insigniaimagen {
+        width: 120px;
+    }
+
+    .top-section {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        margin-bottom: 3rem;
+        flex-wrap: wrap;
+        position: relative;
+    }
+
+    .badges-top {
+        display: flex;
+        gap: 1rem;
+        flex-wrap: wrap;
+        justify-content: flex-end;
+    }
+
+    .botonayuda {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background-color: #f1f1f1;
+        border: none;
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+        font-size: 20px;
+        font-weight: bold;
+        color: #333;
+        cursor: pointer;
+        z-index: 999;
+    }
+
+    .botonayuda:hover {
+        background-color: #e0e0e0;
+    }
+</style>
