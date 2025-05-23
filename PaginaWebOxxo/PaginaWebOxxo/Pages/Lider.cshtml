@@ -50,12 +50,12 @@
                 </div>
                 <div class="mb-4">
                     <label class="form-label">Dirección</label>
-                    <textarea disabled class="form-control rounded-4" rows="5">
-                        Codigo Postal: @Model.codigopostal.CodigoPostal
-                        Municipio: @Model.codigopostal.municipio
-                        Colonia: @Model.codigopostal.colonia
-                        Estado: @Model.codigopostal.estado
-                    </textarea>
+                    <textarea disabled class="form-control rounded-4" rows="5">@(
+                        "Codigo Postal: " + @Model.codigopostal.CodigoPostal + "\n" +
+                        "Municipio: " + @Model.codigopostal.municipio + "\n" +
+                        "Colonia: " + @Model.codigopostal.colonia + "\n" +
+                        "Estado: " + @Model.codigopostal.estado
+                    )</textarea>
                 </div>
             </form>
         </div>
