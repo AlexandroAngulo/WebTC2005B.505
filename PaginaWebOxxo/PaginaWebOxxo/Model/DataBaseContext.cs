@@ -5,11 +5,13 @@ using System.Collections.Generic;
 
 namespace PaginaWebOxxo.Model
 {
-    public class DataBaseContext{
+    public class DataBaseContext
+    {
         public string ConnectionString { get; set; }
-        
-        public DataBaseContext(){
-            ConnectionString = "Server=127.0.0.1;Port=3306;Database=Proyecto;Uid=root;password=Csggen2022uni$;";
+
+        public DataBaseContext()
+        {
+            ConnectionString = "Server=mysql-a0f09b6-dario-ceda.b.aivencloud.com;Port=15915;Database=Proyecto;Uid=avnadmin;password=AVNS_x1ewxXkuSiLMKWdUhD2;";
         }
         private MySqlConnection GetConnection()
         {
@@ -21,7 +23,7 @@ namespace PaginaWebOxxo.Model
             using (MySqlConnection conexion = GetConnection())
             {
                 conexion.Open();
-                string query = "SELECT Monedas FROM Estadisticas WHERE NumEmpleado = @NumEmpleado";
+                string query = "SELECT Monedas FROM estadisticas WHERE NumEmpleado = @NumEmpleado";
                 using (MySqlCommand cmd = new MySqlCommand(query, conexion))
                 {
                     cmd.Parameters.AddWithValue("@NumEmpleado", numEmpleado);
@@ -33,12 +35,12 @@ namespace PaginaWebOxxo.Model
                             estadisticas = new Estadisticas();
                             estadisticas.Monedas = Convert.ToInt32(reader["monedas"]);
                         }
-                    }   
+                    }
                 }
             }
             return estadisticas;
         }
-        
+
         public Usuarios ObtenerUsuarioPorEmpleados(int numEmpleado)
         {
             Usuarios usuario = null;
@@ -108,6 +110,42 @@ namespace PaginaWebOxxo.Model
                 }
             }
             return progresos;
+        }
+        
+        public List<Empleados> ObtenerEmpleadosPorLider(int numLider)
+        {
+            var empleados = new List<Empleados>();
+
+            using (var conexion = GetConnection())
+            {
+                conexion.Open();
+                string query = @"SELECT e.NumEmpleado, e.Nombre, e.ApellidoP, e.IdEstatus, p.Puesto
+                                FROM empleados e
+                                JOIN puesto p ON p.IdTipoPuesto = e.IdTipoPuesto
+                                WHERE e.NumLider = @NumLider";
+
+                using (var cmd = new MySqlCommand(query, conexion))
+                {
+                    cmd.Parameters.AddWithValue("@NumLider", numLider);
+
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            empleados.Add(new Empleados
+                            {
+                                NumEmpleado = Convert.ToInt32(reader["NumEmpleado"]),
+                                Nombre = reader["Nombre"].ToString(),
+                                ApellidoP = reader["ApellidoP"].ToString(),
+                                IdEstatus = Convert.ToInt32(reader["IdEstatus"]),
+                                Puesto = reader["Puesto"].ToString()
+                            });
+                        }
+                    }
+                }
+            }
+
+            return empleados;
         }
     }
 

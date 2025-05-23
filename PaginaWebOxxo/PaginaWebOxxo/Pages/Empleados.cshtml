@@ -6,40 +6,52 @@
 
 <body>
     <h1 class="color_letras cal-sans-regular">@ViewData["Title"]</h1>
-    <div class="d-flex align-items-center">
-        <img src="https://previews.123rf.com/images/spaxia/spaxia1206/spaxia120600038/14011204-sonrisa-hombre-trabajador-de-la-construcci%C3%B3n-aislada-en-blanco.jpg" alt="Foto de Trabajador" class="rounded-circle me-3" width="150" height="150">
-        <figure class="mb-0">
-            <blockquote class="blockquote">
-                <p class="fs-2 cal-sans-regular">Diego Garcia</p>
-            </blockquote>
-            <figcaption class="blockquote-footer fs-3">
-                Líder de Tienda
-            </figcaption>
-        </figure>
-    </div>
-    <br />
-    <div class="d-flex align-items-center">
-        <img src="https://previews.123rf.com/images/spaxia/spaxia1206/spaxia120600038/14011204-sonrisa-hombre-trabajador-de-la-construcci%C3%B3n-aislada-en-blanco.jpg" alt="Foto de Trabajador" class="rounded-circle me-3" width="150" height="150">
-        <figure class="mb-0">
-            <blockquote class="blockquote">
-                <p class="fs-2 cal-sans-regular">Augusto Orozco</p>
-            </blockquote>
-            <figcaption class="blockquote-footer fs-3">
-                Asistente
-            </figcaption>
-        </figure>
-    </div>
-    <br />
-    <div class="d-flex align-items-center">
-        <img src="https://previews.123rf.com/images/spaxia/spaxia1206/spaxia120600038/14011204-sonrisa-hombre-trabajador-de-la-construcci%C3%B3n-aislada-en-blanco.jpg" alt="Foto de Trabajador" class="rounded-circle me-3" width="150" height="150">
-        <figure class="mb-0">
-            <blockquote class="blockquote">
-                <p class="fs-2 cal-sans-regular">Dario Puentes</p>
-            </blockquote>
-            <figcaption class="blockquote-footer fs-3">
-                Ayudante
-            </figcaption>
-        </figure>
+    <div class="d-flex flex-column gap-4">
+
+        <!-- Líder en el mismo formato que los empleados -->
+        <div class="d-flex align-items-center justify-content-between mb-4">
+            <div>
+                <img src="https://previews.123rf.com/images/spaxia/spaxia1206/spaxia120600038/14011204-sonrisa-hombre-trabajador-de-la-construcci%C3%B3n-aislada-en-blanco.jpg" alt="Foto de Trabajador" class="rounded-circle me-3" width="150" height="150">
+                <figure class="mb-0">
+                    <blockquote class="blockquote">
+                        <h3 class="fw-bold mb-1">@Model.Lider.Nombre @Model.Lider.ApellidoP</h3>
+                    </blockquote>
+                    <figcaption class="blockquote-footer fs-3">Líder de Tienda</figcaption>
+                </figure>
+            </div>
+
+            <!-- Puedes decidir un color especial para el líder o usar uno por defecto -->
+            <div class="rounded-circle bg-primary" style="width: 20px; height: 20px;"></div>
+        </div>
+
+        @foreach (var empleado in Model.ListaEmpleados)
+        {
+            <div class="d-flex align-items-center justify-content-between mb-4">
+                <div>
+                    <img src="https://previews.123rf.com/images/spaxia/spaxia1206/spaxia120600038/14011204-sonrisa-hombre-trabajador-de-la-construcci%C3%B3n-aislada-en-blanco.jpg" alt="Foto de Trabajador" class="rounded-circle me-3" width="150" height="150">
+                    <figure class="mb-0">
+                        <blockquote class="blockquote">
+                            <h3 class="fw-bold mb-1">@empleado.Nombre @empleado.ApellidoP</h3>
+                        </blockquote>
+                        <figcaption class="blockquote-footer fs-3">@empleado.Puesto</figcaption>
+                    </figure>
+                </div>
+
+                @if (empleado.IdEstatus == 1) // Activo
+                {
+                    <div class="rounded-circle bg-danger" style="width: 20px; height: 20px;"></div>
+                }
+                else if (empleado.IdEstatus == 2) // Inactivo
+                {
+                    <div class="rounded-circle bg-warning" style="width: 20px; height: 20px;"></div>
+                }
+                else // Ausente
+                {
+                    <div class="rounded-circle bg-success" style="width: 20px; height: 20px;"></div>
+                }
+            </div>
+            <br />
+        }
     </div>
     <br />
 </body>
