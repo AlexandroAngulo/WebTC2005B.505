@@ -1,21 +1,117 @@
 @page
 @model PersonajeModel
 @{
-    ViewData["Title"] = "Selección de Personaje";
+    ViewData["Title"] = "Personalización y Canje";
 }
 
 <body>
-    <h1 class="color_letras cal-sans-regular">@ViewData["Title"]</h1>
-    <div class="d-flex align-items-center">
-        <img src="https://previews.123rf.com/images/spaxia/spaxia1206/spaxia120600038/14011204-sonrisa-hombre-trabajador-de-la-construcci%C3%B3n-aislada-en-blanco.jpg" alt="Foto de Trabajador" class="rounded-circle me-3" width="150" height="150">
-        <figure class="mb-0">
-            <blockquote class="blockquote">
-                <p class="fs-2 cal-sans-regular">Diego Garcia</p>
-            </blockquote>
-            <figcaption class="blockquote-footer fs-3">
-                Líder de Tienda
-            </figcaption>
-        </figure>
+    <div>
+        <!-- Botón de ayuda arriba-->
+        <button class="botonayuda" title="este boton aun no sirve">?</button>
     </div>
-    <br />
+    <div class="layout-principal">
+    <!-- Columna izquierda -->
+    <div class="columna-izquierda">
+        <h1 class="color_letras cal-sans-regular">@ViewData["Title"]</h1>
+        <div class="d-flex contenedor2">
+            <img src="https://previews.123rf.com/images/spaxia/spaxia1206/spaxia120600038/14011204-sonrisa-hombre-trabajador-de-la-construcci%C3%B3n-aislada-en-blanco.jpg" alt="Foto de Trabajador" class="rounded-circle me-3" width="150" height="150">
+            <figure class="mb-0">
+                <blockquote class="blockquote">
+                    <p class="fs-2 cal-sans-regular">Diego Garcia</p>
+                </blockquote>
+                <figcaption class="blockquote-footer fs-3">
+                    Líder de Tienda
+                </figcaption>
+            </figure>
+        </div>
+        <br>
+        <br>
+        <h3>Elegir Personaje</h3>
+        <div class="contenedor">
+            <div class="elemento"><img src="imagenes/Personaje3PW.png" alt=""></div>
+            <div class="elemento"><img src="imagenes/Personaje2PW.png" alt=""></div>
+            <div class="elemento"><img src="imagenes/Personaje4PW.png" alt=""></div>
+            <div class="elemento"><img src="imagenes/Personaje1PW.png" alt=""></div>
+        </div>
+    </div>
+
+    <!-- Columna derecha -->
+    <div class="columna-derecha">
+        <div>
+        <h3>Elegir Música del Menú</h3>
+        <p>🎵 Track 1 &nbsp; 🎵 Track 2 &nbsp; 🎵 Track 3</p>
+        </div>
+
+        <div>
+        <h3>Recompensas</h3>
+        <ul>
+            <li><a href="#">Tiempo Aire</a></li>
+            <li><a href="#">Puntos Spin</a></li>
+            <li><a href="#">Cupones</a></li>
+        </ul>
+        </div>
+    </div>
+</div>
+
 </body>
+
+<style>
+    /* Estilos para el contenedor de personajes */
+    .contenedor {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr); /* Crea dos columnas iguales */
+      grid-template-rows: repeat(2, 1fr); /* Crea dos filas iguales */
+      gap: 30px; /* Agrega espacio entre las celdas de la cuadrícula */
+      width: 500px; /* Define el ancho del contenedor */
+      height: 500px;
+    }
+
+    .elemento {
+      align-items: center;
+      padding: 10px; /* Agrega padding para ver mejor los elementos */
+    }
+
+    .contenedor2 {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr); /* Crea dos columnas iguales */
+      gap: 30px; /* Agrega espacio entre las celdas de la cuadrícula */
+      width: 500px; /* Define el ancho del contenedor */
+      height: 200px;
+    }
+
+
+    .layout-principal {
+      display: flex;
+      gap: 40px;
+      padding: 20px;
+    }
+
+    .columna-izquierda {
+      flex: 1; /* Que ocupe solo lo que necesita */
+    }
+
+    .columna-derecha {
+      flex: 1; /* Que ocupe el resto del ancho disponible */
+      padding: 20px;
+    }
+
+    .botonayuda {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background-color: #f1f1f1;
+      border: none;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      font-size: 20px;
+      font-weight: bold;
+      color: #333;
+      cursor: pointer;
+      z-index: 999;
+    }
+
+    .botonayuda:hover {
+    background-color: #e0e0e0;
+    }
+</style>

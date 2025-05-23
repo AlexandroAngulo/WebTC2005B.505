@@ -75,6 +75,66 @@ namespace PaginaWebOxxo.Model
             }
             return usuario;
         }
+           public Contacto ObtenerContactoPorEmpleados(int numEmpleado)
+        {
+            Contacto usuario = null;
+
+            using (MySqlConnection conexion = GetConnection())
+            {
+                conexion.Open();
+                string query = "SELECT * FROM contacto WHERE NumEmpleado = @NumEmpleado";
+                using (MySqlCommand cmd = new MySqlCommand(query, conexion))
+                {
+                    cmd.Parameters.AddWithValue("@NumEmpleado", numEmpleado);
+
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            usuario = new Contacto
+                            {
+                                NumEmpleado = Convert.ToInt32(reader["NumEmpleado"]),
+                                telefono = Convert.ToInt32(reader["Telefono"]),
+                                correo = reader["Correo"].ToString(),
+                                codigoP = reader["CodigoPostal"].ToString(),
+
+                            };
+                        }
+                    }
+                }
+            }
+            return usuario;
+        }
+           public Codigopostal ObtenerCodigoPorEmpleados(int codigoPostal)
+        {
+            Codigopostal usuario = null;
+
+            using (MySqlConnection conexion = GetConnection())
+            {
+                conexion.Open();
+                string query = "SELECT * FROM codigopostal WHERE CodigoPostal = @CodigoPostal";
+                using (MySqlCommand cmd = new MySqlCommand(query, conexion))
+                {
+                    cmd.Parameters.AddWithValue("@CodigoPostal", codigoPostal);
+
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            usuario = new Codigopostal
+                            {
+                                CodigoPostal = Convert.ToInt32(reader["CodigoPostal"]),
+                                colonia = reader["Colonia"].ToString(),
+                                municipio = reader["Municipio"].ToString(),
+                                estado = reader["Estado"].ToString(),
+
+                            };
+                        }
+                    }
+                }
+            }
+            return usuario;
+        }
 
         public List<NivelUsuario> ObtenerProgresoPorEmpleado(int numEmpleado)
         {
