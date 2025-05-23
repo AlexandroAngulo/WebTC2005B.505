@@ -75,6 +75,8 @@ namespace PaginaWebOxxo.Model
             }
             return usuario;
         }
+
+        //Mateo
            public Contacto ObtenerContactoPorEmpleados(int numEmpleado)
         {
             Contacto usuario = null;
@@ -136,6 +138,7 @@ namespace PaginaWebOxxo.Model
             return usuario;
         }
 
+        //Ivan
         public List<NivelUsuario> ObtenerProgresoPorEmpleado(int numEmpleado)
         {
             List<NivelUsuario> progresos = new List<NivelUsuario>();
@@ -172,6 +175,7 @@ namespace PaginaWebOxxo.Model
             return progresos;
         }
         
+        // Querys de dario
         public List<Empleados> ObtenerEmpleadosPorLider(int numLider)
         {
             var empleados = new List<Empleados>();
