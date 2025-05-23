@@ -19,6 +19,7 @@ public class LiderModel : PageModel
     public Usuarios Usuario { get; set; }
 
     public Contacto contacto { get; set; }
+    public Codigopostal codigopostal{ get; set; }
     public void OnGet()
     {
         int numEmpleado = 12345;
@@ -26,8 +27,10 @@ public class LiderModel : PageModel
         Usuario = _context.ObtenerUsuarioPorEmpleados(numEmpleado);
 
 
+        int codigoPostal = 12345;
         contacto = _context.ObtenerContactoPorEmpleados(numEmpleado);
-        
+        codigopostal = _context.ObtenerCodigoPorEmpleados(codigoPostal);
+
     }
 
     

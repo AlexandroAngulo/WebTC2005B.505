@@ -103,6 +103,36 @@ namespace PaginaWebOxxo.Model
             }
             return usuario;
         }
+           public Codigopostal ObtenerCodigoPorEmpleados(int codigoPostal)
+        {
+            Codigopostal usuario = null;
+
+            using (MySqlConnection conexion = GetConnection())
+            {
+                conexion.Open();
+                string query = "SELECT * FROM codigopostal WHERE CodigoPostal = @CodigoPostal";
+                using (MySqlCommand cmd = new MySqlCommand(query, conexion))
+                {
+                    cmd.Parameters.AddWithValue("@CodigoPostal", codigoPostal);
+
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            usuario = new Codigopostal
+                            {
+                                CodigoPostal = Convert.ToInt32(reader["CodigoPostal"]),
+                                colonia = reader["Colonia"].ToString(),
+                                municipio = reader["Municipio"].ToString(),
+                                estado = reader["Estado"].ToString(),
+
+                            };
+                        }
+                    }
+                }
+            }
+            return usuario;
+        }
 
         public List<NivelUsuario> ObtenerProgresoPorEmpleado(int numEmpleado)
         {
