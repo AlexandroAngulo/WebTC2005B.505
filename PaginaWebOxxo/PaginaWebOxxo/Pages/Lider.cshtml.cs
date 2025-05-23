@@ -8,22 +8,30 @@ namespace PaginaWebOxxo.Pages;
 public class LiderModel : PageModel
 {
 
-     private readonly DataBaseContext _context;
-        public LiderModel(DataBaseContext context)
-        {
-            _context = context;
-        }
-    
+    private readonly DataBaseContext _context;
+    public LiderModel(DataBaseContext context)
+    {
+        _context = context;
+    }
+
     public Estadisticas EstadisticasUsuario { get; set; }
 
     public Usuarios Usuario { get; set; }
-    public void OnGet()
-        {
-            int numEmpleado = 12345; 
-            EstadisticasUsuario = _context.ObtenerMonedasPorEmpleado(numEmpleado);
-            Usuario = _context.ObtenerUsuarioPorEmpleados(numEmpleado);
-            
 
-        }
+    public Contacto contacto { get; set; }
+    public void OnGet()
+    {
+        int numEmpleado = 12345;
+        EstadisticasUsuario = _context.ObtenerMonedasPorEmpleado(numEmpleado);
+        Usuario = _context.ObtenerUsuarioPorEmpleados(numEmpleado);
+
+
+        contacto = _context.ObtenerContactoPorEmpleados(numEmpleado);
+        
+    }
+
+    
+    
+        
 
 }
