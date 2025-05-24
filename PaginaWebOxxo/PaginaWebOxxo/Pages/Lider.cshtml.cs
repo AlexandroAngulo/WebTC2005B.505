@@ -14,19 +14,27 @@ public class LiderModel : PageModel
         _context = context;
     }
 
+
     public Estadisticas EstadisticasUsuario { get; set; }
 
     public Usuarios Usuario { get; set; }
 
     public Contacto contacto { get; set; }
     public Codigopostal codigopostal{ get; set; }
+
+
     public void OnGet()
     {
+
         int numEmpleado = 12345;
+
         EstadisticasUsuario = _context.ObtenerMonedasPorEmpleado(numEmpleado);
         Usuario = _context.ObtenerUsuarioPorEmpleados(numEmpleado);
 
-
+        if (Usuario != null)
+        {
+            int edad = Usuario.Edad;       
+        }
         int codigoPostal = 12345;
         contacto = _context.ObtenerContactoPorEmpleados(numEmpleado);
         codigopostal = _context.ObtenerCodigoPorEmpleados(codigoPostal);

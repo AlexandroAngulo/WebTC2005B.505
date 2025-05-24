@@ -20,7 +20,7 @@ public class EmpleadosModel : PageModel
 
     public void OnGet()
     {
-        int numLider = 12345;
+        int numLider = 54321;
 
         // Obtener datos del líder
         Lider = _context.ObtenerUsuarioPorEmpleados(numLider);

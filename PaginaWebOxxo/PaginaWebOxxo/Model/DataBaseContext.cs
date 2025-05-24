@@ -138,6 +138,8 @@ namespace PaginaWebOxxo.Model
             return usuario;
         }
 
+        
+
         //Ivan
         public List<NivelUsuario> ObtenerProgresoPorEmpleado(int numEmpleado)
         {
