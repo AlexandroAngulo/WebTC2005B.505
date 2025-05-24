@@ -1,6 +1,7 @@
 using System;
 using MySql.Data.MySqlClient;
 using System.Collections.Generic;
+using Mysqlx.Crud;
 
 
 namespace PaginaWebOxxo.Model
@@ -77,7 +78,7 @@ namespace PaginaWebOxxo.Model
         }
 
         //Mateo
-           public Contacto ObtenerContactoPorEmpleados(int numEmpleado)
+        public Contacto ObtenerContactoPorEmpleados(int numEmpleado)
         {
             Contacto usuario = null;
 
@@ -107,7 +108,21 @@ namespace PaginaWebOxxo.Model
             }
             return usuario;
         }
-           public Codigopostal ObtenerCodigoPorEmpleados(int codigoPostal)
+        public void ActualizarTelefono(int numEmpleado, int telefono)
+        {
+            using (MySqlConnection conexion = GetConnection())
+            {
+                conexion.Open();
+                string query = "UPDATE contacto SET Telefono = @Telefono WHERE NumEmpleado = @NumEmpleado";
+                using (MySqlCommand cmd = new MySqlCommand(query, conexion))
+                {
+                    cmd.Parameters.AddWithValue("@Telefono", telefono);
+                    cmd.Parameters.AddWithValue("@NumEmpleado", numEmpleado);
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
+        public Codigopostal ObtenerCodigoPorEmpleados(int codigoPostal)
         {
             Codigopostal usuario = null;
 
