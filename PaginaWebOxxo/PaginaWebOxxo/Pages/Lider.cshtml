@@ -35,10 +35,12 @@
     <div class="row gx-5">
         <!-- Formulario -->
         <div class="col-lg-7">
-            <form>
+            <form method="post">
                 <div class="mb-4">
                     <label class="form-label">Teléfono</label>
-                    <input type="text" value= @Model.contacto.telefono class="form-control rounded-4" />
+                    <input type="text" id="telefonoinput" value= @Model.contacto.telefono class="form-control rounded-4" disabled />
+                    <br>
+                    <button type="button" class="btn btn-danger mt-2" onclick="habilitartelefono()" > Editar Telefono </button>
                 </div>
                 <div class="mb-4">
                     <label class="form-label">Correo electrónico</label>
@@ -47,6 +49,7 @@
                 <div class="mb-4">
                     <label class="form-label">Número de empleado</label>
                     <input type="text" disabled value= @Model.contacto.NumEmpleado  class="form-control rounded-4" />
+
                 </div>
                 <div class="mb-4">
                     <label class="form-label">Dirección</label>
@@ -87,6 +90,8 @@
         resize: none;
         text-align: left;
     }
+    
+
 
     .badge-custom {
         font-size: 1rem;
@@ -149,3 +154,9 @@
         background-color: #e0e0e0;
     }
 </style>
+<script>
+    function habilitartelefono(){
+        document.getElementById("telefonoinput").disabled = false;
+        document.getElementById("telefonoinput").focus();
+    }
+</script>
