@@ -16,14 +16,14 @@
             <img src="https://previews.123rf.com/images/spaxia/spaxia1206/spaxia120600038/14011204-sonrisa-hombre-trabajador-de-la-construcci%C3%B3n-aislada-en-blanco.jpg"
                  alt="Foto de Trabajador" class="imagenperfil">
             <div>
-                <h3 class="fw-bold mb-1">@Model.Usuario.Nombre  @Model.Usuario.ApellidoP</h3>
+                <h3 class="fw-bold mb-1">@Model.Usuario.Nombre  @Model.Usuario.ApellidoP  @Model.Usuario.ApellidoM </h3>
             </div>
         </div>
 
         <!-- Badges Sexo/Ocupación/Edad -->
         <div class="badges-top pe-3">
-            <div class="badge bg-warning text-dark badge-custom">Masculino<small>Sexo</small></div>
-            <div class="badge bg-warning text-dark badge-custom">Líder De Tienda<small>Ocupación</small></div>
+            <div class="badge bg-warning text-dark badge-custom">@Model.Usuario.genero<small>Sexo</small></div>
+            <div class="badge bg-warning text-dark badge-custom">@Model.Usuario.Puesto<small>Ocupación</small></div>
             <div class="badge bg-warning text-dark badge-custom"> @Model.Usuario.Edad Años<small>Edad</small></div>
         </div>
     </div>
@@ -50,7 +50,7 @@
                 </div>
                 <div class="mb-4">
                     <label class="form-label">Correo electrónico</label>
-                    <input type="email" value= @Model.contacto.correo class="form-control rounded-4" />
+                    <input type="email" value= @Model.contacto.correo class="form-control rounded-4" disabled />
                 </div>
                 <div class="mb-4">
                     <label class="form-label">Número de empleado</label>
@@ -74,7 +74,9 @@
             <h4 class="mb-4 fw-semibold text-center">Insignias obtenidas</h4>
             <div class="d-flex flex-column gap-4 align-items-center">
                 <img src="/imagenes/imagen1.png" alt="Level 1" class="insigniaimagen">
+                <br>
                 <img src="/imagenes/insignia2.png" alt="Level 2" class="insigniaimagen">
+                <br>
                 <img src="/imagenes/isignia3.png" alt="Level 3" class="insigniaimagen" style="opacity: 0.5;">
             </div>
         </div>
