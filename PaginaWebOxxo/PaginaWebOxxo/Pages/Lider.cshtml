@@ -35,12 +35,18 @@
     <div class="row gx-5">
         <!-- Formulario -->
         <div class="col-lg-7">
-            <form method="post">
+            <form method="post" asp-page-handler="Actualizar">
                 <div class="mb-4">
                     <label class="form-label">Teléfono</label>
-                    <input type="text" id="telefonoinput" value= @Model.contacto.telefono class="form-control rounded-4" disabled />
+                    <input type="number" id="telefonoinput" name="Telefono" value="@Model.contacto.telefono" class="form-control rounded-4" readonly />
+                    <span asp-validation-for="Telefono" class="text-danger"></span>
+                    <small id="telefono-error" class="text-danger d-none">El teléfono debe tener exactamente 9 dígitos.</small>
                     <br>
-                    <button type="button" class="btn btn-danger mt-2" onclick="habilitartelefono()" > Editar Telefono </button>
+                    <div class="d-flex gap-2 mt-2">
+                        <button type="button" class="btn btn-danger" onclick="habilitartelefono()">Editar Teléfono</button>
+                        <button class="btn btn-primary" type="submit" asp-page-handler="Actualizar">Actualizar</button>
+                    </div>
+
                 </div>
                 <div class="mb-4">
                     <label class="form-label">Correo electrónico</label>
@@ -156,7 +162,11 @@
 </style>
 <script>
     function habilitartelefono(){
-        document.getElementById("telefonoinput").disabled = false;
-        document.getElementById("telefonoinput").focus();
+        var input = document.getElementById("telefonoinput");
+        input.removeAttribute("readonly");
+        input.focus();
+
+
+
     }
 </script>
