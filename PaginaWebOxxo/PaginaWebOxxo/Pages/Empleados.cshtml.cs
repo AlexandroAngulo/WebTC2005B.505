@@ -24,6 +24,12 @@ public class EmpleadosModel : PageModel
 
         // Obtener datos del líder
         Lider = _context.ObtenerUsuarioPorEmpleados(numLider);
+        Lider.ColorEstatus = Lider.IdEstatus switch
+            {
+                1 => "bg-success",
+                2 => "bg-warning",
+                3 => "bg-danger",
+            };
 
         // Obtener empleados que dependen del líder
         ListaEmpleados = _context.ObtenerEmpleadosPorLider(numLider);
@@ -35,7 +41,7 @@ public class EmpleadosModel : PageModel
             {
                 1 => "bg-success",   // Activo
                 2 => "bg-warning",   // Inactivo
-                _ => "bg-danger",    // Ausente
+                3 => "bg-danger",    // Ausente
             };
         }
     }

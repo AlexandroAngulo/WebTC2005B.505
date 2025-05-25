@@ -10,10 +10,9 @@ public class Usuarios
 	public int IdGenero { get; set; }
 	public int IdTipoPuesto { get; set; }
 	public int IdEstatus { get; set; }
-
 	public string genero { get; set; }
 	public string Puesto{ get; set; }
-	
+	public string ColorEstatus { get; set; }
 	
 	public int Edad
 	{

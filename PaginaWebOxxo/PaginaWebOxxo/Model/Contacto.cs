@@ -7,7 +7,7 @@ namespace PaginaWebOxxo.Model
         public int NumEmpleado { get; set; }
         
       
-        public int telefono { get; set; }
+        public string telefono { get; set; }
         public string correo { get; set; }
        
         public string codigoP { get; set; }

@@ -3,12 +3,16 @@
 @{
     ViewData["Title"] = "Gestión de Empleados";
 }
+<head>
+    ...
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+    ...
+</head>
 
 <body>
     <h1 class="color_letras cal-sans-regular">@ViewData["Title"]</h1>
     <div class="d-flex flex-column gap-4">
 
-        <!-- Líder en el mismo formato que los empleados -->
         <div class="d-flex align-items-center justify-content-between mb-4">
             <div>
                 <img src="https://previews.123rf.com/images/spaxia/spaxia1206/spaxia120600038/14011204-sonrisa-hombre-trabajador-de-la-construcci%C3%B3n-aislada-en-blanco.jpg" alt="Foto de Trabajador" class="rounded-circle me-3" width="150" height="150">
@@ -20,8 +24,8 @@
                 </figure>
             </div>
 
-            <!-- Puedes decidir un color especial para el líder o usar uno por defecto -->
-            <div class="rounded-circle bg-primary" style="width: 20px; height: 20px;"></div>
+
+            <div class="rounded-circle @Model.Lider.ColorEstatus" style="width: 20px; height: 20px;"></div>
         </div>
 
         @foreach (var empleado in Model.ListaEmpleados)
@@ -36,7 +40,8 @@
                         <figcaption class="blockquote-footer fs-3">@empleado.Puesto</figcaption>
                     </figure>
                 </div>
-
+                
+                <div> @empleado.horarioInicio.ToString(@"hh\:mm") - @empleado.horarioFin.ToString(@"hh\:mm") </div>
                 <div class="rounded-circle @empleado.ColorEstatus" style="width: 20px; height: 20px;"></div>
             </div>
             <br />
@@ -44,3 +49,7 @@
     </div>
     <br />
 </body>
+
+<style>
+
+</style>

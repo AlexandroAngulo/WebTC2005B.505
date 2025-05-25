@@ -1,4 +1,5 @@
 using System;
+using Org.BouncyCastle.Asn1.Cms;
 
 namespace PaginaWebOxxo.Model
 {
@@ -11,5 +12,7 @@ namespace PaginaWebOxxo.Model
         public string Puesto { get; set; }
         public int IdEstatus { get; set; }
         public string ColorEstatus { get; set; }
+        public TimeSpan horarioInicio { get; set; }
+        public TimeSpan horarioFin{ get; set; }
     }
 }

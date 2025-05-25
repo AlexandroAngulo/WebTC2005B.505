@@ -60,9 +60,9 @@ public class LiderModel : PageModel
 
         string telefonostr = Telefono.ToString();
 
-        if (telefonostr.Length >9 || telefonostr.Length<9)
+        if (telefonostr.Length >10 || telefonostr.Length<10)
         {
-            ModelState.AddModelError("Telefono", "El número de teléfono es inválido, debe contener 9 dígitos");
+            ModelState.AddModelError("Telefono", "El número de teléfono es inválido, debe contener 10 dígitos");
         }
         else
         {

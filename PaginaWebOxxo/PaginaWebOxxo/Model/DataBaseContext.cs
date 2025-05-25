@@ -100,7 +100,7 @@ namespace PaginaWebOxxo.Model
                             usuario = new Contacto
                             {
                                 NumEmpleado = Convert.ToInt32(reader["NumEmpleado"]),
-                                telefono = Convert.ToInt32(reader["Telefono"]),
+                                telefono = reader["Telefono"].ToString(),
                                 correo = reader["Correo"].ToString(),
                                 codigoP = reader["CodigoPostal"].ToString(),
 
@@ -125,6 +125,7 @@ namespace PaginaWebOxxo.Model
                 }
             }
         }
+
         public Codigopostal ObtenerCodigoPorEmpleados(int codigoPostal)
         {
             Codigopostal usuario = null;
@@ -156,7 +157,7 @@ namespace PaginaWebOxxo.Model
             return usuario;
         }
 
-        
+
 
         //Ivan
         public List<NivelUsuario> ObtenerProgresoPorEmpleado(int numEmpleado)
@@ -194,14 +195,14 @@ namespace PaginaWebOxxo.Model
             }
             return progresos;
         }
-        
+
         // Dario
         public List<Empleados> ObtenerEmpleadosPorLider(int numLider)
         {
             List<Empleados> empleados = new List<Empleados>();
             MySqlConnection conexion = new MySqlConnection(ConnectionString);
             conexion.Open();
-            MySqlCommand cmd = new MySqlCommand("SELECT e.NumEmpleado, e.Nombre, e.ApellidoP, e.IdEstatus, p.Puesto FROM empleados e JOIN puesto p ON p.IdTipoPuesto = e.IdTipoPuesto WHERE e.NumLider = @NumLider");
+            MySqlCommand cmd = new MySqlCommand("SELECT e.NumEmpleado, e.Nombre, e.ApellidoP, e.IdEstatus, e.horarioInicio, e.horarioFin, p.Puesto FROM empleados e JOIN puesto p ON p.IdTipoPuesto = e.IdTipoPuesto WHERE e.NumLider = @NumLider");
             cmd.Parameters.AddWithValue("@NumLider", numLider);
 
             cmd.Connection = conexion;
@@ -216,11 +217,14 @@ namespace PaginaWebOxxo.Model
                     empleado.ApellidoP = reader["ApellidoP"].ToString();
                     empleado.IdEstatus = Convert.ToInt32(reader["IdEstatus"]);
                     empleado.Puesto = reader["Puesto"].ToString();
+                    empleado.horarioInicio = TimeSpan.Parse(reader["horarioInicio"].ToString());
+                    empleado.horarioFin = TimeSpan.Parse(reader["horarioFin"].ToString());
                     empleados.Add(empleado);
                 }
             }
             return empleados;
         }
+        
     }
 
 }
