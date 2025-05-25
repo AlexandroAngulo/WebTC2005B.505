@@ -10,16 +10,20 @@ public class Usuarios
 	public int IdGenero { get; set; }
 	public int IdTipoPuesto { get; set; }
 	public int IdEstatus { get; set; }
+
+	public string genero { get; set; }
+	public string Puesto{ get; set; }
+	
 	
 	public int Edad
-    {
-        get
-        {
-            var hoy = DateTime.Today;
-            int edad = hoy.Year - FechaNacimiento.Year;
-            if (FechaNacimiento.Date > hoy.AddYears(-edad)) edad--;
-            return edad;
-        }
-    }
+	{
+		get
+		{
+			var hoy = DateTime.Today;
+			int edad = hoy.Year - FechaNacimiento.Year;
+			if (FechaNacimiento.Date > hoy.AddYears(-edad)) edad--;
+			return edad;
+		}
+	}
 
 }

@@ -27,12 +27,17 @@ public class LiderModel : PageModel
     [BindProperty]
     public Codigopostal codigopostal { get; set; }
 
+    public Usuarios Genero{ get; set; }
+    public Usuarios Puesto{ get; set; }
+
 
     public void OnGet()
     {
 
         int numEmpleado = 12345;
 
+        Puesto = _context.ObtenerUsuarioPorEmpleados(numEmpleado);
+        Genero = _context.ObtenerUsuarioPorEmpleados(numEmpleado);
         EstadisticasUsuario = _context.ObtenerMonedasPorEmpleado(numEmpleado);
         Usuario = _context.ObtenerUsuarioPorEmpleados(numEmpleado);
 
@@ -64,7 +69,9 @@ public class LiderModel : PageModel
             _context.ActualizarTelefono(numEmpleado, Telefono);
         }
 
-            // Recargar todos los datos necesarios para la vista
+        // Recargar todos los datos necesarios para la vista
+        Puesto = _context.ObtenerUsuarioPorEmpleados(numEmpleado);
+        Genero = _context.ObtenerUsuarioPorEmpleados(numEmpleado);
         EstadisticasUsuario = _context.ObtenerMonedasPorEmpleado(numEmpleado);
         Usuario = _context.ObtenerUsuarioPorEmpleados(numEmpleado);
         contacto = _context.ObtenerContactoPorEmpleados(numEmpleado);

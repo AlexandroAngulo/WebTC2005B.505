@@ -49,7 +49,7 @@ namespace PaginaWebOxxo.Model
             using (MySqlConnection conexion = GetConnection())
             {
                 conexion.Open();
-                string query = "SELECT * FROM usuarios WHERE NumEmpleado = @NumEmpleado";
+                string query = "SELECT * FROM usuarios INNER JOIN genero on usuarios.IdGenero = genero.IdGenero JOIN puesto on usuarios.IdTipoPuesto = puesto.IdTipoPuesto WHERE usuarios.NumEmpleado = @NumEmpleado";
                 using (MySqlCommand cmd = new MySqlCommand(query, conexion))
                 {
                     cmd.Parameters.AddWithValue("@NumEmpleado", numEmpleado);
@@ -68,7 +68,9 @@ namespace PaginaWebOxxo.Model
                                 FechaRegistro = Convert.ToDateTime(reader["FechaRegistro"]),
                                 IdGenero = Convert.ToInt32(reader["IdGenero"]),
                                 IdTipoPuesto = Convert.ToInt32(reader["IdTipoPuesto"]),
-                                IdEstatus = Convert.ToInt32(reader["IdEstatus"])
+                                IdEstatus = Convert.ToInt32(reader["IdEstatus"]),
+                                Puesto = reader["Puesto"].ToString(),
+                                genero = reader["Genero"].ToString(),
                             };
                         }
                     }
@@ -78,6 +80,7 @@ namespace PaginaWebOxxo.Model
         }
 
         //Mateo
+
         public Contacto ObtenerContactoPorEmpleados(int numEmpleado)
         {
             Contacto usuario = null;
