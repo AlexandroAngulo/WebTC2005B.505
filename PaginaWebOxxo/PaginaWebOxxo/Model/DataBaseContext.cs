@@ -192,40 +192,30 @@ namespace PaginaWebOxxo.Model
             return progresos;
         }
         
-        // Querys de dario
+        // Dario
         public List<Empleados> ObtenerEmpleadosPorLider(int numLider)
         {
-            var empleados = new List<Empleados>();
+            List<Empleados> empleados = new List<Empleados>();
+            MySqlConnection conexion = new MySqlConnection(ConnectionString);
+            conexion.Open();
+            MySqlCommand cmd = new MySqlCommand("SELECT e.NumEmpleado, e.Nombre, e.ApellidoP, e.IdEstatus, p.Puesto FROM empleados e JOIN puesto p ON p.IdTipoPuesto = e.IdTipoPuesto WHERE e.NumLider = @NumLider");
+            cmd.Parameters.AddWithValue("@NumLider", numLider);
 
-            using (var conexion = GetConnection())
+            cmd.Connection = conexion;
+            Empleados empleado = new Empleados();
+            using (var reader = cmd.ExecuteReader())
             {
-                conexion.Open();
-                string query = @"SELECT e.NumEmpleado, e.Nombre, e.ApellidoP, e.IdEstatus, p.Puesto
-                                FROM empleados e
-                                JOIN puesto p ON p.IdTipoPuesto = e.IdTipoPuesto
-                                WHERE e.NumLider = @NumLider";
-
-                using (var cmd = new MySqlCommand(query, conexion))
+                while (reader.Read())
                 {
-                    cmd.Parameters.AddWithValue("@NumLider", numLider);
-
-                    using (var reader = cmd.ExecuteReader())
-                    {
-                        while (reader.Read())
-                        {
-                            empleados.Add(new Empleados
-                            {
-                                NumEmpleado = Convert.ToInt32(reader["NumEmpleado"]),
-                                Nombre = reader["Nombre"].ToString(),
-                                ApellidoP = reader["ApellidoP"].ToString(),
-                                IdEstatus = Convert.ToInt32(reader["IdEstatus"]),
-                                Puesto = reader["Puesto"].ToString()
-                            });
-                        }
-                    }
+                    empleado = new Empleados();
+                    empleado.NumEmpleado = Convert.ToInt32(reader["NumEmpleado"]);
+                    empleado.Nombre = reader["Nombre"].ToString();
+                    empleado.ApellidoP = reader["ApellidoP"].ToString();
+                    empleado.IdEstatus = Convert.ToInt32(reader["IdEstatus"]);
+                    empleado.Puesto = reader["Puesto"].ToString();
+                    empleados.Add(empleado);
                 }
             }
-
             return empleados;
         }
     }

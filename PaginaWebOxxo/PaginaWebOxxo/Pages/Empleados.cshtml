@@ -37,18 +37,7 @@
                     </figure>
                 </div>
 
-                @if (empleado.IdEstatus == 1) // Activo
-                {
-                    <div class="rounded-circle bg-danger" style="width: 20px; height: 20px;"></div>
-                }
-                else if (empleado.IdEstatus == 2) // Inactivo
-                {
-                    <div class="rounded-circle bg-warning" style="width: 20px; height: 20px;"></div>
-                }
-                else // Ausente
-                {
-                    <div class="rounded-circle bg-success" style="width: 20px; height: 20px;"></div>
-                }
+                <div class="rounded-circle @empleado.ColorEstatus" style="width: 20px; height: 20px;"></div>
             </div>
             <br />
         }

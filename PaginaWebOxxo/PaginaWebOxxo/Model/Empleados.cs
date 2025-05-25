@@ -10,5 +10,6 @@ namespace PaginaWebOxxo.Model
         public int IdTipoPuesto { get; set; }
         public string Puesto { get; set; }
         public int IdEstatus { get; set; }
+        public string ColorEstatus { get; set; }
     }
 }

@@ -20,12 +20,23 @@ public class EmpleadosModel : PageModel
 
     public void OnGet()
     {
-        int numLider = 54321;
+        int numLider = 12345;
 
         // Obtener datos del líder
         Lider = _context.ObtenerUsuarioPorEmpleados(numLider);
 
         // Obtener empleados que dependen del líder
         ListaEmpleados = _context.ObtenerEmpleadosPorLider(numLider);
+
+        // Asignar colores en el backend de la página
+        foreach (var empleado in ListaEmpleados)
+        {
+            empleado.ColorEstatus = empleado.IdEstatus switch
+            {
+                1 => "bg-success",   // Activo
+                2 => "bg-warning",   // Inactivo
+                _ => "bg-danger",    // Ausente
+            };
+        }
     }
 }
