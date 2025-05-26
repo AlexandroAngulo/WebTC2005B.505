@@ -28,10 +28,10 @@
         <br>
         <h3>Elegir Personaje</h3>
         <div class="contenedor">
-            <div class="elemento"><img src="imagenes/Personaje3PW.png" alt=""></div>
-            <div class="elemento"><img src="imagenes/Personaje2PW.png" alt=""></div>
-            <div class="elemento"><img src="imagenes/Personaje4PW.png" alt=""></div>
-            <div class="elemento"><img src="imagenes/Personaje1PW.png" alt=""></div>
+            <div class="elemento"><button onclick="location.href='https://www.facebook.com'"><img src="imagenes/Personaje3PW.png" alt=""></button></div>
+            <div class="elemento"><button onclick="location.href='https://www.facebook.com'"><img src="imagenes/Personaje2PW.png" alt=""></button></div>
+            <div class="elemento"><button onclick="location.href='https://www.facebook.com'"><img src="imagenes/Personaje4PW.png" alt=""></button></div>
+            <div class="elemento"><button onclick="location.href='https://www.facebook.com'"><img src="imagenes/Personaje1PW.png" alt=""></button></div>
         </div>
     </div>
 
@@ -39,15 +39,24 @@
     <div class="columna-derecha">
         <div>
         <h3>Elegir Música del Menú</h3>
-        <p>🎵 Track 1 &nbsp; 🎵 Track 2 &nbsp; 🎵 Track 3</p>
+            <div class="contenedor3">
+              <div><button onclick="location.href='https://www.youtube.com'"><img class="imagenes-musica" src="imagenes/Musica.jpg" alt=""></button></div>
+              <div><button onclick="location.href='https://www.youtube.com'"><img class="imagenes-musica" src="imagenes/Musica.jpg" alt=""></button></div>
+              <div><button onclick="location.href='https://www.youtube.com'"><img class="imagenes-musica" src="imagenes/Musica.jpg" alt=""></button></div>
+            </div>
         </div>
+
+        <br>
+        <br>
+        <br>
+        <br>
 
         <div>
         <h3>Recompensas</h3>
         <ul>
-            <li><a href="#">Tiempo Aire</a></li>
-            <li><a href="#">Puntos Spin</a></li>
-            <li><a href="#">Cupones</a></li>
+            <li><a class="links" href="CanjeRecompensas">Tiempo Aire</a></li>
+            <li><a class="links" href="CanjeRecompensas">Puntos Spin</a></li>
+            <li><a class="links" href="CanjeRecompensas">Cupones</a></li>
         </ul>
         </div>
     </div>
@@ -92,7 +101,7 @@
 
     .columna-derecha {
       flex: 1; /* Que ocupe el resto del ancho disponible */
-      padding: 20px;
+      padding: 50px;
     }
 
     .botonayuda {
@@ -113,5 +122,40 @@
 
     .botonayuda:hover {
     background-color: #e0e0e0;
+    }
+
+    button {
+      border: none; /* Quitar el borde */
+      background: transparent; /* Fondo transparente */
+      padding: 0; /* Quitar el relleno */
+      font-family: inherit; /* Heredar la fuente del documento */
+      font-size: inherit; /* Heredar el tamaño de fuente */
+      color: inherit; /* Heredar el color del texto */
+      cursor: pointer; /* Cambiar el cursor al pasar por encima (opcional) */
+    }
+
+    button:hover {
+      background-color: #00ffff; /* Cambiar el color de fondo al pasar el mouse */
+      size: 40px;
+    }
+
+    .contenedor3 {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr; /* Opcional: tres columnas de igual tamaño */
+    }
+    .columna {
+      /* Estilos para cada columna */
+    }
+    .imagenes-musica {
+      width: 100px; /* Ajusta el tamaño de las imágenes según sea necesario */
+      height: 100px;
+    }
+    .links {
+      text-decoration: none; /* Quitar subrayado */
+      color: #000000; /* Color del enlace */
+      font-size: 25px; /* Tamaño de fuente */
+    }
+    .links:hover {
+      color: #fc0000; /* Cambiar color al pasar el mouse */
     }
 </style>
