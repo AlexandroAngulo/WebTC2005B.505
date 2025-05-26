@@ -29,6 +29,7 @@ public class LiderModel : PageModel
 
     public Usuarios Genero{ get; set; }
     public Usuarios Puesto{ get; set; }
+    public Usuarios Lider { get; set; }
 
 
     public void OnGet()
