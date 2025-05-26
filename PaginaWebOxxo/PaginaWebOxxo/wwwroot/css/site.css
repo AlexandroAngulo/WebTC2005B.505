@@ -150,3 +150,31 @@ section{
   width: 100px;
   height: 100px;
  }
+
+/*!Styles para empleados*/
+@keyframes parpadeo {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0;
+    }
+}
+
+.estatus-circulo {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: inline-block;
+    animation: parpadeo 5s infinite;
+}
+
+.circulo {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+
+.boton-redondo {
+    border-radius: 20px;
+}

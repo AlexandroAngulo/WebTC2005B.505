@@ -15,7 +15,7 @@
     </div>
 
     <div class="row align-items-center justify-content-between mb-4 py-4">
-        <!-- Foto y nombre del líder -->
+        <!--Foto y nombre del líder-->
         <div class="col-md-3 d-flex align-items-center">
             <img src="https://previews.123rf.com/images/spaxia/spaxia1206/spaxia120600038/14011204-sonrisa-hombre-trabajador-de-la-construcci%C3%B3n-aislada-en-blanco.jpg"
                  alt="Foto de Trabajador" class="rounded-circle me-3" width="150" height="150">
@@ -24,24 +24,29 @@
                 <p class="fs-3 text-muted">@Model.Lider.Puesto</p>
             </div>
         </div>
-        <!-- Horario -->
+        <!--Horario-->
         <div class="col-md-3 text-md-center fs-4">
             @Model.Lider.horarioInicio.ToString(@"hh\:mm") - @Model.Lider.horarioFin.ToString(@"hh\:mm")
         </div>
-        <!-- Estatus -->
+        <!--Estatus-->
         <div class="col-md-3 d-flex align-items-center justify-content-center">
-            <div class="rounded-circle @Model.Lider.ColorEstatus" style="width: 40px; height: 40px;"></div>
+            <div class="estatus-circulo @Model.Lider.ColorEstatus"></div>
         </div>
-        <!-- Ícono -->
+        <!--Editar-->
         <div class="col-md-3 text-center">
-            <i class="fa-solid fa-pencil fs-3"></i>
+            <form method="post" asp-page-handler="EditarLider">
+                <input type="hidden" name="numEmpleado" value="@Model.Lider.NumEmpleado" />
+                <button class="btn btn-secondary rounded-circle p-3">
+                    <i class="fa-solid fa-pencil fs-4"></i>
+                </button>
+            </form>
         </div>
     </div>
 
     @foreach (var empleado in Model.ListaEmpleados)
     {
         <div class="row align-items-center justify-content-between mb-4 py-4">
-            <!-- Foto y nombre -->
+            <!--Foto y nombre-->
             <div class="col-md-3 d-flex align-items-center">
                 <img src="https://previews.123rf.com/images/spaxia/spaxia1206/spaxia120600038/14011204-sonrisa-hombre-trabajador-de-la-construcci%C3%B3n-aislada-en-blanco.jpg"
                      alt="Foto de Trabajador" class="rounded-circle me-3" width="150" height="150">
@@ -50,23 +55,42 @@
                     <p class="fs-3 text-muted">@empleado.Puesto</p>
                 </div>
             </div>
-            <!-- Horario -->
+            <!--Horario-->
             <div class="col-md-3 text-md-center fs-4">
                 @empleado.horarioInicio.ToString(@"hh\:mm") - @empleado.horarioFin.ToString(@"hh\:mm")
             </div>
-            <!-- Estatus -->
+            <!--Estatus-->
             <div class="col-md-3 d-flex align-items-center justify-content-center">
-                <div class="rounded-circle @empleado.ColorEstatus" style="width: 40px; height: 40px;"></div>
+                <div class="estatus-circulo @empleado.ColorEstatus"></div>
             </div>
-            <!-- Ícono -->
+            <!--Editar-->
             <div class="col-md-3 text-center">
-                <i class="fa-solid fa-pencil fs-3"></i>
+                <form method="post" asp-page-handler="EditarEmpleado">
+                    <input type="hidden" name="numEmpleado" value="@empleado.NumEmpleado" />
+                    <button class="btn btn-secondary rounded-circle p-3">
+                        <i class="fa-solid fa-pencil fs-4"></i>
+                    </button>
+                </form>
             </div>
         </div>
-    }
+    }<br>
+
+    <div class="row align-items-center justify-content-between mb-4 py-4">
+        <div class="col-md-3 text-md-center">
+            <button class="btn btn-warning boton-redondo fs-3 text-muted" type="submit" asp-page-handler="Actualizar">Agregar Empleado</button>
+        </div>
+
+        <div class="col-md-3 d-flex align-items-center justify-content-center gap-3 fs-4">
+            <span class="color_letras cal-sans-regular">Activo</span>
+            <div class="circulo bg-success"></div>
+        </div>
+        <div class="col-md-3 d-flex align-items-center justify-content-center gap-3 fs-4">
+            <span class="color_letras cal-sans-regular">Inactivo</span>
+            <div class="circulo bg-warning"></div>
+        </div>
+        <div class="col-md-3 d-flex align-items-center justify-content-center gap-3 fs-4">
+            <span class="color_letras cal-sans-regular">Ausente</span>
+            <div class="circulo bg-danger"></div>
+        </div>
+    </div>
 </body>
-
-
-<style>
-
-</style>

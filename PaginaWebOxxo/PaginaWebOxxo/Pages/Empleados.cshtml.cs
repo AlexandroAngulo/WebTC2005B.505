@@ -24,25 +24,36 @@ public class EmpleadosModel : PageModel
 
         // Obtener datos del líder
         Lider = _context.ObtenerUsuarioPorEmpleados(numLider);
-        Lider.ColorEstatus = Lider.IdEstatus switch
-            {
-                1 => "bg-success",
-                2 => "bg-warning",
-                3 => "bg-danger",
-            };
+        Lider.ColorEstatus = ObtenerColorEstatus(Lider.IdEstatus);
 
         // Obtener empleados que dependen del líder
         ListaEmpleados = _context.ObtenerEmpleadosPorLider(numLider);
 
-        // Asignar colores en el backend de la página
         foreach (var empleado in ListaEmpleados)
         {
-            empleado.ColorEstatus = empleado.IdEstatus switch
-            {
-                1 => "bg-success",   // Activo
-                2 => "bg-warning",   // Inactivo
-                3 => "bg-danger",    // Ausente
-            };
+            empleado.ColorEstatus = ObtenerColorEstatus(empleado.IdEstatus);
         }
+    }
+
+    // Asignar colores en base a estatus
+    private string ObtenerColorEstatus(int idEstatus)
+    {
+        return idEstatus switch
+        {
+            1 => "bg-success",   // Activo
+            2 => "bg-warning",   // Inactivo
+            3 => "bg-danger",    // Ausente
+            _ => "bg-secondary"  // Desconocido
+        };
+    }
+
+    public void OnPostEditarLider()
+    {
+        Response.Redirect($"Lider?numEmpleado={Lider.NumEmpleado}");
+    }
+
+    public void OnPostEditarEmpleado(int numEmpleado)
+    {
+        Response.Redirect($"Lider?numEmpleado={numEmpleado}");
     }
 }
