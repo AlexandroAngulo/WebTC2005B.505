@@ -7,16 +7,16 @@
 <body class="container-fluid px-5">
     <h1 class="color_letras cal-sans-regular">@ViewData["Title"]</h1><br>
 
-    <div class="row text-center"> 
-    <div class="col-md-3 color_letras cal-sans-regular fs-3"></div>
-    <div class="col-md-3 color_letras cal-sans-regular fs-3">Horario</div>
-    <div class="col-md-3 color_letras cal-sans-regular fs-3">Estatus</div>
-    <div class="col-md-3 color_letras cal-sans-regular fs-3">Editar</div>
+    <div class="row align-items-center justify-content-between mb-4 py-4 text-center">
+        <div class="col-md-5 color_letras cal-sans-regular fs-3">Empleado</div>
+        <div class="col-md-2 color_letras cal-sans-regular fs-3">Horario</div>
+        <div class="col-md-2 color_letras cal-sans-regular fs-3">Estatus</div>
+        <div class="col-md-2 color_letras cal-sans-regular fs-3">Editar</div>
     </div>
 
     <div class="row align-items-center justify-content-between mb-4 py-4">
         <!--Foto y nombre del líder-->
-        <div class="col-md-3 d-flex align-items-center">
+        <div class="col-md-5 d-flex align-items-center">
             <img src="https://previews.123rf.com/images/spaxia/spaxia1206/spaxia120600038/14011204-sonrisa-hombre-trabajador-de-la-construcci%C3%B3n-aislada-en-blanco.jpg"
                  alt="Foto de Trabajador" class="rounded-circle me-3" width="150" height="150">
             <div>
@@ -25,15 +25,15 @@
             </div>
         </div>
         <!--Horario-->
-        <div class="col-md-3 text-md-center fs-4">
+        <div class="col-md-2 text-md-center fs-4">
             @Model.Lider.horarioInicio.ToString(@"hh\:mm") - @Model.Lider.horarioFin.ToString(@"hh\:mm")
         </div>
         <!--Estatus-->
-        <div class="col-md-3 d-flex align-items-center justify-content-center">
+        <div class="col-md-2 d-flex align-items-center justify-content-center">
             <div class="estatus-circulo @Model.Lider.ColorEstatus"></div>
         </div>
         <!--Editar-->
-        <div class="col-md-3 text-center">
+        <div class="col-md-2 text-center">
             <form method="post" asp-page-handler="EditarLider">
                 <input type="hidden" name="numEmpleado" value="@Model.Lider.NumEmpleado" />
                 <button class="btn btn-secondary rounded-circle p-3">
@@ -47,7 +47,7 @@
     {
         <div class="row align-items-center justify-content-between mb-4 py-4">
             <!--Foto y nombre-->
-            <div class="col-md-3 d-flex align-items-center">
+            <div class="col-md-5 d-flex align-items-center">
                 <img src="https://previews.123rf.com/images/spaxia/spaxia1206/spaxia120600038/14011204-sonrisa-hombre-trabajador-de-la-construcci%C3%B3n-aislada-en-blanco.jpg"
                      alt="Foto de Trabajador" class="rounded-circle me-3" width="150" height="150">
                 <div>
@@ -56,15 +56,15 @@
                 </div>
             </div>
             <!--Horario-->
-            <div class="col-md-3 text-md-center fs-4">
+            <div class="col-md-2 text-md-center fs-4">
                 @empleado.horarioInicio.ToString(@"hh\:mm") - @empleado.horarioFin.ToString(@"hh\:mm")
             </div>
             <!--Estatus-->
-            <div class="col-md-3 d-flex align-items-center justify-content-center">
+            <div class="col-md-2 d-flex align-items-center justify-content-center">
                 <div class="estatus-circulo @empleado.ColorEstatus"></div>
             </div>
             <!--Editar-->
-            <div class="col-md-3 text-center">
+            <div class="col-md-2 text-center">
                 <form method="post" asp-page-handler="EditarEmpleado">
                     <input type="hidden" name="numEmpleado" value="@empleado.NumEmpleado" />
                     <button class="btn btn-secondary rounded-circle p-3">
