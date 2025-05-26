@@ -1,10 +1,28 @@
 ﻿@page
 @model IndexModel
 @{
-    ViewData["Title"] = "Home page";
+    ViewData["Title"] = "Iniciar Sesión";
 }
 
 <body>
+    <div class="container-fluid px-5">
+        <h1 class="color_letras cal-sans-regular text-center">@ViewData["Title"]</h1><br><br>
+        <div class="mx-auto" style="max-width: 75%;">
+            <form method="post" class="border rounded-4 p-4 shadow-sm bg-light">
+                <div class="mb-4" style="max-width: 90%; margin: 0 auto;">
+                    <br><label class="form-label fw-semibold fs-4">Numero de Empleado</label>
+                    <input asp-for="login.NumEmpleado" class="form-control form-control-lg" type="text" placeholder="Numero de Empleado" />
+                </div><br>
 
+                <div class="mb-4" style="max-width: 90%; margin: 0 auto;" >
+                    <label class="form-label fw-semibold fs-4">Contraseña</label>
+                    <input asp-for="login.Contraseña" class="form-control form-control-lg" type="text" placeholder="Contraseña" />
+                </div><br>
 
+                <div class="text-center" style="max-width: 75%; margin: 0 auto;">
+                    <input class="btn btn-primary btn-color-primary btn-lg w-100" type="submit" asp-page-handler="Calcular" value="Iniciar Sesión" />
+                </div><br>
+            </form>
+        </div>
+    </div>
 </body>
