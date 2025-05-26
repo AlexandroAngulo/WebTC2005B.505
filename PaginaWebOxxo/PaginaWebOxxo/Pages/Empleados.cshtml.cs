@@ -16,7 +16,7 @@ public class EmpleadosModel : PageModel
     }
 
     public Usuarios Lider { get; set; }
-    public List<Empleados> ListaEmpleados { get; set; }
+    public List<Usuarios> ListaEmpleados { get; set; }
 
     public void OnGet()
     {
@@ -43,7 +43,6 @@ public class EmpleadosModel : PageModel
             1 => "bg-success",   // Activo
             2 => "bg-warning",   // Inactivo
             3 => "bg-danger",    // Ausente
-            _ => "bg-secondary"  // Desconocido
         };
     }
 

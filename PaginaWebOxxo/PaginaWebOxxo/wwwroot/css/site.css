@@ -59,14 +59,22 @@ body {
 body {
   font-family: 'Roboto', sans-serif;
 }
+
 .sidebar {
   position: fixed;
-  left: 0px;
+  left: 0;
   top: 0;
   width: 255px;
   height: 100%;
   background: #ED1C24;
   z-index: 1000;
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar-footer {
+  text-align: center;
+  padding-bottom: 20px; 
 }
 
 .sidebar header {
@@ -77,6 +85,14 @@ body {
   background: #063146;
   user-select: none;
 }
+
+.sidebar ul {
+  flex-grow: 1; 
+  margin: 0;
+  padding: 0;
+  overflow-y: auto;
+}
+
 .sidebar ul a{
   display: block;
   height: 100%;
@@ -85,16 +101,22 @@ body {
   line-height: 65px;
   font-size: 22px;
   color: white;
-  padding-left: 0;
+  padding-left: 30px;
   box-sizing: border-box;
   transition: .4s;
 }
+
 ul li:hover a{
-  padding-left: 15px;
+  padding-left: 45px;
 }
+
 .sidebar ul a i{
   margin-right: 16px;
   font-size: 25px;
+}
+
+.sidebar ul li {
+  margin-bottom: 20px;
 }
 
 label #btn{
@@ -105,6 +127,7 @@ label #btn{
   padding: 6px 12px;
   transition: all .5s;
 }
+
 label #cancel{
   z-index: 1111;
   left: -195px;

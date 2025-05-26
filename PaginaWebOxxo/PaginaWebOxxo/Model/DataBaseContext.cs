@@ -199,21 +199,21 @@ namespace PaginaWebOxxo.Model
         }
 
         // Dario
-        public List<Empleados> ObtenerEmpleadosPorLider(int numLider)
+        public List<Usuarios> ObtenerEmpleadosPorLider(int numLider)
         {
-            List<Empleados> empleados = new List<Empleados>();
+            List<Usuarios> empleados = new List<Usuarios>();
             MySqlConnection conexion = new MySqlConnection(ConnectionString);
             conexion.Open();
-            MySqlCommand cmd = new MySqlCommand("SELECT e.NumEmpleado, e.Nombre, e.ApellidoP, e.IdEstatus, e.horarioInicio, e.horarioFin, p.Puesto FROM empleados e JOIN puesto p ON p.IdTipoPuesto = e.IdTipoPuesto WHERE e.NumLider = @NumLider");
+            MySqlCommand cmd = new MySqlCommand("SELECT u.*, p.Puesto FROM usuarios u join lider_empleados l on l.NumEmpleado = u.NumEmpleado join puesto p on p.IdTipoPuesto = u.IdTipoPuesto where l.NumLider = @NumLider");
             cmd.Parameters.AddWithValue("@NumLider", numLider);
 
             cmd.Connection = conexion;
-            Empleados empleado = new Empleados();
+            Usuarios empleado = new Usuarios();
             using (var reader = cmd.ExecuteReader())
             {
                 while (reader.Read())
                 {
-                    empleado = new Empleados();
+                    empleado = new Usuarios();
                     empleado.NumEmpleado = Convert.ToInt32(reader["NumEmpleado"]);
                     empleado.Nombre = reader["Nombre"].ToString();
                     empleado.ApellidoP = reader["ApellidoP"].ToString();
