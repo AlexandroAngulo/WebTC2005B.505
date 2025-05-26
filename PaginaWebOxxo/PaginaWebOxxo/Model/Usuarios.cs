@@ -13,6 +13,8 @@ public class Usuarios
 	public string genero { get; set; }
 	public string Puesto{ get; set; }
 	public string ColorEstatus { get; set; }
+	public TimeSpan horarioInicio { get; set; }
+    public TimeSpan horarioFin{ get; set; }
 	
 	public int Edad
 	{

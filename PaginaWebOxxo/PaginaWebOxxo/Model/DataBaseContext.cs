@@ -71,6 +71,8 @@ namespace PaginaWebOxxo.Model
                                 IdEstatus = Convert.ToInt32(reader["IdEstatus"]),
                                 Puesto = reader["Puesto"].ToString(),
                                 genero = reader["Genero"].ToString(),
+                                horarioInicio = TimeSpan.Parse(reader["horarioInicio"].ToString()),
+                                horarioFin = TimeSpan.Parse(reader["horarioFin"].ToString()),
                             };
                         }
                     }

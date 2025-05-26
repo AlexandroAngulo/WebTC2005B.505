@@ -3,52 +3,69 @@
 @{
     ViewData["Title"] = "Gestión de Empleados";
 }
-<head>
-    ...
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
-    ...
-</head>
 
-<body>
-    <h1 class="color_letras cal-sans-regular">@ViewData["Title"]</h1>
-    <div class="d-flex flex-column gap-4">
+<body class="container-fluid px-5">
+    <h1 class="color_letras cal-sans-regular">@ViewData["Title"]</h1><br>
 
-        <div class="d-flex align-items-center justify-content-between mb-4">
-            <div>
-                <img src="https://previews.123rf.com/images/spaxia/spaxia1206/spaxia120600038/14011204-sonrisa-hombre-trabajador-de-la-construcci%C3%B3n-aislada-en-blanco.jpg" alt="Foto de Trabajador" class="rounded-circle me-3" width="150" height="150">
-                <figure class="mb-0">
-                    <blockquote class="blockquote">
-                        <h3 class="fw-bold mb-1">@Model.Lider.Nombre @Model.Lider.ApellidoP</h3>
-                    </blockquote>
-                    <figcaption class="blockquote-footer fs-3">Líder de Tienda</figcaption>
-                </figure>
-            </div>
-
-
-            <div class="rounded-circle @Model.Lider.ColorEstatus" style="width: 20px; height: 20px;"></div>
-        </div>
-
-        @foreach (var empleado in Model.ListaEmpleados)
-        {
-            <div class="d-flex align-items-center justify-content-between mb-4">
-                <div>
-                    <img src="https://previews.123rf.com/images/spaxia/spaxia1206/spaxia120600038/14011204-sonrisa-hombre-trabajador-de-la-construcci%C3%B3n-aislada-en-blanco.jpg" alt="Foto de Trabajador" class="rounded-circle me-3" width="150" height="150">
-                    <figure class="mb-0">
-                        <blockquote class="blockquote">
-                            <h3 class="fw-bold mb-1">@empleado.Nombre @empleado.ApellidoP</h3>
-                        </blockquote>
-                        <figcaption class="blockquote-footer fs-3">@empleado.Puesto</figcaption>
-                    </figure>
-                </div>
-                
-                <div> @empleado.horarioInicio.ToString(@"hh\:mm") - @empleado.horarioFin.ToString(@"hh\:mm") </div>
-                <div class="rounded-circle @empleado.ColorEstatus" style="width: 20px; height: 20px;"></div>
-            </div>
-            <br />
-        }
+    <div class="row text-center"> 
+    <div class="col-md-3 color_letras cal-sans-regular fs-3"></div>
+    <div class="col-md-3 color_letras cal-sans-regular fs-3">Horario</div>
+    <div class="col-md-3 color_letras cal-sans-regular fs-3">Estatus</div>
+    <div class="col-md-3 color_letras cal-sans-regular fs-3">Editar</div>
     </div>
-    <br />
+
+    <div class="row align-items-center justify-content-between mb-4 py-4">
+        <!-- Foto y nombre del líder -->
+        <div class="col-md-3 d-flex align-items-center">
+            <img src="https://previews.123rf.com/images/spaxia/spaxia1206/spaxia120600038/14011204-sonrisa-hombre-trabajador-de-la-construcci%C3%B3n-aislada-en-blanco.jpg"
+                 alt="Foto de Trabajador" class="rounded-circle me-3" width="150" height="150">
+            <div>
+                <h3 class="fs-2 cal-sans-regular">@Model.Lider.Nombre @Model.Lider.ApellidoP</h3>
+                <p class="fs-3 text-muted">@Model.Lider.Puesto</p>
+            </div>
+        </div>
+        <!-- Horario -->
+        <div class="col-md-3 text-md-center fs-4">
+            @Model.Lider.horarioInicio.ToString(@"hh\:mm") - @Model.Lider.horarioFin.ToString(@"hh\:mm")
+        </div>
+        <!-- Estatus -->
+        <div class="col-md-3 d-flex align-items-center justify-content-center">
+            <div class="rounded-circle @Model.Lider.ColorEstatus" style="width: 40px; height: 40px;"></div>
+        </div>
+        <!-- Ícono -->
+        <div class="col-md-3 text-center">
+            <i class="fa-solid fa-pencil fs-3"></i>
+        </div>
+    </div>
+
+    @foreach (var empleado in Model.ListaEmpleados)
+    {
+        <div class="row align-items-center justify-content-between mb-4 py-4">
+            <!-- Foto y nombre -->
+            <div class="col-md-3 d-flex align-items-center">
+                <img src="https://previews.123rf.com/images/spaxia/spaxia1206/spaxia120600038/14011204-sonrisa-hombre-trabajador-de-la-construcci%C3%B3n-aislada-en-blanco.jpg"
+                     alt="Foto de Trabajador" class="rounded-circle me-3" width="150" height="150">
+                <div>
+                    <h3 class="fs-2 cal-sans-regular">@empleado.Nombre @empleado.ApellidoP</h3>
+                    <p class="fs-3 text-muted">@empleado.Puesto</p>
+                </div>
+            </div>
+            <!-- Horario -->
+            <div class="col-md-3 text-md-center fs-4">
+                @empleado.horarioInicio.ToString(@"hh\:mm") - @empleado.horarioFin.ToString(@"hh\:mm")
+            </div>
+            <!-- Estatus -->
+            <div class="col-md-3 d-flex align-items-center justify-content-center">
+                <div class="rounded-circle @empleado.ColorEstatus" style="width: 40px; height: 40px;"></div>
+            </div>
+            <!-- Ícono -->
+            <div class="col-md-3 text-center">
+                <i class="fa-solid fa-pencil fs-3"></i>
+            </div>
+        </div>
+    }
 </body>
+
 
 <style>
 
