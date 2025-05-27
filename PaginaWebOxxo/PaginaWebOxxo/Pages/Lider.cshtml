@@ -11,20 +11,20 @@
 
     <!-- Sección superior -->
     <div class="top-section">
-        <!-- Foto y nombre-->
+        <!-- Foto y nombre-->   
         <div class="d-flex align-items-center gap-4">
             <img src="https://previews.123rf.com/images/spaxia/spaxia1206/spaxia120600038/14011204-sonrisa-hombre-trabajador-de-la-construcci%C3%B3n-aislada-en-blanco.jpg"
                  alt="Foto de Trabajador" class="imagenperfil">
             <div>
-                <h3 class="fw-bold mb-1">@Model.Usuario.Nombre  @Model.Usuario.ApellidoP  @Model.Usuario.ApellidoM </h3>
+                <h3 class="fw-bold mb-1">@Model.Usuario?.Nombre  @Model.Usuario?.ApellidoP  @Model.Usuario?.ApellidoM </h3>
             </div>
         </div>
 
         <!-- Badges Sexo/Ocupación/Edad -->
         <div class="badges-top pe-3">
-            <div class="badge bg-warning text-dark badge-custom">@Model.Usuario.genero<small>Sexo</small></div>
-            <div class="badge bg-warning text-dark badge-custom">@Model.Usuario.Puesto<small>Ocupación</small></div>
-            <div class="badge bg-warning text-dark badge-custom"> @Model.Usuario.Edad Años<small>Edad</small></div>
+            <div class="badge bg-warning text-dark badge-custom">@Model.Usuario?.genero<small>Sexo</small></div>
+            <div class="badge bg-warning text-dark badge-custom">@Model.Usuario?.Puesto<small>Ocupación</small></div>
+            <div class="badge bg-warning text-dark badge-custom"> @Model.Usuario?.Edad Años<small>Edad</small></div>
         </div>
     </div>
 
@@ -38,7 +38,7 @@
             <form method="post" asp-page-handler="Actualizar">
                 <div class="mb-4">
                     <label class="form-label">Teléfono</label>
-                    <input type="text" id="telefonoinput" name="Telefono" value="@Model.contacto.telefono" class="form-control rounded-4" disabled />
+                    <input type="text" id="telefonoinput" name="Telefono" value="@Model.contacto?.telefono" class="form-control rounded-4" disabled />
                     <span asp-validation-for="Telefono" class="text-danger"></span>
                     <small id="telefono-error" class="text-danger d-none">El teléfono debe tener exactamente 10 dígitos.</small>
                     <br>
@@ -50,20 +50,20 @@
                 </div>
                 <div class="mb-4">
                     <label class="form-label">Correo electrónico</label>
-                    <input type="email" value= @Model.contacto.correo class="form-control rounded-4" disabled />
+                    <input type="email" value= @Model.contacto?.correo class="form-control rounded-4" disabled />
                 </div>
                 <div class="mb-4">
                     <label class="form-label">Número de empleado</label>
-                    <input type="text" disabled value= @Model.contacto.NumEmpleado  class="form-control rounded-4" />
+                    <input type="text" disabled value= @Model.contacto?.NumEmpleado  class="form-control rounded-4" />
 
                 </div>
                 <div class="mb-4">
                     <label class="form-label">Dirección</label>
                     <textarea disabled class="form-control rounded-4" rows="5">@(
-                        "Codigo Postal: " + @Model.codigopostal.CodigoPostal + "\n" +
-                        "Municipio: " + @Model.codigopostal.municipio + "\n" +
-                        "Colonia: " + @Model.codigopostal.colonia + "\n" +
-                        "Estado: " + @Model.codigopostal.estado
+                        "Codigo Postal: " + @Model.codigopostal?.CodigoPostal + "\n" +
+                        "Municipio: " + @Model.codigopostal?.municipio + "\n" +
+                        "Colonia: " + @Model.codigopostal?.colonia + "\n" +
+                        "Estado: " + @Model.codigopostal?.estado
                     )</textarea>
                 </div>
             </form>

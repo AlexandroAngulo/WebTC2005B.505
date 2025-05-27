@@ -21,7 +21,7 @@ public class EmpleadosModel : PageModel
     public void OnGet()
     {
         int numLider = (int)HttpContext.Session.GetInt32("numEmpleado");
-
+            
         // Obtener datos del líder
         Lider = _context.ObtenerUsuarioPorEmpleados(numLider);
         Lider.ColorEstatus = ObtenerColorEstatus(Lider.IdEstatus);
@@ -33,9 +33,6 @@ public class EmpleadosModel : PageModel
         {
             empleado.ColorEstatus = ObtenerColorEstatus(empleado.IdEstatus);
         }
-
-        var listaNumeros = ListaEmpleados.Select(e => e.NumEmpleado).ToList();
-        HttpContext.Session.SetString("ListaNumEmpleados", JsonSerializer.Serialize(listaNumeros));
     }
 
     // Asignar colores en base a estatus
@@ -49,13 +46,13 @@ public class EmpleadosModel : PageModel
         };
     }
 
-    public void OnPostEditarLider(int numEmpleado)
+    public IActionResult OnPostEditarLider(int numEmpleado)
     {
-        Response.Redirect($"Lider?numEmpleado={numEmpleado}");
+        return Redirect($"Lider?numEmpleado={numEmpleado}");
     }
 
-    public void OnPostEditarEmpleado(int numEmpleado)
+    public IActionResult OnPostEditarEmpleado(int NumEmpleado)
     {
-        Response.Redirect($"Lider?numEmpleado={numEmpleado}");
+        return Redirect($"Lider?numEmpleado={NumEmpleado}");
     }
 }
