@@ -17,6 +17,7 @@ public class IndexModel : PageModel
 
     public void OnGet()
     {
+        HttpContext.Session.Clear();
     }
 
     public void OnPostVerificarContraseña()

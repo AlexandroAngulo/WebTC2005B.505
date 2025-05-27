@@ -12,10 +12,8 @@
     <script src="https://kit.fontawesome.com/7425508e16.js" crossorigin="anonymous"></script>
 </head>
 <body>
-    @* Solo muestra la barra lateral si ViewData["OcultarSidebar"] no está en true *@
-    @if (!(ViewData["OcultarSidebar"] as bool? ?? false))
-    {
-        <div class="sidebar">
+    <div class="sidebar">
+        @if (!(ViewData["OcultarSidebar"] as bool? ?? false)){
             <br />
             <ul>
                 <li><a href="Inicio"><i class="fas fa-home"></i>Inicio</a></li>
@@ -27,8 +25,9 @@
             <div class="sidebar-footer">
                 <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/66/Oxxo_Logo.svg/2560px-Oxxo_Logo.svg.png" width="187px"/>
             </div>
-        </div>
-    }
+        }
+    </div>
+
 
     <!-- Contenido dinámico -->
     <main role="main">

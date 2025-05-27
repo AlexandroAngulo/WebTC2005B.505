@@ -2,7 +2,7 @@ using PaginaWebOxxo.Model;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using MySql.Data.MySqlClient;
-
+using System.Text.Json;
 
 namespace PaginaWebOxxo.Pages;
 
@@ -20,7 +20,7 @@ public class EmpleadosModel : PageModel
 
     public void OnGet()
     {
-        int numLider = 12345;
+        int numLider = (int)HttpContext.Session.GetInt32("numEmpleado");
 
         // Obtener datos del líder
         Lider = _context.ObtenerUsuarioPorEmpleados(numLider);
@@ -33,6 +33,9 @@ public class EmpleadosModel : PageModel
         {
             empleado.ColorEstatus = ObtenerColorEstatus(empleado.IdEstatus);
         }
+
+        var listaNumeros = ListaEmpleados.Select(e => e.NumEmpleado).ToList();
+        HttpContext.Session.SetString("ListaNumEmpleados", JsonSerializer.Serialize(listaNumeros));
     }
 
     // Asignar colores en base a estatus
@@ -46,9 +49,9 @@ public class EmpleadosModel : PageModel
         };
     }
 
-    public void OnPostEditarLider()
+    public void OnPostEditarLider(int numEmpleado)
     {
-        Response.Redirect($"Lider?numEmpleado={Lider.NumEmpleado}");
+        Response.Redirect($"Lider?numEmpleado={numEmpleado}");
     }
 
     public void OnPostEditarEmpleado(int numEmpleado)

@@ -35,19 +35,13 @@ public class LiderModel : PageModel
 
     public void OnGet()
     {
-        int? numEmpleado = HttpContext.Session.GetInt32("numEmpleado");
+        int numEmpleado = (int)HttpContext.Session.GetInt32("numEmpleado");
 
-        if (numEmpleado == null)
-        {
-            Response.Redirect("/Index");
-            return;
-        }
-
-        Puesto = _context.ObtenerUsuarioPorEmpleados(numEmpleado.Value);
-        Genero = _context.ObtenerUsuarioPorEmpleados(numEmpleado.Value);
-        EstadisticasUsuario = _context.ObtenerMonedasPorEmpleado(numEmpleado.Value);
-        Usuario = _context.ObtenerUsuarioPorEmpleados(numEmpleado.Value);
-        contacto = _context.ObtenerContactoPorEmpleados(numEmpleado.Value);
+        Puesto = _context.ObtenerUsuarioPorEmpleados(numEmpleado);
+        Genero = _context.ObtenerUsuarioPorEmpleados(numEmpleado);
+        EstadisticasUsuario = _context.ObtenerMonedasPorEmpleado(numEmpleado);
+        Usuario = _context.ObtenerUsuarioPorEmpleados(numEmpleado);
+        contacto = _context.ObtenerContactoPorEmpleados(numEmpleado);
 
         int codigoPostal = 12345;
         codigopostal = _context.ObtenerCodigoPorEmpleados(codigoPostal);
@@ -55,13 +49,7 @@ public class LiderModel : PageModel
 
     public void OnPostActualizar()
     {
-        int? numEmpleado = HttpContext.Session.GetInt32("numEmpleado");
-
-        if (numEmpleado == null)
-        {
-            Response.Redirect("/Index");
-            return;
-        }
+        int numEmpleado = (int)HttpContext.Session.GetInt32("numEmpleado");
 
         if (string.IsNullOrEmpty(Telefono) || Telefono.Length != 10)
         {
@@ -69,14 +57,14 @@ public class LiderModel : PageModel
 
         }
 
-        _context.ActualizarTelefono(numEmpleado.Value, Telefono);
+        _context.ActualizarTelefono(numEmpleado, Telefono);
 
         // Recargar los datos
-        Puesto = _context.ObtenerUsuarioPorEmpleados(numEmpleado.Value);
-        Genero = _context.ObtenerUsuarioPorEmpleados(numEmpleado.Value);
-        EstadisticasUsuario = _context.ObtenerMonedasPorEmpleado(numEmpleado.Value);
-        Usuario = _context.ObtenerUsuarioPorEmpleados(numEmpleado.Value);
-        contacto = _context.ObtenerContactoPorEmpleados(numEmpleado.Value);
+        Puesto = _context.ObtenerUsuarioPorEmpleados(numEmpleado);
+        Genero = _context.ObtenerUsuarioPorEmpleados(numEmpleado);
+        EstadisticasUsuario = _context.ObtenerMonedasPorEmpleado(numEmpleado);
+        Usuario = _context.ObtenerUsuarioPorEmpleados(numEmpleado);
+        contacto = _context.ObtenerContactoPorEmpleados(numEmpleado);
 
         int codigoPostal = 12345;
         codigopostal = _context.ObtenerCodigoPorEmpleados(codigoPostal);
