@@ -29,6 +29,8 @@ public class LiderModel : PageModel
     [BindProperty]
     public Codigopostal codigopostal { get; set; }
 
+
+
     public Usuarios Genero { get; set; }
     public Usuarios Puesto { get; set; }
     public Usuarios Lider { get; set; }
@@ -49,8 +51,8 @@ public class LiderModel : PageModel
         Usuario = _context.ObtenerUsuarioPorEmpleados(numEmpleado.Value);
         contacto = _context.ObtenerContactoPorEmpleados(numEmpleado.Value);
 
-        int codigoPostal = 12345;
-        codigopostal = _context.ObtenerCodigoPorEmpleados(codigoPostal);
+       
+        codigopostal = _context.ObtenerCodigoPorEmpleados(numEmpleado.Value);
     }
 
     public void OnPostActualizar()
@@ -78,7 +80,7 @@ public class LiderModel : PageModel
         Usuario = _context.ObtenerUsuarioPorEmpleados(numEmpleado.Value);
         contacto = _context.ObtenerContactoPorEmpleados(numEmpleado.Value);
 
-        int codigoPostal = 12345;
-        codigopostal = _context.ObtenerCodigoPorEmpleados(codigoPostal);
+        
+        codigopostal = _context.ObtenerCodigoPorEmpleados(numEmpleado.Value);
     }
 }
