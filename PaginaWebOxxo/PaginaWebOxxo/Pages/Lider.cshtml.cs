@@ -50,8 +50,6 @@ public class LiderModel : PageModel
         EstadisticasUsuario = _context.ObtenerMonedasPorEmpleado(numEmpleado.Value);
         Usuario = _context.ObtenerUsuarioPorEmpleados(numEmpleado.Value);
         contacto = _context.ObtenerContactoPorEmpleados(numEmpleado.Value);
-
-       
         codigopostal = _context.ObtenerCodigoPorEmpleados(numEmpleado.Value);
     }
 
@@ -73,14 +71,12 @@ public class LiderModel : PageModel
 
         _context.ActualizarTelefono(numEmpleado.Value, Telefono);
 
-        // Recargar los datos
+        
         Puesto = _context.ObtenerUsuarioPorEmpleados(numEmpleado.Value);
         Genero = _context.ObtenerUsuarioPorEmpleados(numEmpleado.Value);
         EstadisticasUsuario = _context.ObtenerMonedasPorEmpleado(numEmpleado.Value);
         Usuario = _context.ObtenerUsuarioPorEmpleados(numEmpleado.Value);
-        contacto = _context.ObtenerContactoPorEmpleados(numEmpleado.Value);
-
-        
+        contacto = _context.ObtenerContactoPorEmpleados(numEmpleado.Value);     
         codigopostal = _context.ObtenerCodigoPorEmpleados(numEmpleado.Value);
     }
 }
