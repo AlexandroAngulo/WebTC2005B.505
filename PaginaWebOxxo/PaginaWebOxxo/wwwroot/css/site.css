@@ -36,17 +36,11 @@ body {
   text-align: start;
 }
 
-/*!
- * Styles para el Side Bar Menu.
- */
-
-
  .cal-sans-regular {
   font-family: "Cal Sans", sans-serif;
   font-weight: 400;
   font-style: normal;
 }
-
 
 *{
   padding: 0;
@@ -59,6 +53,19 @@ body {
   font-family: 'Roboto', sans-serif;
 }
 
+/* Sidebar oculta */
+.no-sidebar .main-content {
+    margin: 0 auto;
+    padding: 20px;
+    max-width: 800px; 
+}
+
+/* Oculta sidebar si aplica */
+.no-sidebar .sidebar {
+    display: none;
+}
+
+/* Styles para el Side Bar Menu. */
 .sidebar {
   position: fixed;
   left: 0;

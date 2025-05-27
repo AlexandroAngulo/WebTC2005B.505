@@ -15,8 +15,8 @@ public class PersonajeModel : PageModel
     public Usuarios Lider { get; set; }
     public void OnGet()
     {
-        int numLider = 12345;
+        int numEmpleado = (int)HttpContext.Session.GetInt32("numEmpleado");
         // Obtener datos del líder
-        Lider = _context.ObtenerUsuarioPorEmpleados(numLider);
+        Lider = _context.ObtenerUsuarioPorEmpleados(numEmpleado);
     }
 }
