@@ -29,12 +29,14 @@ public class LiderModel : PageModel
 
     public Usuarios Genero{ get; set; }
     public Usuarios Puesto{ get; set; }
-
+    
+    [BindProperty]
+    public Login login { get; set; }
 
     public void OnGet()
     {
 
-        int numEmpleado = 12345;
+        int numEmpleado = login.NumEmpleado;
 
         Puesto = _context.ObtenerUsuarioPorEmpleados(numEmpleado);
         Genero = _context.ObtenerUsuarioPorEmpleados(numEmpleado);

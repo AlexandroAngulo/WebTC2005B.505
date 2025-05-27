@@ -11,9 +11,24 @@ public class IndexModel : PageModel
     {
         _context = context;
     }
+    
+    [BindProperty]
     public Login login { get; set; }
+
     public void OnGet()
     {
+    }
 
+    public void OnPostVerificarContraseña()
+    {
+        var datosLogin = _context.login(login.NumEmpleado);
+        if (datosLogin.Contraseña == login.Contraseña)
+        {
+            Response.Redirect($"Inicio?numEmpleado={login.NumEmpleado}");
+        }
+        else
+        {
+            Response.Redirect($"Index?");
+        }
     }
 }

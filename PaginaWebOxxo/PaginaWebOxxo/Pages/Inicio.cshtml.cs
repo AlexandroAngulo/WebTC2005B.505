@@ -19,13 +19,15 @@ namespace PaginaWebOxxo.Pages
         public Usuarios Usuario {get; set;}
 
         public int TotalEstrellas { get; set; }
-
-        public void OnGet()
+        [BindProperty]
+        public int numEmpleado { get; set; }
+        
+        public void OnGet(int numEmpleado)
         {
-            int numEmpleado = 12345; 
+            this.numEmpleado = numEmpleado;
             EstadisticasUsuario = _context.ObtenerMonedasPorEmpleado(numEmpleado);
             Usuario = _context.ObtenerUsuarioPorEmpleados(numEmpleado);
-            
+
             var progresos = _context.ObtenerProgresoPorEmpleado(numEmpleado);
             TotalEstrellas = progresos.Sum(p => p.Estrellas);
         }

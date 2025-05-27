@@ -12,21 +12,23 @@
     <script src="https://kit.fontawesome.com/7425508e16.js" crossorigin="anonymous"></script>
 </head>
 <body>
-    <!-- Sidebar fija para todas las páginas -->
-
-    <div class="sidebar">
-        <br />
-        <ul>
-            <li><a href="Inicio"><i class="fas fa-home"></i>Inicio</a></li>
-            <li><a href="Lider"><i class="fas fa-user"></i>Líder de tienda</a></li>
-            <li><a href="Empleados"><i class="fas fa-users"></i>Empleados</a></li>
-            <li><a href="Capacitaciones"><i class="fa-regular fa-file-lines"></i>Capacitaciones</a></li>
-            <li><a href="Personaje"><i class="fa-regular fa-chess-pawn"></i>Personalización</a></li>
-        </ul>
-        <div class="sidebar-footer">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/66/Oxxo_Logo.svg/2560px-Oxxo_Logo.svg.png" width="187px"/>
+    @* Solo muestra la barra lateral si ViewData["OcultarSidebar"] no está en true *@
+    @if (!(ViewData["OcultarSidebar"] as bool? ?? false))
+    {
+        <div class="sidebar">
+            <br />
+            <ul>
+                <li><a href="Inicio"><i class="fas fa-home"></i>Inicio</a></li>
+                <li><a href="Lider"><i class="fas fa-user"></i>Líder de tienda</a></li>
+                <li><a href="Empleados"><i class="fas fa-users"></i>Empleados</a></li>
+                <li><a href="Capacitaciones"><i class="fa-regular fa-file-lines"></i>Capacitaciones</a></li>
+                <li><a href="Personaje"><i class="fa-regular fa-chess-pawn"></i>Personalización</a></li>
+            </ul>
+            <div class="sidebar-footer">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/66/Oxxo_Logo.svg/2560px-Oxxo_Logo.svg.png" width="187px"/>
+            </div>
         </div>
-    </div>
+    }
 
     <!-- Contenido dinámico -->
     <main role="main">

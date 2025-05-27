@@ -18,6 +18,7 @@ namespace PaginaWebOxxo.Model
         {
             return new MySqlConnection(ConnectionString);
         }
+
         public Estadisticas ObtenerMonedasPorEmpleado(int numEmpleado)
         {
             Estadisticas estadisticas = null;
@@ -40,6 +41,29 @@ namespace PaginaWebOxxo.Model
                 }
             }
             return estadisticas;
+        }
+
+        //Login
+        public Login login(int numEmpleado)
+        {
+            MySqlConnection conexion = new MySqlConnection(ConnectionString);
+            conexion.Open();
+
+            MySqlCommand cmd = new MySqlCommand("SELECT u.NumEmpleado, c.Contraseña from credenciales c join usuarios u on c.NumEmpleado = u.NumEmpleado where u.NumEmpleado = @NumEmpleado");
+            cmd.Parameters.AddWithValue("@NumEmpleado", numEmpleado);
+
+            cmd.Connection = conexion;
+            Login login = new Login();
+            using (var reader = cmd.ExecuteReader())
+            {
+                while (reader.Read())
+                {
+                    login.NumEmpleado = Convert.ToInt32(reader["NumEmpleado"]);
+                    login.Contraseña = reader["Contraseña"].ToString();
+                }
+            }
+            conexion.Close();
+            return login;
         }
 
         public Usuarios ObtenerUsuarioPorEmpleados(int numEmpleado)

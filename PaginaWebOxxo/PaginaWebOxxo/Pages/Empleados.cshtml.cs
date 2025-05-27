@@ -16,18 +16,19 @@ public class EmpleadosModel : PageModel
     }
 
     public Usuarios Lider { get; set; }
+    [BindProperty]
+    public Login login { get; set; }
     public List<Usuarios> ListaEmpleados { get; set; }
 
     public void OnGet()
     {
-        int numLider = 12345;
-
+        int numEmpleado = login.NumEmpleado;
         // Obtener datos del líder
-        Lider = _context.ObtenerUsuarioPorEmpleados(numLider);
+        Lider = _context.ObtenerUsuarioPorEmpleados(numEmpleado);
         Lider.ColorEstatus = ObtenerColorEstatus(Lider.IdEstatus);
 
         // Obtener empleados que dependen del líder
-        ListaEmpleados = _context.ObtenerEmpleadosPorLider(numLider);
+        ListaEmpleados = _context.ObtenerEmpleadosPorLider(numEmpleado);
 
         foreach (var empleado in ListaEmpleados)
         {
