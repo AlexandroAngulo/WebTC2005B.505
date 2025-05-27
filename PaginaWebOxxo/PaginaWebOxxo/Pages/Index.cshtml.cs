@@ -31,7 +31,7 @@ public class IndexModel : PageModel
         else
         {
 
-            ModelState.AddModelError("login.Contraseña", "La contraseña o el numero de empleado no existe. Intétalo de nuevo.");
+            ModelState.AddModelError("login.Contraseña", "La contraseña o el número de empleado no existe. Intétalo de nuevo.");
             
         }
     }
