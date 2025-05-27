@@ -114,7 +114,7 @@ namespace PaginaWebOxxo.Model
             using (MySqlConnection conexion = GetConnection())
             {
                 conexion.Open();
-                string query = "SELECT * FROM contacto WHERE NumEmpleado = @NumEmpleado";
+                string query = "SELECT * FROM contacto INNER JOIN codigopostal on contacto.CodigoPostal = codigopostal.CodigoPostal  WHERE NumEmpleado = @NumEmpleado";
                 using (MySqlCommand cmd = new MySqlCommand(query, conexion))
                 {
                     cmd.Parameters.AddWithValue("@NumEmpleado", numEmpleado);
@@ -129,6 +129,9 @@ namespace PaginaWebOxxo.Model
                                 telefono = reader["Telefono"].ToString(),
                                 correo = reader["Correo"].ToString(),
                                 codigoP = reader["CodigoPostal"].ToString(),
+                                colonia = reader["Colonia"].ToString(),
+                                municipio = reader["Municipio"].ToString(),
+                                estado = reader["Estado"].ToString(),
 
                             };
                         }

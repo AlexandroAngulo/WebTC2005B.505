@@ -30,7 +30,9 @@ public class IndexModel : PageModel
         }
         else
         {
-            Response.Redirect($"Index?");
+
+            ModelState.AddModelError("login.Contraseña", "La contraseña o el numero de empleado no existe. Intétalo de nuevo.");
+            
         }
     }
 }

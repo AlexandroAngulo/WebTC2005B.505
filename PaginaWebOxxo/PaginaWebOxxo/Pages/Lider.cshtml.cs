@@ -29,6 +29,8 @@ public class LiderModel : PageModel
     [BindProperty]
     public Codigopostal codigopostal { get; set; }
 
+
+
     public Usuarios Genero { get; set; }
     public Usuarios Puesto { get; set; }
     public Usuarios Lider { get; set; }
@@ -37,14 +39,19 @@ public class LiderModel : PageModel
     {
         int numEmpleado = (int)HttpContext.Session.GetInt32("numEmpleado");
 
+        if (numEmpleado == null)
+        {
+            Response.Redirect("/Index");
+            return;
+        }
+
         Puesto = _context.ObtenerUsuarioPorEmpleados(numEmpleado);
         Genero = _context.ObtenerUsuarioPorEmpleados(numEmpleado);
         EstadisticasUsuario = _context.ObtenerMonedasPorEmpleado(numEmpleado);
         Usuario = _context.ObtenerUsuarioPorEmpleados(numEmpleado);
         contacto = _context.ObtenerContactoPorEmpleados(numEmpleado);
+        codigopostal = _context.ObtenerCodigoPorEmpleados(numEmpleado);
 
-        int codigoPostal = 12345;
-        codigopostal = _context.ObtenerCodigoPorEmpleados(codigoPostal);
     }
 
     public void OnPostActualizar()
@@ -58,15 +65,11 @@ public class LiderModel : PageModel
         }
 
         _context.ActualizarTelefono(numEmpleado, Telefono);
-
-        // Recargar los datos
         Puesto = _context.ObtenerUsuarioPorEmpleados(numEmpleado);
         Genero = _context.ObtenerUsuarioPorEmpleados(numEmpleado);
         EstadisticasUsuario = _context.ObtenerMonedasPorEmpleado(numEmpleado);
         Usuario = _context.ObtenerUsuarioPorEmpleados(numEmpleado);
-        contacto = _context.ObtenerContactoPorEmpleados(numEmpleado);
-
-        int codigoPostal = 12345;
-        codigopostal = _context.ObtenerCodigoPorEmpleados(codigoPostal);
+        contacto = _context.ObtenerContactoPorEmpleados(numEmpleado);     
+        codigopostal = _context.ObtenerCodigoPorEmpleados(numEmpleado);
     }
 }
