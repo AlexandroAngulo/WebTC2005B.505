@@ -137,20 +137,22 @@ namespace PaginaWebOxxo.Model
             }
             return usuario;
         }
-        public void ActualizarTelefono(int numEmpleado, int telefono)
+
+    public void ActualizarTelefono(int numEmpleado, string telefono)
+    {
+        using (MySqlConnection conexion = GetConnection())
         {
-            using (MySqlConnection conexion = GetConnection())
+            conexion.Open();
+            string query = "UPDATE contacto SET Telefono = @Telefono WHERE NumEmpleado = @NumEmpleado";
+            using (MySqlCommand cmd = new MySqlCommand(query, conexion))
             {
-                conexion.Open();
-                string query = "UPDATE contacto SET Telefono = @Telefono WHERE NumEmpleado = @NumEmpleado";
-                using (MySqlCommand cmd = new MySqlCommand(query, conexion))
-                {
-                    cmd.Parameters.AddWithValue("@Telefono", telefono);
-                    cmd.Parameters.AddWithValue("@NumEmpleado", numEmpleado);
-                    cmd.ExecuteNonQuery();
-                }
+                cmd.Parameters.AddWithValue("@Telefono", telefono);
+                cmd.Parameters.AddWithValue("@NumEmpleado", numEmpleado);
+
+                cmd.ExecuteNonQuery();
             }
         }
+    }
 
         public Codigopostal ObtenerCodigoPorEmpleados(int codigoPostal)
         {

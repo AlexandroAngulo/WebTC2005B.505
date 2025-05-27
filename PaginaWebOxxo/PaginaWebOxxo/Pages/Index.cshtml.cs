@@ -24,6 +24,7 @@ public class IndexModel : PageModel
         var datosLogin = _context.login(login.NumEmpleado);
         if (datosLogin.Contraseña == login.Contraseña)
         {
+            HttpContext.Session.SetInt32("numEmpleado", login.NumEmpleado);
             Response.Redirect($"Inicio?numEmpleado={login.NumEmpleado}");
         }
         else

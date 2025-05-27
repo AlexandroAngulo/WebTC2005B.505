@@ -7,8 +7,8 @@ namespace PaginaWebOxxo.Pages;
 
 public class LiderModel : PageModel
 {
-
     private readonly DataBaseContext _context;
+
     public LiderModel(DataBaseContext context)
     {
         _context = context;
@@ -18,67 +18,67 @@ public class LiderModel : PageModel
     public Estadisticas EstadisticasUsuario { get; set; }
 
     [BindProperty]
-    public int Telefono { get; set; }
+    public string Telefono { get; set; }
+
     [BindProperty]
     public Usuarios Usuario { get; set; }
+
     [BindProperty]
     public Contacto contacto { get; set; }
 
     [BindProperty]
     public Codigopostal codigopostal { get; set; }
 
-    public Usuarios Genero{ get; set; }
-    public Usuarios Puesto{ get; set; }
+    public Usuarios Genero { get; set; }
+    public Usuarios Puesto { get; set; }
     public Usuarios Lider { get; set; }
-
 
     public void OnGet()
     {
+        int? numEmpleado = HttpContext.Session.GetInt32("numEmpleado");
 
-        int numEmpleado = 12345;
-
-        Puesto = _context.ObtenerUsuarioPorEmpleados(numEmpleado);
-        Genero = _context.ObtenerUsuarioPorEmpleados(numEmpleado);
-        EstadisticasUsuario = _context.ObtenerMonedasPorEmpleado(numEmpleado);
-        Usuario = _context.ObtenerUsuarioPorEmpleados(numEmpleado);
-
-        if (Usuario != null)
+        if (numEmpleado == null)
         {
-            int edad = Usuario.Edad;
+            Response.Redirect("/Index");
+            return;
         }
-        int codigoPostal = 12345;
-        contacto = _context.ObtenerContactoPorEmpleados(numEmpleado);
-        codigopostal = _context.ObtenerCodigoPorEmpleados(codigoPostal);
 
+        Puesto = _context.ObtenerUsuarioPorEmpleados(numEmpleado.Value);
+        Genero = _context.ObtenerUsuarioPorEmpleados(numEmpleado.Value);
+        EstadisticasUsuario = _context.ObtenerMonedasPorEmpleado(numEmpleado.Value);
+        Usuario = _context.ObtenerUsuarioPorEmpleados(numEmpleado.Value);
+        contacto = _context.ObtenerContactoPorEmpleados(numEmpleado.Value);
+
+        int codigoPostal = 12345;
+        codigopostal = _context.ObtenerCodigoPorEmpleados(codigoPostal);
     }
 
     public void OnPostActualizar()
     {
-        int numEmpleado = 12345;
-        int codigoPostal = 12345;
+        int? numEmpleado = HttpContext.Session.GetInt32("numEmpleado");
 
-        
+        if (numEmpleado == null)
+        {
+            Response.Redirect("/Index");
+            return;
+        }
 
-        string telefonostr = Telefono.ToString();
-
-        if (telefonostr.Length >10 || telefonostr.Length<10)
+        if (string.IsNullOrEmpty(Telefono) || Telefono.Length != 10)
         {
             ModelState.AddModelError("Telefono", "El número de teléfono es inválido, debe contener 10 dígitos");
-        }
-        else
-        {
-            _context.ActualizarTelefono(numEmpleado, Telefono);
+
         }
 
-        // Recargar todos los datos necesarios para la vista
-        Puesto = _context.ObtenerUsuarioPorEmpleados(numEmpleado);
-        Genero = _context.ObtenerUsuarioPorEmpleados(numEmpleado);
-        EstadisticasUsuario = _context.ObtenerMonedasPorEmpleado(numEmpleado);
-        Usuario = _context.ObtenerUsuarioPorEmpleados(numEmpleado);
-        contacto = _context.ObtenerContactoPorEmpleados(numEmpleado);
+        _context.ActualizarTelefono(numEmpleado.Value, Telefono);
+
+        // Recargar los datos
+        Puesto = _context.ObtenerUsuarioPorEmpleados(numEmpleado.Value);
+        Genero = _context.ObtenerUsuarioPorEmpleados(numEmpleado.Value);
+        EstadisticasUsuario = _context.ObtenerMonedasPorEmpleado(numEmpleado.Value);
+        Usuario = _context.ObtenerUsuarioPorEmpleados(numEmpleado.Value);
+        contacto = _context.ObtenerContactoPorEmpleados(numEmpleado.Value);
+
+        int codigoPostal = 12345;
         codigopostal = _context.ObtenerCodigoPorEmpleados(codigoPostal);
-        
     }
-        
-
 }
