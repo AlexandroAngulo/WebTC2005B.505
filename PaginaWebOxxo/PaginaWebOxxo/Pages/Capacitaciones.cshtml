@@ -6,17 +6,13 @@
 
 <body>
     <h1 class="color_letras cal-sans-regular">@ViewData["Title"]</h1><br>
-    <div class="d-flex align-items-center">
-        <img src="https://previews.123rf.com/images/spaxia/spaxia1206/spaxia120600038/14011204-sonrisa-hombre-trabajador-de-la-construcci%C3%B3n-aislada-en-blanco.jpg" alt="Foto de Trabajador" class="rounded-circle me-3" width="150" height="150">
-        <figure class="mb-0">
-            <blockquote class="blockquote">
-                <p class="fs-2 cal-sans-regular">@Model.Usuario.Nombre  @Model.Usuario.ApellidoP</p>
-            </blockquote>
-            <figcaption class="blockquote-footer fs-3">
-                Líder de Tienda
-            </figcaption>
-        </figure>
-    </div>
+    <div class="col-md-5 d-flex align-items-center">
+            <img src="@Model.Usuario.fotoPerfil" alt="Foto de Trabajador" class="rounded-circle me-3" width="150" height="150">
+            <div>
+                <h3 class="fs-2 cal-sans-regular">@Model.Usuario.Nombre @Model.Usuario.ApellidoP</h3>
+                <p class="fs-3 text-muted">@Model.Usuario.Puesto</p>
+            </div>
+        </div>
     <br />
 
     @foreach (var progreso in Model.Progresos)

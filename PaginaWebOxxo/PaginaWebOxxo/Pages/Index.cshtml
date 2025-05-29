@@ -13,7 +13,7 @@
 
     <div class="mx-auto" style="max-width: 75%;">
       <form method="post" class="border rounded-4 p-5 shadow-sm bg-light">
-        <div class="mb-5 color_letras" style="max-width: 90%; margin: 0 auto;">
+        <div class="mb-3 color_letras" style="max-width: 90%; margin: 0 auto;">
           <label class="form-label fw-semibold fs-3">Número de Empleado</label>
           <input asp-for="login.NumEmpleado" class="form-control form-control-lg w-100" type="text" placeholder="Número de Empleado" />
         </div>
@@ -22,7 +22,6 @@
           <label class="form-label fw-semibold fs-3">Contraseña</label>
           <input asp-for="login.Contraseña" class="form-control form-control-lg w-100" type="text" placeholder="Contraseña" />
           <span asp-validation-for="login.Contraseña" class="text-danger"></span>
-          <small id="telefono-error" class="text-danger d-none">El teléfono debe tener exactamente 10 dígitos.</small>
         </div>
 
         <div class="text-center" style="max-width: 75%; margin: 0 auto;">

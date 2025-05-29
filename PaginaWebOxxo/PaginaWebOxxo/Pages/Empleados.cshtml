@@ -17,8 +17,7 @@
     <div class="row align-items-center justify-content-between mb-4 py-4">
         <!--Foto y nombre del líder-->
         <div class="col-md-5 d-flex align-items-center">
-            <img src="@Model.Lider.fotoPerfil"
-                 alt="Foto de Trabajador" class="rounded-circle me-3" width="150" height="150">
+            <img src="@Model.Lider.fotoPerfil" alt="Foto de Trabajador" class="rounded-circle me-3" width="150" height="150">
             <div>
                 <h3 class="fs-2 cal-sans-regular">@Model.Lider.Nombre @Model.Lider.ApellidoP</h3>
                 <p class="fs-3 text-muted">@Model.Lider.Puesto</p>
@@ -103,7 +102,7 @@
                         <h3 class="fs-2 cal-sans-regular">Agregar Empleado</h3>
                     </div>
                     <div class="modal-body">
-                        <input type="hidden" name="numLider" value="@Model.Lider" />
+                        <input type="hidden" name="numLider" value="@Model.Lider.NumEmpleado" />
                         <div class="mb-3">
                             <label for="numEmpleado" class="form-label">Número de Empleado</label>
                             <input type="number" class="form-control" name="numEmpleado" required />

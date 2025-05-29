@@ -2,6 +2,7 @@ using System;
 using MySql.Data.MySqlClient;
 using System.Collections.Generic;
 using Mysqlx.Crud;
+using System.Data;
 
 
 namespace PaginaWebOxxo.Model
@@ -49,8 +50,10 @@ namespace PaginaWebOxxo.Model
             MySqlConnection conexion = new MySqlConnection(ConnectionString);
             conexion.Open();
 
-            MySqlCommand cmd = new MySqlCommand("SELECT u.NumEmpleado, c.Contraseña from credenciales c join usuarios u on c.NumEmpleado = u.NumEmpleado where u.NumEmpleado = @NumEmpleado");
-            cmd.Parameters.AddWithValue("@NumEmpleado", numEmpleado);
+            MySqlCommand cmd = new MySqlCommand();
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.CommandText = "VerificarContraseña";
+            cmd.Parameters.AddWithValue("@p_NumEmpleado", numEmpleado);
 
             cmd.Connection = conexion;
             Login login = new Login();
@@ -267,8 +270,8 @@ namespace PaginaWebOxxo.Model
                 using (MySqlCommand cmd = new MySqlCommand(query, conexion))
                 {
 
-                    cmd.Parameters.AddWithValue("@NumLider", numLider);
-                    cmd.Parameters.AddWithValue("@NumEmpleado", numEmpleado);
+                    cmd.Parameters.AddWithValue("@numLider", numLider);
+                    cmd.Parameters.AddWithValue("@numEmpleado", numEmpleado);
                     cmd.ExecuteNonQuery();
                 }
             }

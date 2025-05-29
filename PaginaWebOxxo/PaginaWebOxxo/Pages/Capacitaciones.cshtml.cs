@@ -18,7 +18,7 @@ public class CapacitacionesModel : PageModel
 
     public void OnGet()
     {
-        int numEmpleado = 12345; 
+        int numEmpleado = (int)HttpContext.Session.GetInt32("numEmpleado");
         var db = new DataBaseContext();
         Progresos = db.ObtenerProgresoPorEmpleado(numEmpleado);
         Usuario = _context.ObtenerUsuarioPorEmpleados(numEmpleado);
