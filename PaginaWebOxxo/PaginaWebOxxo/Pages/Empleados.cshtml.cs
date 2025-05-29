@@ -18,10 +18,13 @@ public class EmpleadosModel : PageModel
     public Usuarios Lider { get; set; }
     public List<Usuarios> ListaEmpleados { get; set; }
 
+    [BindProperty] public string numLider { get; set; }
+    [BindProperty] public string numEmpleado { get; set; }
+
     public void OnGet()
     {
         int numLider = (int)HttpContext.Session.GetInt32("numEmpleado");
-            
+
         // Obtener datos del líder
         Lider = _context.ObtenerUsuarioPorEmpleados(numLider);
         Lider.ColorEstatus = ObtenerColorEstatus(Lider.IdEstatus);
@@ -54,5 +57,11 @@ public class EmpleadosModel : PageModel
     public IActionResult OnPostEditarEmpleado(int NumEmpleado)
     {
         return Redirect($"Lider?numEmpleado={NumEmpleado}");
+    }
+
+    public IActionResult OnPostAgregarEmpleado(int numLider, int numEmpleado)
+    {
+        _context.AgregarEmpleado(numLider, numEmpleado);
+        return Redirect($"Empleados?");
     }
 }

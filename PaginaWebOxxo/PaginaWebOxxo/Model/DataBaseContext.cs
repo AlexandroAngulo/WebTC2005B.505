@@ -97,6 +97,7 @@ namespace PaginaWebOxxo.Model
                                 genero = reader["Genero"].ToString(),
                                 horarioInicio = TimeSpan.Parse(reader["horarioInicio"].ToString()),
                                 horarioFin = TimeSpan.Parse(reader["horarioFin"].ToString()),
+                                fotoPerfil = reader["fotoPerfil"].ToString(),
                             };
                         }
                     }
@@ -141,21 +142,21 @@ namespace PaginaWebOxxo.Model
             return usuario;
         }
 
-    public void ActualizarTelefono(int numEmpleado, string telefono)
-    {
-        using (MySqlConnection conexion = GetConnection())
+        public void ActualizarTelefono(int numEmpleado, string telefono)
         {
-            conexion.Open();
-            string query = "UPDATE contacto SET Telefono = @Telefono WHERE NumEmpleado = @NumEmpleado";
-            using (MySqlCommand cmd = new MySqlCommand(query, conexion))
+            using (MySqlConnection conexion = GetConnection())
             {
-                cmd.Parameters.AddWithValue("@Telefono", telefono);
-                cmd.Parameters.AddWithValue("@NumEmpleado", numEmpleado);
+                conexion.Open();
+                string query = "UPDATE contacto SET Telefono = @Telefono WHERE NumEmpleado = @NumEmpleado";
+                using (MySqlCommand cmd = new MySqlCommand(query, conexion))
+                {
+                    cmd.Parameters.AddWithValue("@Telefono", telefono);
+                    cmd.Parameters.AddWithValue("@NumEmpleado", numEmpleado);
 
-                cmd.ExecuteNonQuery();
+                    cmd.ExecuteNonQuery();
+                }
             }
         }
-    }
 
         public Codigopostal ObtenerCodigoPorEmpleados(int codigoPostal)
         {
@@ -250,10 +251,27 @@ namespace PaginaWebOxxo.Model
                     empleado.Puesto = reader["Puesto"].ToString();
                     empleado.horarioInicio = TimeSpan.Parse(reader["horarioInicio"].ToString());
                     empleado.horarioFin = TimeSpan.Parse(reader["horarioFin"].ToString());
+                    empleado.fotoPerfil = reader["fotoPerfil"].ToString();
                     empleados.Add(empleado);
                 }
             }
             return empleados;
+        }
+        
+        public void AgregarEmpleado(int numLider, int numEmpleado)
+        {
+            using (MySqlConnection conexion = GetConnection())
+            {
+                conexion.Open();
+                string query = "UPDATE lider_empleados SET NumLider = @numLider WHERE NumEmpleado = @numEmpleado";
+                using (MySqlCommand cmd = new MySqlCommand(query, conexion))
+                {
+
+                    cmd.Parameters.AddWithValue("@NumLider", numLider);
+                    cmd.Parameters.AddWithValue("@NumEmpleado", numEmpleado);
+                    cmd.ExecuteNonQuery();
+                }
+            }
         }
         
     }

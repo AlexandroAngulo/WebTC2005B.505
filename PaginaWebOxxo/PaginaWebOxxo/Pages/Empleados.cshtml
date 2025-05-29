@@ -17,7 +17,7 @@
     <div class="row align-items-center justify-content-between mb-4 py-4">
         <!--Foto y nombre del líder-->
         <div class="col-md-5 d-flex align-items-center">
-            <img src="https://previews.123rf.com/images/spaxia/spaxia1206/spaxia120600038/14011204-sonrisa-hombre-trabajador-de-la-construcci%C3%B3n-aislada-en-blanco.jpg"
+            <img src="@Model.Lider.fotoPerfil"
                  alt="Foto de Trabajador" class="rounded-circle me-3" width="150" height="150">
             <div>
                 <h3 class="fs-2 cal-sans-regular">@Model.Lider.Nombre @Model.Lider.ApellidoP</h3>
@@ -48,7 +48,7 @@
         <div class="row align-items-center justify-content-between mb-4 py-4">
             <!--Foto y nombre-->
             <div class="col-md-5 d-flex align-items-center">
-                <img src="https://previews.123rf.com/images/spaxia/spaxia1206/spaxia120600038/14011204-sonrisa-hombre-trabajador-de-la-construcci%C3%B3n-aislada-en-blanco.jpg"
+                <img src="@empleado.fotoPerfil"
                      alt="Foto de Trabajador" class="rounded-circle me-3" width="150" height="150">
                 <div>
                     <h3 class="fs-2 cal-sans-regular">@empleado.Nombre @empleado.ApellidoP</h3>
@@ -77,7 +77,7 @@
 
     <div class="row align-items-center justify-content-between mb-4 py-4">
         <div class="col-md-3 text-md-center">
-            <button class="btn btn-warning boton-redondo fs-3 text-muted" type="submit" asp-page-handler="Actualizar">Agregar Empleado</button>
+            <button class="btn btn-warning boton-redondo fs-3 cal-sans-regular text-muted" data-bs-toggle="modal" data-bs-target="#empleadoModal">Agregar Empleado</button>
         </div>
 
         <div class="col-md-3 d-flex align-items-center justify-content-center gap-3 fs-4">
@@ -91,6 +91,36 @@
         <div class="col-md-3 d-flex align-items-center justify-content-center gap-3 fs-4">
             <span class="color_letras cal-sans-regular">Ausente</span>
             <div class="circulo bg-danger"></div>
+        </div>
+    </div>
+
+    <!-- Agregar Empleado PopUp -->
+    <div class="modal fade" id="empleadoModal" aria-labelledby="empleadoModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content">
+                <form method="post" asp-page-handler="AgregarEmpleado">
+                    <div class="modal-header">
+                        <h3 class="fs-2 cal-sans-regular">Agregar Empleado</h3>
+                    </div>
+                    <div class="modal-body">
+                        <input type="hidden" name="numLider" value="@Model.Lider" />
+                        <div class="mb-3">
+                            <label for="numEmpleado" class="form-label">Número de Empleado</label>
+                            <input type="number" class="form-control" name="numEmpleado" required />
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                       <div class="row w-100">
+                            <div class="col-6">
+                                <button type="submit" class="btn btn-primary w-100">Agregar</button>
+                            </div>
+                            <div class="col-6">
+                                <button type="button" class="btn btn-secondary w-100" data-bs-dismiss="modal">Cancelar</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
 </body>

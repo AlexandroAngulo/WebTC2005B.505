@@ -6,32 +6,36 @@
 }
 
 <body>
-    <div class="container-fluid px-5">
-        <br><br><h1 class="color_letras cal-sans-regular text-center">@ViewData["Title"]</h1><br><br>
-        <div class="mx-auto" style="max-width: 75%;">
-            <form method="post" class="border rounded-4 p-4 shadow-sm bg-light">
-                <div class="mb-4" style="max-width: 90%; margin: 0 auto;">
-                    <br><label class="form-label fw-semibold fs-4">Número de Empleado</label>
-                    <input asp-for="login.NumEmpleado" class="form-control form-control-lg" type="text" placeholder="Numero de Empleado" />
-                </div><br>
-
-                <div class="mb-4" style="max-width: 90%; margin: 0 auto;" >
-                    <label class="form-label fw-semibold fs-4">Contraseña</label>
-                    <input asp-for="login.Contraseña" class="form-control form-control-lg" type="text" placeholder="Contraseña" />
-                    <span asp-validation-for="login.Contraseña" class="text-danger"></span>
-                    <small id="telefono-error" class="text-danger d-none">El teléfono debe tener exactamente 10 dígitos.</small>
-                </div><br>
-
-                <div class="text-center" style="max-width: 75%; margin: 0 auto;">
-                    <input class="btn btn-danger btn-color-danger btn-lg w-100" type="submit" asp-page-handler="VerificarContraseña" value="Iniciar Sesión" />
-                </div><br>
-            </form>
-        </div>
+  <div class="container-fluid px-5">
+    <div class="text-center my-5">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/66/Oxxo_Logo.svg/2560px-Oxxo_Logo.svg.png" width="187" alt="Logo Oxxo" />
     </div>
+
+    <div class="mx-auto" style="max-width: 75%;">
+      <form method="post" class="border rounded-4 p-5 shadow-sm bg-light">
+        <div class="mb-5 color_letras" style="max-width: 90%; margin: 0 auto;">
+          <label class="form-label fw-semibold fs-3">Número de Empleado</label>
+          <input asp-for="login.NumEmpleado" class="form-control form-control-lg w-100" type="text" placeholder="Número de Empleado" />
+        </div>
+
+        <div class="mb-5 color_letras" style="max-width: 90%; margin: 0 auto;">
+          <label class="form-label fw-semibold fs-3">Contraseña</label>
+          <input asp-for="login.Contraseña" class="form-control form-control-lg w-100" type="text" placeholder="Contraseña" />
+          <span asp-validation-for="login.Contraseña" class="text-danger"></span>
+          <small id="telefono-error" class="text-danger d-none">El teléfono debe tener exactamente 10 dígitos.</small>
+        </div>
+
+        <div class="text-center" style="max-width: 75%; margin: 0 auto;">
+          <input class="btn btn-danger btn-color-danger btn-lg w-100" type="submit" asp-page-handler="VerificarContraseña" value="Iniciar Sesión" />
+        </div>
+
+        <div class="my-4"></div>
+      </form>
+    </div>
+  </div>
 </body>
-<style>
-    
-</style>
+
+
 <style>
     .mb-4{
         color: red;
