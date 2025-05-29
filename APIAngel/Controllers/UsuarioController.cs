@@ -11,7 +11,7 @@ namespace APIAngel.Controllers;
 
 public class UsuarioController : ControllerBase
 {
-    public string ConnectionString = "Server=127.0.0.1;Port=3306;Database=BD.TC2005B.505;Uid=root;password=;";
+    public string ConnectionString = "Server=mysql-a0f09b6-dario-ceda.b.aivencloud.com;Port=15915;Database=Proyecto;Uid=avnadmin;password=AVNS_x1ewxXkuSiLMKWdUhD2;";
 
 
     [HttpGet("GetUsuarioById/{NumEmpleado}")] 
