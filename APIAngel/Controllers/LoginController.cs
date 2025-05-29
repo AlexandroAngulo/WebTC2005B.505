@@ -22,7 +22,7 @@ public class LoginController : ControllerBase
         MySqlCommand cmd = new MySqlCommand();
         cmd.CommandType = CommandType.StoredProcedure;
         cmd.CommandText = "VerificarContraseña";
-        cmd.Parameters.AddWithValue("@NumEmpleado", NumEmpleado);
+        cmd.Parameters.AddWithValue("@p_NumEmpleado", NumEmpleado);
 
         cmd.Connection = conexion;
         Login login = new Login();
@@ -30,7 +30,7 @@ public class LoginController : ControllerBase
         {
             while (reader.Read())
             {
-                login.NumEmpleado = Convert.ToInt32(reader["IDLibro"]);
+                login.NumEmpleado = Convert.ToInt32(reader["NumEmpleado"]);
                 login.Contraseña = reader["Contraseña"].ToString();
             }
         }
