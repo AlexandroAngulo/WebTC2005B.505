@@ -15,12 +15,12 @@
       <form method="post" class="border rounded-4 p-5 shadow-sm bg-light">
         <div class="mb-3 color_letras" style="max-width: 90%; margin: 0 auto;">
           <label class="form-label fw-semibold fs-3">Número de Empleado</label>
-          <input asp-for="login.NumEmpleado" class="form-control form-control-lg w-100" type="text" placeholder="Número de Empleado" />
+          <input asp-for="login.NumEmpleado" class="form-control form-control-lg w-100" type="text" placeholder="Número de Empleado" required/>
         </div>
 
         <div class="mb-5 color_letras" style="max-width: 90%; margin: 0 auto;">
           <label class="form-label fw-semibold fs-3">Contraseña</label>
-          <input asp-for="login.Contraseña" class="form-control form-control-lg w-100" type="text" placeholder="Contraseña" />
+          <input asp-for="login.Contraseña" class="form-control form-control-lg w-100" type="text" placeholder="Contraseña" required/>
           <span asp-validation-for="login.Contraseña" class="text-danger"></span>
         </div>
 
