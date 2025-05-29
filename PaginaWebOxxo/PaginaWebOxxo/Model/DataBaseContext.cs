@@ -15,6 +15,7 @@ namespace PaginaWebOxxo.Model
         {
             ConnectionString = "Server=mysql-a0f09b6-dario-ceda.b.aivencloud.com;Port=15915;Database=Proyecto;Uid=avnadmin;password=AVNS_x1ewxXkuSiLMKWdUhD2;";
         }
+
         private MySqlConnection GetConnection()
         {
             return new MySqlConnection(ConnectionString);
@@ -42,31 +43,6 @@ namespace PaginaWebOxxo.Model
                 }
             }
             return estadisticas;
-        }
-
-        //Login
-        public Login login(int numEmpleado)
-        {
-            MySqlConnection conexion = new MySqlConnection(ConnectionString);
-            conexion.Open();
-
-            MySqlCommand cmd = new MySqlCommand();
-            cmd.CommandType = CommandType.StoredProcedure;
-            cmd.CommandText = "VerificarContraseña";
-            cmd.Parameters.AddWithValue("@p_NumEmpleado", numEmpleado);
-
-            cmd.Connection = conexion;
-            Login login = new Login();
-            using (var reader = cmd.ExecuteReader())
-            {
-                while (reader.Read())
-                {
-                    login.NumEmpleado = Convert.ToInt32(reader["NumEmpleado"]);
-                    login.Contraseña = reader["Contraseña"].ToString();
-                }
-            }
-            conexion.Close();
-            return login;
         }
 
         public Usuarios ObtenerUsuarioPorEmpleados(int numEmpleado)
@@ -110,7 +86,6 @@ namespace PaginaWebOxxo.Model
         }
 
         //Mateo
-
         public Contacto ObtenerContactoPorEmpleados(int numEmpleado)
         {
             Contacto usuario = null;
@@ -191,8 +166,6 @@ namespace PaginaWebOxxo.Model
             }
             return usuario;
         }
-
-
 
         //Ivan
         public List<NivelUsuario> ObtenerProgresoPorEmpleado(int numEmpleado)
@@ -276,6 +249,32 @@ namespace PaginaWebOxxo.Model
                 }
             }
         }
+
+        //Login
+        public Login login(int numEmpleado)
+        {
+            MySqlConnection conexion = new MySqlConnection(ConnectionString);
+            conexion.Open();
+
+            MySqlCommand cmd = new MySqlCommand();
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.CommandText = "VerificarContraseña";
+            cmd.Parameters.AddWithValue("@p_NumEmpleado", numEmpleado);
+
+            cmd.Connection = conexion;
+            Login login = new Login();
+            using (var reader = cmd.ExecuteReader())
+            {
+                while (reader.Read())
+                {
+                    login.NumEmpleado = Convert.ToInt32(reader["NumEmpleado"]);
+                    login.Contraseña = reader["Contraseña"].ToString();
+                }
+            }
+            conexion.Close();
+            return login;
+        }
+
         
         //Augusto
         public void EquiparPersonaje(int numEmpleado, int idPersonalizacion)

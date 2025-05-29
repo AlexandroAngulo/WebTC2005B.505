@@ -35,6 +35,7 @@
         <!-- Formulario -->
         <div class="col-lg-7">
             <form method="post" asp-page-handler="Actualizar">
+                <input type="hidden" name="numEmpleado" value="@Model.contacto?.NumEmpleado" />
                 <div class="mb-4">
                     <label class="form-label">Teléfono</label>
                     <input type="text" id="telefonoinput" name="Telefono" value="@Model.contacto?.telefono" class="form-control rounded-4" disabled />
