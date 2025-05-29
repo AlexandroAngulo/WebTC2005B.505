@@ -17,8 +17,6 @@ public class Usuarios
     public TimeSpan horarioFin{ get; set; }
 	public string fotoPerfil { get; set; }
 
-
-	
 	public int Edad
 	{
 		get
