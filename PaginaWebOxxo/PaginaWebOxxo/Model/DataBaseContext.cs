@@ -276,7 +276,7 @@ namespace PaginaWebOxxo.Model
                 }
             }
         }
-        
+
         //Augusto
         public void EquiparPersonaje(int numEmpleado, int idPersonalizacion)
         {
@@ -360,7 +360,50 @@ namespace PaginaWebOxxo.Model
                     return resultado != null ? Convert.ToInt32(resultado) : 0;
                 }
             }
-        }        
+        }
+
+        public string ObtenerNombrePersonajeEquipado(int numEmpleado)
+        {
+            using (MySqlConnection conexion = GetConnection())
+            {
+                conexion.Open();
+                string query = @"
+                    SELECT p.NombreAspecto
+                    FROM usuariopersonalizacion AS up
+                    JOIN personalizacion AS p ON up.IdPersonalizacion = p.IdPersonalizacion
+                    WHERE up.NumEmpleado = @NumEmpleado AND up.Equipado = 1 AND p.TipoAspecto = 'PERSONAJE'
+                    LIMIT 1";
+
+                using (MySqlCommand cmd = new MySqlCommand(query, conexion))
+                {
+                    cmd.Parameters.AddWithValue("@NumEmpleado", numEmpleado);
+                    object resultado = cmd.ExecuteScalar();
+                    return resultado != null ? resultado.ToString() : null;
+                }
+            }
+        }
+        
+        public string ObtenerNombreTrackEquipado(int numEmpleado)
+        {
+            using (MySqlConnection conexion = GetConnection())
+            {
+                conexion.Open();
+                string query = @"
+                    SELECT pm.NombreAspectoM
+                    FROM usuariopersonalizacionM AS upm
+                    JOIN personalizacionM AS pm ON upm.IdPersonalizacion = pm.IdPersonalizacion
+                    WHERE upm.NumEmpleado = @NumEmpleado AND upm.EquipadoM = 1
+                    LIMIT 1";
+
+                using (MySqlCommand cmd = new MySqlCommand(query, conexion))
+                {
+                    cmd.Parameters.AddWithValue("@NumEmpleado", numEmpleado);
+                    object resultado = cmd.ExecuteScalar();
+                    return resultado != null ? resultado.ToString() : null;
+                }
+            }
+        }
+
     }
 
 }
