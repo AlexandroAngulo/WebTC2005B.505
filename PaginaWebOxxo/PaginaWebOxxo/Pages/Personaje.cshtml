@@ -26,10 +26,42 @@
         <br>
         <h3>Elegir Personaje</h3>
         <div class="contenedor">
-            <div class="elemento"><button onclick="location.href='https://www.facebook.com'"><img src="imagenes/Personaje3PW.png" alt=""></button></div>
-            <div class="elemento"><button onclick="location.href='https://www.facebook.com'"><img src="imagenes/Personaje2PW.png" alt=""></button></div>
-            <div class="elemento"><button onclick="location.href='https://www.facebook.com'"><img src="imagenes/Personaje4PW.png" alt=""></button></div>
-            <div class="elemento"><button onclick="location.href='https://www.facebook.com'"><img src="imagenes/Personaje1PW.png" alt=""></button></div>
+          <form method="post" asp-page-handler="EquiparPersonaje" class="elemento">
+              <input type="hidden" name="personaje" value="JEFE" />
+              <button type="submit" class="@(Model.PersonajeSeleccionado == "JEFE" ? "seleccionado" : "")">
+                  <div style="display: flex; flex-direction: column; align-items: center;">
+                      <img src="imagenes/Personaje3PW.png" alt="">
+                      <p style="font-size:25px">JEFE</p>
+                  </div>
+              </button>
+          </form>
+          <form method="post" asp-page-handler="EquiparPersonaje" class="elemento">
+              <input type="hidden" name="personaje" value="ALEX" />
+              <button type="submit" class="@(Model.PersonajeSeleccionado == "ALEX" ? "seleccionado" : "")">
+                  <div style="display: flex; flex-direction: column; align-items: center;">
+                      <img src="imagenes/Personaje2PW.png" alt="">
+                      <p style="font-size:25px">ALEX</p>
+                  </div>
+              </button>
+          </form>
+          <form method="post" asp-page-handler="EquiparPersonaje" class=" elemento">
+              <input type="hidden" name="personaje" value="ADAM" />
+              <button type="submit" class="@(Model.PersonajeSeleccionado == "ADAM" ? "seleccionado" : "")">
+                  <div style="display: flex; flex-direction: column; align-items: center;">
+                      <img src="imagenes/Personaje4PW.png" alt="">
+                      <p style="font-size:25px">ADAM</p>
+                  </div>
+              </button>
+          </form>
+          <form method="post" asp-page-handler="EquiparPersonaje" class="elemento">
+              <input type="hidden" name="personaje" value="AMELIA" />
+              <button type="submit" class="@(Model.PersonajeSeleccionado == "AMELIA" ? "seleccionado" : "")">
+                  <div style="display: flex; flex-direction: column; align-items: center;">
+                      <img src="imagenes/Personaje1PW.png" alt="">
+                      <p style="font-size:25px">AMELIA</p>
+                  </div>
+              </button>
+          </form>
         </div>
     </div>
 
@@ -37,11 +69,35 @@
     <div class="columna-derecha">
         <div>
         <h3>Elegir Música del Menú</h3>
-            <div class="contenedor3">
-              <div><button onclick="location.href='https://www.youtube.com'"><img class="imagenes-musica" src="imagenes/Musica.jpg" alt=""></button></div>
-              <div><button onclick="location.href='https://www.youtube.com'"><img class="imagenes-musica" src="imagenes/Musica.jpg" alt=""></button></div>
-              <div><button onclick="location.href='https://www.youtube.com'"><img class="imagenes-musica" src="imagenes/Musica.jpg" alt=""></button></div>
-            </div>
+          <div class="contenedor3">
+              <form method="post" asp-page-handler="EquiparTrack" class="elemento">
+                  <input type="hidden" name="track" value="TRACK1" />
+                  <button type="submit" class="@(Model.TrackSeleccionado == "TRACK1" ? "seleccionado" : "")">
+                      <div style="display: flex; flex-direction: column; align-items: center;">
+                          <img src="imagenes/Cancion.png" alt="" class="imagenes-musica">
+                          <p style="font-size: 20px;">Track 1</p>
+                      </div>
+                  </button>
+              </form>
+                <form method="post" asp-page-handler="EquiparTrack" class="elemento">
+                    <input type="hidden" name="track" value="TRACK2" />
+                    <button type="submit" class="@(Model.TrackSeleccionado == "TRACK2" ? "seleccionado" : "")">
+                        <div style="display: flex; flex-direction: column; align-items: center;">
+                            <img src="imagenes/Cancion.png" alt="" class="imagenes-musica">
+                            <p style="font-size: 20px;">Track 2</p>
+                        </div>
+                    </button>
+                </form>
+                <form method="post" asp-page-handler="EquiparTrack" class="elemento">
+                    <input type="hidden" name="track" value="TRACK3" />
+                    <button type="submit" class="@(Model.TrackSeleccionado == "TRACK3" ? "seleccionado" : "")">
+                        <div style="display: flex; flex-direction: column; align-items: center;">
+                            <img src="imagenes/Cancion.png" alt="" class="imagenes-musica">
+                            <p style="font-size: 20px;">Track 3</p>
+                        </div>
+                    </button>
+                </form>
+          </div>
         </div>
 
         <br>
@@ -132,10 +188,11 @@
       cursor: pointer; /* Cambiar el cursor al pasar por encima (opcional) */
     }
 
-    button:hover {
-      background-color: #00ffff; /* Cambiar el color de fondo al pasar el mouse */
-      size: 40px;
+    .seleccionado {
+      border: 3px solid #00ccff;
+      background-color: #e0f7ff;
     }
+
 
     .contenedor3 {
       display: grid;
