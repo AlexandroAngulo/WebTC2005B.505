@@ -1,14 +1,14 @@
-using AugustoOrozcoAPI;
+using APIAngel;
 using Microsoft.AspNetCore.Mvc;
 using MySql.Data.MySqlClient;
 using System.Collections.Generic;
 using System.Data;
 
-namespace AugustoOrozcoAPI.Controllers;
+namespace APIAngel.Controllers;
 
 [ApiController]
 [Route("[controller]")]
-public class AugustoOrozcoController : ControllerBase
+public class AugustoController : ControllerBase
 {
     public string ConnectionString = "Server=mysql-a0f09b6-dario-ceda.b.aivencloud.com;Port=15915;Database=Proyecto;Uid=avnadmin;password=AVNS_x1ewxXkuSiLMKWdUhD2;";
 
@@ -42,7 +42,7 @@ public class AugustoOrozcoController : ControllerBase
 } 
 
 [Route("[controller]")]
-public class AugustoOrozcoController2 : ControllerBase
+public class AugustoController2 : ControllerBase
 {
     public string ConnectionString = "Server=mysql-a0f09b6-dario-ceda.b.aivencloud.com;Port=15915;Database=Proyecto;Uid=avnadmin;password=AVNS_x1ewxXkuSiLMKWdUhD2;";
 
