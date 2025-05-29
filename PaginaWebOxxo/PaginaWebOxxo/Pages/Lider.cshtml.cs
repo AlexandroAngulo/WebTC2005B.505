@@ -41,9 +41,17 @@ public class LiderModel : PageModel
     public void OnGet(int? numEmpleado)
     {
 
-        int empleadoId = numEmpleado ?? HttpContext.Session.GetInt32("numEmpleado") ?? 0;
+        int empleadoId;
 
-        HttpContext.Session.SetInt32("numEmpleado", empleadoId);
+        if (numEmpleado.HasValue)
+        {
+            empleadoId = numEmpleado.Value;
+        }
+        else
+        {
+            empleadoId = HttpContext.Session.GetInt32("numEmpleado") ?? 0;
+            HttpContext.Session.SetInt32("numEmpleado", empleadoId);
+        }
 
         Puesto = _context.ObtenerUsuarioPorEmpleados(empleadoId);
         Genero = _context.ObtenerUsuarioPorEmpleados(empleadoId);
@@ -58,20 +66,24 @@ public class LiderModel : PageModel
     {
         int empleadoId = numEmpleado ?? HttpContext.Session.GetInt32("numEmpleado") ?? 0;
 
-        HttpContext.Session.SetInt32("numEmpleado", empleadoId);
+        if (!numEmpleado.HasValue)
+        {
+            HttpContext.Session.SetInt32("numEmpleado", empleadoId);
+        }
 
         if (string.IsNullOrEmpty(Telefono) || Telefono.Length != 10)
         {
             ModelState.AddModelError("Telefono", "El número de teléfono es inválido, debe contener 10 dígitos");
-
         }
 
         _context.ActualizarTelefono(empleadoId, Telefono);
+
+        // Recargar los datos del usuario editado
         Puesto = _context.ObtenerUsuarioPorEmpleados(empleadoId);
         Genero = _context.ObtenerUsuarioPorEmpleados(empleadoId);
         EstadisticasUsuario = _context.ObtenerMonedasPorEmpleado(empleadoId);
         Usuario = _context.ObtenerUsuarioPorEmpleados(empleadoId);
-        contacto = _context.ObtenerContactoPorEmpleados(empleadoId);     
+        contacto = _context.ObtenerContactoPorEmpleados(empleadoId);
         codigopostal = _context.ObtenerCodigoPorEmpleados(empleadoId);
     }
 }
