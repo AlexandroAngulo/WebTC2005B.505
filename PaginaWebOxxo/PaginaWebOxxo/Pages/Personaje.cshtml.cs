@@ -15,11 +15,17 @@ public class PersonajeModel : PageModel
     public Usuarios Lider { get; set; }
     public string PersonajeSeleccionado { get; set; }
     public string TrackSeleccionado { get; set; }
-    public void OnGet()
-    {
-        int numEmpleado = (int)HttpContext.Session.GetInt32("numEmpleado");
-        Lider = _context.ObtenerUsuarioPorEmpleados(numEmpleado);
-    }
+
+    public void OnGet(string personaje = null, string track = null)
+{
+    int numEmpleado = (int)HttpContext.Session.GetInt32("numEmpleado");
+    Lider = _context.ObtenerUsuarioPorEmpleados(numEmpleado);
+
+    // Determina personaje actualmente equipado si no viene en la URL
+    PersonajeSeleccionado = personaje ?? _context.ObtenerNombrePersonajeEquipado(numEmpleado);
+
+    TrackSeleccionado = track ?? _context.ObtenerNombreTrackEquipado(numEmpleado);
+}
 
     public IActionResult OnPostEquiparPersonaje(string personaje)
     {
@@ -31,8 +37,8 @@ public class PersonajeModel : PageModel
         {
             _context.EquiparPersonaje(numEmpleado, id);
         }
-    
-        return RedirectToPage("Personaje", new { personaje = personaje, track = TrackSeleccionado });
+
+        return RedirectToPage(new { personaje = personaje, track = TrackSeleccionado });
     }
     
 

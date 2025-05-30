@@ -7,7 +7,7 @@
 <body>
     <div>
         <!-- Botón de ayuda arriba-->
-        <button class="botonayuda" title="este boton aun no sirve">?</button>
+        <button class="botonayuda" title="Para saber más de Oxxo clickea aquí" onclick="window.open('https://www.oxxo.com/','_blank')">^</button>
     </div>
     <div class="layout-principal">
     <!-- Columna izquierda -->
@@ -27,7 +27,7 @@
         <div class="contenedor">
           <form method="post" asp-page-handler="EquiparPersonaje" class="elemento">
               <input type="hidden" name="personaje" value="JEFE" />
-              <button type="submit" class="@(Model.PersonajeSeleccionado == "JEFE" ? "seleccionado" : "")">
+              <button type="submit" class=" @(Model.PersonajeSeleccionado == "JEFE" ? "seleccionado" : "")">
                   <div style="display: flex; flex-direction: column; align-items: center;">
                       <img src="imagenes/Personaje3PW.png" alt="">
                       <p style="font-size:25px">JEFE</p>
@@ -115,6 +115,43 @@
     </div>
 </div>
 
+<div class="modal fade" id="empleadoModal" tabindex="-1" aria-labelledby="empleadoModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="empleadoModalLabel">¡Cambio éxitoso!</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    document.querySelectorAll('form[action*="EquiparPersonaje"]').forEach(form => {
+        form.addEventListener('submit', function (e) {
+            e.preventDefault();
+            const modal = new bootstrap.Modal(document.getElementById('empleadoModal'));
+            modal.show();
+            setTimeout(() => {
+                form.submit();
+            }, 2000);
+        });
+    });
+    document.querySelectorAll('form[action*="EquiparTrack"]').forEach(form => {
+        form.addEventListener('submit', function (e) {
+            e.preventDefault();
+            const modal = new bootstrap.Modal(document.getElementById('empleadoModal'));
+            modal.show();
+            setTimeout(() => {
+                form.submit();
+            }, 2000);
+        });
+    });
+});
+
+</script>
+
 </body>
 
 <style>
@@ -131,6 +168,11 @@
     .elemento {
       align-items: center;
       padding: 10px; /* Agrega padding para ver mejor los elementos */
+      transition: all 0.3s ease;
+      transform: scale(1.02);
+    }
+    .elemento:hover {
+      transform: scale(1.05);
     }
 
     .contenedor2 {
@@ -188,9 +230,16 @@
     }
 
     .seleccionado {
-      border: 3px solid #00ccff;
-      background-color: #e0f7ff;
+      background: #f28c8c;
+      border-radius: 12px;
+      transition: all 0.3s ease;
+      transform: scale(1.02);
     }
+
+    .seleccionado:hover {
+      transform: scale(1.05);
+    }
+
 
 
     .contenedor3 {

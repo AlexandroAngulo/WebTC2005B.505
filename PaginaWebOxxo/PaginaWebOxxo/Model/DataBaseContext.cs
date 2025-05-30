@@ -15,6 +15,7 @@ namespace PaginaWebOxxo.Model
         {
             ConnectionString = "Server=mysql-a0f09b6-dario-ceda.b.aivencloud.com;Port=15915;Database=Proyecto;Uid=avnadmin;password=AVNS_x1ewxXkuSiLMKWdUhD2;";
         }
+
         private MySqlConnection GetConnection()
         {
             return new MySqlConnection(ConnectionString);
@@ -42,31 +43,6 @@ namespace PaginaWebOxxo.Model
                 }
             }
             return estadisticas;
-        }
-
-        //Login
-        public Login login(int numEmpleado)
-        {
-            MySqlConnection conexion = new MySqlConnection(ConnectionString);
-            conexion.Open();
-
-            MySqlCommand cmd = new MySqlCommand();
-            cmd.CommandType = CommandType.StoredProcedure;
-            cmd.CommandText = "VerificarContraseña";
-            cmd.Parameters.AddWithValue("@p_NumEmpleado", numEmpleado);
-
-            cmd.Connection = conexion;
-            Login login = new Login();
-            using (var reader = cmd.ExecuteReader())
-            {
-                while (reader.Read())
-                {
-                    login.NumEmpleado = Convert.ToInt32(reader["NumEmpleado"]);
-                    login.Contraseña = reader["Contraseña"].ToString();
-                }
-            }
-            conexion.Close();
-            return login;
         }
 
         public Usuarios ObtenerUsuarioPorEmpleados(int numEmpleado)
@@ -110,7 +86,6 @@ namespace PaginaWebOxxo.Model
         }
 
         //Mateo
-
         public Contacto ObtenerContactoPorEmpleados(int numEmpleado)
         {
             Contacto usuario = null;
@@ -191,8 +166,6 @@ namespace PaginaWebOxxo.Model
             }
             return usuario;
         }
-
-
 
         //Ivan
         public List<NivelUsuario> ObtenerProgresoPorEmpleado(int numEmpleado)
@@ -277,6 +250,31 @@ namespace PaginaWebOxxo.Model
             }
         }
         
+        //Login
+        public Login login(int numEmpleado)
+        {
+            MySqlConnection conexion = new MySqlConnection(ConnectionString);
+            conexion.Open();
+
+            MySqlCommand cmd = new MySqlCommand();
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.CommandText = "VerificarContraseña";
+            cmd.Parameters.AddWithValue("@p_NumEmpleado", numEmpleado);
+
+            cmd.Connection = conexion;
+            Login login = new Login();
+            using (var reader = cmd.ExecuteReader())
+            {
+                while (reader.Read())
+                {
+                    login.NumEmpleado = Convert.ToInt32(reader["NumEmpleado"]);
+                    login.Contraseña = reader["Contraseña"].ToString();
+                }
+            }
+            conexion.Close();
+            return login;
+        }
+
         //Augusto
         public void EquiparPersonaje(int numEmpleado, int idPersonalizacion)
         {
@@ -360,7 +358,50 @@ namespace PaginaWebOxxo.Model
                     return resultado != null ? Convert.ToInt32(resultado) : 0;
                 }
             }
-        }        
+        }
+
+        public string ObtenerNombrePersonajeEquipado(int numEmpleado)
+        {
+            using (MySqlConnection conexion = GetConnection())
+            {
+                conexion.Open();
+                string query = @"
+                    SELECT p.NombreAspecto
+                    FROM usuariopersonalizacion AS up
+                    JOIN personalizacion AS p ON up.IdPersonalizacion = p.IdPersonalizacion
+                    WHERE up.NumEmpleado = @NumEmpleado AND up.Equipado = 1 AND p.TipoAspecto = 'PERSONAJE'
+                    LIMIT 1";
+
+                using (MySqlCommand cmd = new MySqlCommand(query, conexion))
+                {
+                    cmd.Parameters.AddWithValue("@NumEmpleado", numEmpleado);
+                    object resultado = cmd.ExecuteScalar();
+                    return resultado != null ? resultado.ToString() : null;
+                }
+            }
+        }
+        
+        public string ObtenerNombreTrackEquipado(int numEmpleado)
+        {
+            using (MySqlConnection conexion = GetConnection())
+            {
+                conexion.Open();
+                string query = @"
+                    SELECT pm.NombreAspectoM
+                    FROM usuariopersonalizacionM AS upm
+                    JOIN personalizacionM AS pm ON upm.IdPersonalizacion = pm.IdPersonalizacion
+                    WHERE upm.NumEmpleado = @NumEmpleado AND upm.EquipadoM = 1
+                    LIMIT 1";
+
+                using (MySqlCommand cmd = new MySqlCommand(query, conexion))
+                {
+                    cmd.Parameters.AddWithValue("@NumEmpleado", numEmpleado);
+                    object resultado = cmd.ExecuteScalar();
+                    return resultado != null ? resultado.ToString() : null;
+                }
+            }
+        }
+
     }
 
 }
