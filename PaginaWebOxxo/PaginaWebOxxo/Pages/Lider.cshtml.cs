@@ -55,6 +55,9 @@ public class LiderModel : PageModel
         if (string.IsNullOrEmpty(Telefono) || Telefono.Length != 10)
         {
             ModelState.AddModelError("Telefono", "El número de teléfono es inválido, debe contener 10 dígitos");
+            contacto = _context.ObtenerContactoPorEmpleados(empleadoId);
+            Usuario = _context.ObtenerUsuarioPorEmpleados(empleadoId);
+            return;
         }
 
 
