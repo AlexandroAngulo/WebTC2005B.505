@@ -15,7 +15,6 @@
     </div>
 
     <div class="row align-items-center justify-content-between mb-4 py-4">
-        <!--Foto y nombre del líder-->
         <div class="col-md-5 d-flex align-items-center">
             <img src="@Model.Lider.fotoPerfil" alt="Foto de Trabajador" class="rounded-circle me-3" width="150" height="150">
             <div>
@@ -23,15 +22,12 @@
                 <p class="fs-3 text-muted">@Model.Lider.Puesto</p>
             </div>
         </div>
-        <!--Horario-->
         <div class="col-md-2 text-md-center fs-4">
             @Model.Lider.horarioInicio.ToString(@"hh\:mm") - @Model.Lider.horarioFin.ToString(@"hh\:mm")
         </div>
-        <!--Estatus-->
         <div class="col-md-2 d-flex align-items-center justify-content-center">
             <div class="estatus-circulo @Model.Lider.ColorEstatus"></div>
         </div>
-        <!--Editar-->
         <div class="col-md-2 text-center">
             <form method="post" asp-page-handler="EditarLider">
                 <input type="hidden" name="numEmpleado" value="@Model.Lider.NumEmpleado" />
@@ -45,7 +41,6 @@
     @foreach (var empleado in Model.ListaEmpleados)
     {
         <div class="row align-items-center justify-content-between mb-4 py-4">
-            <!--Foto y nombre-->
             <div class="col-md-5 d-flex align-items-center">
                 <img src="@empleado.fotoPerfil"
                      alt="Foto de Trabajador" class="rounded-circle me-3" width="150" height="150">
@@ -54,15 +49,12 @@
                     <p class="fs-3 text-muted">@empleado.Puesto</p>
                 </div>
             </div>
-            <!--Horario-->
             <div class="col-md-2 text-md-center fs-4">
                 @empleado.horarioInicio.ToString(@"hh\:mm") - @empleado.horarioFin.ToString(@"hh\:mm")
             </div>
-            <!--Estatus-->
             <div class="col-md-2 d-flex align-items-center justify-content-center">
                 <div class="estatus-circulo @empleado.ColorEstatus"></div>
             </div>
-            <!--Editar-->
             <div class="col-md-2 text-center">
                 <form method="post" asp-page-handler="EditarEmpleado">
                     <input type="hidden" name="NumEmpleado" value="@empleado.NumEmpleado" />
@@ -93,7 +85,6 @@
         </div>
     </div>
 
-    <!-- Agregar Empleado PopUp -->
     <div class="modal fade" id="empleadoModal" aria-labelledby="empleadoModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg modal-dialog-centered">
             <div class="modal-content">
