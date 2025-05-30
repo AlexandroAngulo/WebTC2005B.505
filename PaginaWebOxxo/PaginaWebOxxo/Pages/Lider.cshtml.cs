@@ -60,6 +60,7 @@ public class LiderModel : PageModel
         {
             ModelState.AddModelError("Telefono", "El número de teléfono es inválido, debe contener 10 dígitos");
         }
+        
 
         _context.ActualizarTelefono(empleadoId, Telefono);
 
