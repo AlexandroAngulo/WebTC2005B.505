@@ -15,30 +15,30 @@
         <div class="d-flex align-items-center gap-4">
             <img src="@Model.Usuario.fotoPerfil" alt="Foto de Trabajador" class="rounded-circle me-3" width="150" height="150">
             <div>
-                <h3 class="fw-bold mb-1">@Model.Usuario?.Nombre  @Model.Usuario?.ApellidoP  @Model.Usuario?.ApellidoM </h3>
+                <h3 class="fw-bold mb-1">@Model.Usuario.Nombre  @Model.Usuario.ApellidoP  @Model.Usuario.ApellidoM </h3>
             </div>
         </div>
 
         <!-- Badges Sexo/Ocupación/Edad -->
         <div class="badges-top pe-3">
-            <div class="badge bg-warning text-dark badge-custom">@Model.Usuario?.genero<small>Sexo</small></div>
-            <div class="badge bg-warning text-dark badge-custom">@Model.Usuario?.Puesto<small>Ocupación</small></div>
-            <div class="badge bg-warning text-dark badge-custom"> @Model.Usuario?.Edad Años<small>Edad</small></div>
+            <div class="badge bg-warning text-dark badge-custom">@Model.Usuario.genero<small>Sexo</small></div>
+            <div class="badge bg-warning text-dark badge-custom">@Model.Usuario.Puesto<small>Ocupación</small></div>
+            <div class="badge bg-warning text-dark badge-custom"> @Model.Usuario.Edad Años<small>Edad</small></div>
         </div>
     </div>
 
     <!-- Botón de ayuda arriba-->
-    <button class="botonayuda" title="Para saber más de Oxxo clickea aquí" onclick="window.open('https://www.oxxo.com/','_blank')">?</button>
+    <button class="botonayuda" title="Para saber más de Oxxo clickea aquí" onclick="window.open('https://www.oxxo.com/','_blank')"></button>
 
    
     <div class="row gx-5">
         <!-- Formulario -->
         <div class="col-lg-7">
             <form method="post" asp-page-handler="Actualizar">
-                <input type="hidden" name="numEmpleado" value="@Model.contacto?.NumEmpleado" />
+                <input type="hidden" name="numEmpleado" value="@Model.contacto.NumEmpleado" />
                 <div class="mb-4">
                     <label class="form-label">Teléfono</label>
-                    <input type="text" id="telefonoinput" name="Telefono" value="@Model.contacto?.telefono" class="form-control rounded-4" disabled />
+                    <input type="text" id="telefonoinput" name="Telefono" value="@Model.contacto.telefono" class="form-control rounded-4" disabled />
                     <span asp-validation-for="Telefono" class="text-danger"></span>
                     <small id="telefono-error" class="text-danger d-none">El teléfono debe tener exactamente 10 dígitos.</small>
                     <br>
@@ -50,20 +50,20 @@
                 </div>
                 <div class="mb-4">
                     <label class="form-label">Correo electrónico</label>
-                    <input type="email" value= @Model.contacto?.correo class="form-control rounded-4" disabled />
+                    <input type="email" value= @Model.contacto.correo class="form-control rounded-4" disabled />
                 </div>
                 <div class="mb-4">
                     <label class="form-label">Número de empleado</label>
-                    <input type="text" disabled value= @Model.contacto?.NumEmpleado  class="form-control rounded-4" />
+                    <input type="text" disabled value= @Model.contacto.NumEmpleado  class="form-control rounded-4" />
 
                 </div>
                 <div class="mb-4">
                     <label class="form-label">Dirección</label>
                     <textarea disabled class="form-control rounded-4" rows="5">@(
-                        "Codigo Postal: " + @Model.codigopostal?.CodigoPostal + "\n" +
-                        "Municipio: " + @Model.codigopostal?.municipio + "\n" +
-                        "Colonia: " + @Model.codigopostal?.colonia + "\n" +
-                        "Estado: " + @Model.codigopostal?.estado
+                        "Codigo Postal: " + @Model.contacto.codigoPostal + "\n" +
+                        "Municipio: " + @Model.contacto.municipio + "\n" +
+                        "Colonia: " + @Model.contacto.colonia + "\n" +
+                        "Estado: " + @Model.contacto.estado
                     )</textarea>
                 </div>
             </form>

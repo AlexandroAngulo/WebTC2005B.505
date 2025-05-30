@@ -20,20 +20,9 @@ public class LiderModel : PageModel
     [BindProperty]
     public string Telefono { get; set; }
 
-    [BindProperty]
     public Usuarios Usuario { get; set; }
 
-    [BindProperty]
     public Contacto contacto { get; set; }
-
-    [BindProperty]
-    public Codigopostal codigopostal { get; set; }
-
-
-
-    public Usuarios Genero { get; set; }
-    public Usuarios Puesto { get; set; }
-    public Usuarios Lider { get; set; }
 
     [BindProperty]
     public int? numEmpleado { get; set; } 
@@ -53,13 +42,9 @@ public class LiderModel : PageModel
             HttpContext.Session.SetInt32("numEmpleado", empleadoId);
         }
 
-        Puesto = _context.ObtenerUsuarioPorEmpleados(empleadoId);
-        Genero = _context.ObtenerUsuarioPorEmpleados(empleadoId);
-        EstadisticasUsuario = _context.ObtenerMonedasPorEmpleado(empleadoId);
-        Usuario = _context.ObtenerUsuarioPorEmpleados(empleadoId);
         contacto = _context.ObtenerContactoPorEmpleados(empleadoId);
-        codigopostal = _context.ObtenerCodigoPorEmpleados(empleadoId);
-
+        Usuario = _context.ObtenerUsuarioPorEmpleados(empleadoId);
+        EstadisticasUsuario = _context.ObtenerMonedasPorEmpleado(empleadoId);
     }
 
     public void OnPostActualizar(int? numEmpleado)
@@ -78,12 +63,8 @@ public class LiderModel : PageModel
 
         _context.ActualizarTelefono(empleadoId, Telefono);
 
-        // Recargar los datos del usuario editado
-        Puesto = _context.ObtenerUsuarioPorEmpleados(empleadoId);
-        Genero = _context.ObtenerUsuarioPorEmpleados(empleadoId);
-        EstadisticasUsuario = _context.ObtenerMonedasPorEmpleado(empleadoId);
-        Usuario = _context.ObtenerUsuarioPorEmpleados(empleadoId);
         contacto = _context.ObtenerContactoPorEmpleados(empleadoId);
-        codigopostal = _context.ObtenerCodigoPorEmpleados(empleadoId);
+        Usuario = _context.ObtenerUsuarioPorEmpleados(empleadoId);
+        EstadisticasUsuario = _context.ObtenerMonedasPorEmpleado(empleadoId);
     }
 }

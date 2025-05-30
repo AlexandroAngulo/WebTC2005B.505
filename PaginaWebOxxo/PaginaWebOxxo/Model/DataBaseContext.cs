@@ -21,6 +21,7 @@ namespace PaginaWebOxxo.Model
             return new MySqlConnection(ConnectionString);
         }
 
+        //Angel
         public Estadisticas ObtenerMonedasPorEmpleado(int numEmpleado)
         {
             Estadisticas estadisticas = null;
@@ -88,36 +89,30 @@ namespace PaginaWebOxxo.Model
         //Mateo
         public Contacto ObtenerContactoPorEmpleados(int numEmpleado)
         {
-            Contacto usuario = null;
+            Contacto contacto = new Contacto();
 
-            using (MySqlConnection conexion = GetConnection())
+            MySqlConnection conexion = new MySqlConnection(ConnectionString);
+            conexion.Open();
+            MySqlCommand cmd = new MySqlCommand("SELECT * FROM contacto INNER JOIN codigopostal on contacto.CodigoPostal = codigopostal.CodigoPostal WHERE NumEmpleado = @NumEmpleado");
+            cmd.Connection = conexion;
+            cmd.Parameters.AddWithValue("@NumEmpleado", numEmpleado);
+
+            using (var reader = cmd.ExecuteReader())
             {
-                conexion.Open();
-                string query = "SELECT * FROM contacto INNER JOIN codigopostal on contacto.CodigoPostal = codigopostal.CodigoPostal  WHERE NumEmpleado = @NumEmpleado";
-                using (MySqlCommand cmd = new MySqlCommand(query, conexion))
+                while (reader.Read())
                 {
-                    cmd.Parameters.AddWithValue("@NumEmpleado", numEmpleado);
+                    contacto.NumEmpleado = Convert.ToInt32(reader["NumEmpleado"]);
+                    contacto.telefono = reader["Telefono"].ToString();
+                    contacto.correo = reader["Correo"].ToString();
+                    contacto.codigoPostal = reader["CodigoPostal"].ToString();
+                    contacto.colonia = reader["Colonia"].ToString();
+                    contacto.municipio = reader["Municipio"].ToString();
+                    contacto.estado = reader["Estado"].ToString();
 
-                    using (var reader = cmd.ExecuteReader())
-                    {
-                        if (reader.Read())
-                        {
-                            usuario = new Contacto
-                            {
-                                NumEmpleado = Convert.ToInt32(reader["NumEmpleado"]),
-                                telefono = reader["Telefono"].ToString(),
-                                correo = reader["Correo"].ToString(),
-                                codigoP = reader["CodigoPostal"].ToString(),
-                                colonia = reader["Colonia"].ToString(),
-                                municipio = reader["Municipio"].ToString(),
-                                estado = reader["Estado"].ToString(),
-
-                            };
-                        }
-                    }
                 }
             }
-            return usuario;
+            conexion.Close();
+            return contacto;
         }
 
         public void ActualizarTelefono(int numEmpleado, string telefono)
@@ -134,37 +129,6 @@ namespace PaginaWebOxxo.Model
                     cmd.ExecuteNonQuery();
                 }
             }
-        }
-
-        public Codigopostal ObtenerCodigoPorEmpleados(int codigoPostal)
-        {
-            Codigopostal usuario = null;
-
-            using (MySqlConnection conexion = GetConnection())
-            {
-                conexion.Open();
-                string query = "SELECT * FROM codigopostal WHERE CodigoPostal = @CodigoPostal";
-                using (MySqlCommand cmd = new MySqlCommand(query, conexion))
-                {
-                    cmd.Parameters.AddWithValue("@CodigoPostal", codigoPostal);
-
-                    using (var reader = cmd.ExecuteReader())
-                    {
-                        if (reader.Read())
-                        {
-                            usuario = new Codigopostal
-                            {
-                                CodigoPostal = Convert.ToInt32(reader["CodigoPostal"]),
-                                colonia = reader["Colonia"].ToString(),
-                                municipio = reader["Municipio"].ToString(),
-                                estado = reader["Estado"].ToString(),
-
-                            };
-                        }
-                    }
-                }
-            }
-            return usuario;
         }
 
         //Ivan
