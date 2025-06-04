@@ -17,6 +17,7 @@ public class EmpleadosModel : PageModel
 
     public Usuarios Lider { get; set; }
     public List<Usuarios> ListaEmpleados { get; set; }
+    public List<Usuarios> ListaEmpleadosNoAsignados { get; set; }
 
     [BindProperty] public string numLider { get; set; }
     [BindProperty] public string numEmpleado { get; set; }
@@ -29,11 +30,12 @@ public class EmpleadosModel : PageModel
         Lider.ColorEstatus = ObtenerColorEstatus(Lider.IdEstatus);
 
         ListaEmpleados = _context.ObtenerEmpleadosPorLider(numLider);
-
         foreach (var empleado in ListaEmpleados)
         {
             empleado.ColorEstatus = ObtenerColorEstatus(empleado.IdEstatus);
         }
+
+        ListaEmpleadosNoAsignados = _context.ObtenerEmpleadosNoAsignados(numLider);
     }
 
     private string ObtenerColorEstatus(int idEstatus)

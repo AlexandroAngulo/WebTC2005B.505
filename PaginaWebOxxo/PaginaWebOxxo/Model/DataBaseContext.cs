@@ -228,6 +228,35 @@ namespace PaginaWebOxxo.Model
             return empleados;
         }
 
+        public List<Usuarios> ObtenerEmpleadosNoAsignados(int numLider)
+        {
+            List<Usuarios> empleados = new List<Usuarios>();
+            MySqlConnection conexion = new MySqlConnection(ConnectionString);
+            conexion.Open();
+            MySqlCommand cmd = new MySqlCommand("SELECT u.*, p.Puesto FROM usuarios u JOIN puesto p ON p.IdTipoPuesto = u.IdTipoPuesto WHERE u.NumEmpleado NOT IN ( SELECT l.NumEmpleado FROM lider_empleados l WHERE l.NumLider = @NumLider ) AND u.IdTipoPuesto NOT IN (1, 2)");
+            cmd.Parameters.AddWithValue("@NumLider", numLider);
+
+            cmd.Connection = conexion;
+            Usuarios empleado = new Usuarios();
+            using (var reader = cmd.ExecuteReader())
+            {
+                while (reader.Read())
+                {
+                    empleado = new Usuarios();
+                    empleado.NumEmpleado = Convert.ToInt32(reader["NumEmpleado"]);
+                    empleado.Nombre = reader["Nombre"].ToString();
+                    empleado.ApellidoP = reader["ApellidoP"].ToString();
+                    empleado.IdEstatus = Convert.ToInt32(reader["IdEstatus"]);
+                    empleado.Puesto = reader["Puesto"].ToString();
+                    empleado.horarioInicio = TimeSpan.Parse(reader["horarioInicio"].ToString());
+                    empleado.horarioFin = TimeSpan.Parse(reader["horarioFin"].ToString());
+                    empleado.fotoPerfil = reader["fotoPerfil"].ToString();
+                    empleados.Add(empleado);
+                }
+            }
+            return empleados;
+        }
+
         public void AgregarEmpleado(int numLider, int numEmpleado)
         {
             using (MySqlConnection conexion = GetConnection())

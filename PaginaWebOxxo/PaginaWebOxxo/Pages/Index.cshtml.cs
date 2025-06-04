@@ -1,38 +1,50 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using System.ComponentModel.DataAnnotations;
 using PaginaWebOxxo.Model;
 
-namespace PaginaWebOxxo.Pages;
-
-public class IndexModel : PageModel
+namespace PaginaWebOxxo.Pages
 {
-    private readonly DataBaseContext _context;
-    public IndexModel(DataBaseContext context)
+    public class IndexModel : PageModel
     {
-        _context = context;
-    }
-    
-    [BindProperty]
-    public Login login { get; set; }
+        private readonly DataBaseContext _context;
 
-    public void OnGet()
-    {
-        HttpContext.Session.Clear();
-    }
-
-    public void OnPostVerificarContraseña()
-    {
-        var datosLogin = _context.login(login.NumEmpleado);
-        if (datosLogin.Contraseña == login.Contraseña)
+        public IndexModel(DataBaseContext context)
         {
-            HttpContext.Session.SetInt32("numEmpleado", login.NumEmpleado);
-            Response.Redirect($"Inicio?numEmpleado={login.NumEmpleado}");
+            _context = context;
         }
-        else
-        {
 
-            ModelState.AddModelError("login.Contraseña", "Contraseña o número de empleado incorrectos. Inténtalo de nuevo.");
+        [BindProperty]
+        [Required(ErrorMessage = "Debes ingresar tu número de empleado.")]
+        public int? NumEmpleado { get; set; }
+
+        [BindProperty]
+        [Required(ErrorMessage = "Debes ingresar la contraseña.")]
+        public string Contraseña { get; set; }
+
+        public void OnGet()
+        {
+            HttpContext.Session.Clear();
+        }
+
+        public IActionResult OnPostVerificarContraseña()
+        {
+            if (!ModelState.IsValid)
+            {
+                return Page();
+            }
             
+            var datosLogin = _context.login(NumEmpleado.Value);
+            if (datosLogin != null && datosLogin.Contraseña == Contraseña)
+            {
+                HttpContext.Session.SetInt32("numEmpleado", NumEmpleado.Value);
+                return Redirect($"Inicio?numEmpleado={NumEmpleado.Value}");
+            }
+            else
+            {
+                ModelState.AddModelError("Contraseña", "Contraseña o número de empleado incorrectos. Inténtalo de nuevo.");
+                return Page();
+            }
         }
     }
 }
