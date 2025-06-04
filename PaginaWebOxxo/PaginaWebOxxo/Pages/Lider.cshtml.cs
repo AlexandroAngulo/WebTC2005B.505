@@ -9,6 +9,7 @@ public class LiderModel : PageModel
 {
     private readonly DataBaseContext _context;
 
+
     public LiderModel(DataBaseContext context)
     {
         _context = context;
@@ -17,12 +18,14 @@ public class LiderModel : PageModel
     [BindProperty]
     public string Telefono { get; set; }
 
+    public Estadisticas estadisticas { get; set; }
+
     public Usuarios Usuario { get; set; }
 
     public Contacto contacto { get; set; }
 
     [BindProperty]
-    public int? numEmpleado { get; set; } 
+    public int? numEmpleado { get; set; }
 
     public void OnGet(int? numEmpleado)
     {
@@ -41,6 +44,8 @@ public class LiderModel : PageModel
 
         contacto = _context.ObtenerContactoPorEmpleados(empleadoId);
         Usuario = _context.ObtenerUsuarioPorEmpleados(empleadoId);
+        estadisticas = _context.ObtenerEstadisticasPorEmpleado(empleadoId);
+        
     }
 
     public void OnPostActualizar(int? numEmpleado)
@@ -57,6 +62,7 @@ public class LiderModel : PageModel
             ModelState.AddModelError("Telefono", "El número de teléfono es inválido, debe contener 10 dígitos");
             contacto = _context.ObtenerContactoPorEmpleados(empleadoId);
             Usuario = _context.ObtenerUsuarioPorEmpleados(empleadoId);
+            estadisticas = _context.ObtenerEstadisticasPorEmpleado(empleadoId);
             return;
         }
 
@@ -65,5 +71,6 @@ public class LiderModel : PageModel
 
         contacto = _context.ObtenerContactoPorEmpleados(empleadoId);
         Usuario = _context.ObtenerUsuarioPorEmpleados(empleadoId);
+        estadisticas = _context.ObtenerEstadisticasPorEmpleado(empleadoId);
     }
 }

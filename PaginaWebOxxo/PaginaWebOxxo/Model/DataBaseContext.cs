@@ -131,6 +131,36 @@ namespace PaginaWebOxxo.Model
             }
         }
 
+        public Estadisticas ObtenerEstadisticasPorEmpleado(int numEmpleado)
+        {
+            Estadisticas estadisticas = null;
+            using (MySqlConnection conexion = GetConnection())
+            {
+                conexion.Open();
+                string query = "CALL ObtenerEstadisticasPorEmpleado(@NumEmpleado)";
+
+                using (MySqlCommand cmd = new MySqlCommand(query, conexion))
+                {
+                    cmd.CommandType = CommandType.Text;
+                    cmd.Parameters.AddWithValue("@NumEmpleado", numEmpleado);
+
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            estadisticas = new Estadisticas
+                            {
+                                NumEmpleado = Convert.ToInt32(reader["NumEmpleado"]),
+                                Monedas = Convert.ToInt32(reader["Monedas"]),
+                                TotalEstrellas = Convert.ToInt32(reader["TotalEstrellas"])
+                            };
+                        }
+                    }
+                }
+            }
+            return estadisticas;
+        }
+
         //Ivan
         public List<NivelUsuario> ObtenerProgresoPorEmpleado(int numEmpleado)
         {
