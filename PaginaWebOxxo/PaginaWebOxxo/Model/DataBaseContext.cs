@@ -86,7 +86,7 @@ namespace PaginaWebOxxo.Model
             return usuario;
         }
 
-        //Mateo
+        //Mateos
         public Contacto ObtenerContactoPorEmpleados(int numEmpleado)
         {
             Contacto contacto = new Contacto();
