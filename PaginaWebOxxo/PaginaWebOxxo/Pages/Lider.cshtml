@@ -20,10 +20,22 @@
         </div>
 
         <!-- Badges Sexo/Ocupación/Edad -->
-        <div class="badges-top pe-3">
-            <div class="badge bg-warning text-dark badge-custom">@Model.Usuario.genero<small>Sexo</small></div>
-            <div class="badge bg-warning text-dark badge-custom">@Model.Usuario.Puesto<small>Ocupación</small></div>
-            <div class="badge bg-warning text-dark badge-custom"> @Model.Usuario.Edad Años<small>Edad</small></div>
+         <div class="col-md-6 ms-auto">
+            <table class="table table-sm table-hover float-end" style="max-width: 500px; margin-right: 5px;">
+                    <tr>
+                        <th scope="col">Sexo</th>
+                        <th scope="col">Edad</th>
+                        <th scope="col">Ocupación</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>@Model.Usuario.genero</td>
+                        <td>@Model.Usuario.Edad</td>
+                        <td>@Model.Usuario.Puesto</td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
     </div>
 
