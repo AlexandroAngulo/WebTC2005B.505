@@ -21,7 +21,6 @@ public class PersonajeModel : PageModel
     int numEmpleado = (int)HttpContext.Session.GetInt32("numEmpleado");
     Lider = _context.ObtenerUsuarioPorEmpleados(numEmpleado);
 
-    // Determina personaje actualmente equipado si no viene en la URL
     PersonajeSeleccionado = personaje ?? _context.ObtenerNombrePersonajeEquipado(numEmpleado);
 
     TrackSeleccionado = track ?? _context.ObtenerNombreTrackEquipado(numEmpleado);

@@ -275,8 +275,7 @@ namespace PaginaWebOxxo.Model
             using (MySqlConnection conexion = GetConnection())
             {
                 conexion.Open();
-                // Primero, desactiva todos los personajes del usuario
-                string desactivar = @"UPDATE usuariopersonalizacion AS up JOIN personalizacion AS p ON up.IdPersonalizacion = p.IdPersonalizacion SET up.Equipado = 0 WHERE up.NumEmpleado = @NumEmpleado AND p.TipoAspecto = 'PERSONAJE' AND up.IdPersonalizacion != @IdPersonalizacion";
+                string desactivar = @"UPDATE usuariopersonalizacion AS up JOIN personalizacion AS p ON up.IdPersonalizacion = p.IdPersonalizacion SET up.Equipado = 0 WHERE up.NumEmpleado = @NumEmpleado AND up.IdPersonalizacion != @IdPersonalizacion";
                 using (MySqlCommand cmd1 = new MySqlCommand(desactivar, conexion))
                 {
                     cmd1.Parameters.AddWithValue("@NumEmpleado", numEmpleado);
@@ -284,8 +283,7 @@ namespace PaginaWebOxxo.Model
                     cmd1.ExecuteNonQuery();
                 }
 
-                // Luego, activa solo el seleccionado
-                string activar = @"UPDATE usuariopersonalizacion AS up JOIN personalizacion AS p ON up.IdPersonalizacion = p.IdPersonalizacion SET up.Equipado = 1 WHERE up.NumEmpleado = @NumEmpleado AND p.TipoAspecto = 'PERSONAJE' AND up.IdPersonalizacion = @IdPersonalizacion";
+                string activar = @"UPDATE usuariopersonalizacion AS up JOIN personalizacion AS p ON up.IdPersonalizacion = p.IdPersonalizacion SET up.Equipado = 1 WHERE up.NumEmpleado = @NumEmpleado AND up.IdPersonalizacion = @IdPersonalizacion";
                 using (MySqlCommand cmd2 = new MySqlCommand(activar, conexion))
                 {
                     cmd2.Parameters.AddWithValue("@NumEmpleado", numEmpleado);
@@ -300,7 +298,7 @@ namespace PaginaWebOxxo.Model
             using (MySqlConnection conexion = GetConnection())
             {
                 conexion.Open();
-                // Primero, desactiva todos los tracks del usuario
+                
 
                 string desactivar = @"UPDATE usuariopersonalizacionM AS upm JOIN personalizacionM AS pm ON upm.IdPersonalizacion = pm.IdPersonalizacion SET upm.EquipadoM = 0 WHERE upm.NumEmpleado = @NumEmpleado AND upm.IdPersonalizacion != @IdPersonalizacion";
                 using (MySqlCommand cmd1 = new MySqlCommand(desactivar, conexion))
@@ -311,7 +309,7 @@ namespace PaginaWebOxxo.Model
                     cmd1.ExecuteNonQuery();
                 }
 
-                // Luego, activa solo el seleccionado
+                
                 string activar = @"UPDATE usuariopersonalizacionM AS upm JOIN personalizacionM AS pm ON upm.IdPersonalizacion = pm.IdPersonalizacion SET upm.EquipadoM = 1 WHERE upm.NumEmpleado = @NumEmpleado AND upm.IdPersonalizacion = @IdPersonalizacion";
                 using (MySqlCommand cmd2 = new MySqlCommand(activar, conexion))
                 {

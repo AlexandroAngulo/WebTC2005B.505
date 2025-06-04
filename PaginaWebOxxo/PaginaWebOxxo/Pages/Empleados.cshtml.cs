@@ -25,11 +25,9 @@ public class EmpleadosModel : PageModel
     {
         int numLider = (int)HttpContext.Session.GetInt32("numEmpleado");
 
-        // Obtener datos del líder
         Lider = _context.ObtenerUsuarioPorEmpleados(numLider);
         Lider.ColorEstatus = ObtenerColorEstatus(Lider.IdEstatus);
 
-        // Obtener empleados que dependen del líder
         ListaEmpleados = _context.ObtenerEmpleadosPorLider(numLider);
 
         foreach (var empleado in ListaEmpleados)
@@ -38,14 +36,13 @@ public class EmpleadosModel : PageModel
         }
     }
 
-    // Asignar colores en base a estatus
     private string ObtenerColorEstatus(int idEstatus)
     {
         return idEstatus switch
         {
-            1 => "bg-success",   // Activo
-            2 => "bg-warning",   // Inactivo
-            3 => "bg-danger",    // Ausente
+            1 => "bg-success",   
+            2 => "bg-warning",   
+            3 => "bg-danger",   
         };
     }
 

@@ -7,6 +7,7 @@ namespace PaginaWebOxxo.Pages
 {
     public class InicioModel : PageModel
     {
+        public int EmpleadoId { get; set; }
         private readonly DataBaseContext _context;
 
         public InicioModel(DataBaseContext context)
@@ -27,6 +28,8 @@ namespace PaginaWebOxxo.Pages
             int empleadoId = numEmpleado ?? HttpContext.Session.GetInt32("numEmpleado") ?? 0;
 
             HttpContext.Session.SetInt32("numEmpleado", empleadoId);
+
+            EmpleadoId = empleadoId;
 
             EstadisticasUsuario = _context.ObtenerMonedasPorEmpleado(empleadoId);
             Usuario = _context.ObtenerUsuarioPorEmpleados(empleadoId);

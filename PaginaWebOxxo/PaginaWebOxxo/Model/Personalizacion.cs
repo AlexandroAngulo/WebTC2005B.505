@@ -7,9 +7,9 @@ namespace PaginaWebOxxo.Model
     {
         public Usuarios NumEmpleado { get; set; }
 
-        public int idPersonalizacion { get; set; }  // FK
+        public int idPersonalizacion { get; set; }
 
-        public string Equipado { get; set; }  // Nombre, imagen, ID, etc.
+        public string Equipado { get; set; }
 
         public DateTime FechaCompra { get; set; } = DateTime.Now;
 

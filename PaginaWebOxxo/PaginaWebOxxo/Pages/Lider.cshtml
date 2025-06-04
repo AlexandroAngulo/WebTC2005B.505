@@ -9,42 +9,31 @@
 <div class="container-fluid px-5">
    <h1 class="color_letras cal-sans-regular">@ViewData["Title"]</h1><br>
 
-<!-- Sección superior con dos columnas -->
-    <div class="row align-items-start">
-        <!-- Columna izquierda: Foto y nombre -->
-        <div class="col-md-6 d-flex align-items-center gap-4">
+    <!-- Sección superior -->
+    <div class="top-section">
+        <!-- Foto y nombre-->   
+        <div class="d-flex align-items-center gap-4">
             <img src="@Model.Usuario.fotoPerfil" alt="Foto de Trabajador" class="rounded-circle me-3" width="150" height="150">
             <div>
                 <h3 class="fw-bold mb-1">@Model.Usuario.Nombre @Model.Usuario.ApellidoP @Model.Usuario.ApellidoM</h3>
             </div>
         </div>
 
-        <!-- Columna derecha: Tabla -->
-        <div class="col-md-6 ms-auto">
-            <table class="table table-sm table-hover float-end" style="max-width: 600px; margin-right: 50px;">
-                    <tr>
-                        <th scope="col">Sexo</th>
-                        <th scope="col">Edad</th>
-                        <th scope="col">Ocupación</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>@Model.Usuario.genero</td>
-                        <td>@Model.Usuario.Edad</td>
-                        <td>@Model.Usuario.Puesto</td>
-                    </tr>
-                </tbody>
-            </table>
+        <!-- Badges Sexo/Ocupación/Edad -->
+        <div class="badges-top pe-3">
+            <div class="badge bg-warning text-dark badge-custom">@Model.Usuario.genero<small>Sexo</small></div>
+            <div class="badge bg-warning text-dark badge-custom">@Model.Usuario.Puesto<small>Ocupación</small></div>
+            <div class="badge bg-warning text-dark badge-custom"> @Model.Usuario.Edad Años<small>Edad</small></div>
         </div>
     </div>
+
     <!-- Botón de ayuda arriba-->
     <button class="botonayuda" title="Para saber más de Oxxo clickea aquí" onclick="window.open('https://www.oxxo.com/','_blank')"><i class="fa-solid fa-question"></i></button>
 
    <br>
    <br>
     <div class="row gx-5">
-        <!-- Formulario -->
+    
         <div class="col-lg-7">
             <form method="post" asp-page-handler="Actualizar">
                 <input type="hidden" name="numEmpleado" value="@Model.contacto.NumEmpleado" />
@@ -81,7 +70,7 @@
             </form>
         </div>
 
-        <!-- Insignias obtenidas -->
+        
         <div class="col-lg-5 ps-5" style="padding-left: 8rem !important;">
             <h4 class="mb-4 fw-semibold text-center">Insignias obtenidas</h4>
             <div class="d-flex flex-column gap-4 align-items-center">

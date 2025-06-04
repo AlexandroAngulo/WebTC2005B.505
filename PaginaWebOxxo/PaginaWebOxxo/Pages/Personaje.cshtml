@@ -6,11 +6,9 @@
 
 <body>
     <div>
-        <!-- Botón de ayuda arriba-->
         <button class="botonayuda" title="Para saber más de Oxxo clickea aquí" onclick="window.open('https://www.oxxo.com/','_blank')"><i class="fa-solid fa-question"></i></button>
     </div>
     <div class="layout-principal">
-    <!-- Columna izquierda -->
     <div class="columna-izquierda">
         <h1 class="color_letras cal-sans-regular">@ViewData["Title"]</h1><br>
         <div class="d-flex contenedor2">
@@ -64,7 +62,6 @@
         </div>
     </div>
 
-    <!-- Columna derecha -->
     <div class="columna-derecha">
         <div>
         <h3>Elegir Música del Menú</h3>
@@ -155,19 +152,18 @@
 </body>
 
 <style>
-    /* Estilos para el contenedor de personajes */
     .contenedor {
       display: grid;
-      grid-template-columns: repeat(2, 1fr); /* Crea dos columnas iguales */
-      grid-template-rows: repeat(2, 1fr); /* Crea dos filas iguales */
-      gap: 30px; /* Agrega espacio entre las celdas de la cuadrícula */
-      width: 500px; /* Define el ancho del contenedor */
+      grid-template-columns: repeat(2, 1fr);
+      grid-template-rows: repeat(2, 1fr);
+      gap: 30px;
+      width: 500px;
       height: 500px;
     }
 
     .elemento {
       align-items: center;
-      padding: 10px; /* Agrega padding para ver mejor los elementos */
+      padding: 10px;
       transition: all 0.3s ease;
       transform: scale(1.02);
     }
@@ -177,9 +173,9 @@
 
     .contenedor2 {
       display: grid;
-      grid-template-columns: repeat(2, 1fr); /* Crea dos columnas iguales */
-      gap: 30px; /* Agrega espacio entre las celdas de la cuadrícula */
-      width: 500px; /* Define el ancho del contenedor */
+      grid-template-columns: repeat(2, 1fr);
+      gap: 30px;
+      width: 500px;
       height: 200px;
     }
 
@@ -191,11 +187,11 @@
     }
 
     .columna-izquierda {
-      flex: 1; /* Que ocupe solo lo que necesita */
+      flex: 1;
     }
 
     .columna-derecha {
-      flex: 1; /* Que ocupe el resto del ancho disponible */
+      flex: 1;
       padding: 50px;
     }
 
@@ -220,13 +216,13 @@
     }
 
     button {
-      border: none; /* Quitar el borde */
-      background: transparent; /* Fondo transparente */
-      padding: 0; /* Quitar el relleno */
-      font-family: inherit; /* Heredar la fuente del documento */
-      font-size: inherit; /* Heredar el tamaño de fuente */
-      color: inherit; /* Heredar el color del texto */
-      cursor: pointer; /* Cambiar el cursor al pasar por encima (opcional) */
+      border: none;
+      background: transparent;
+      padding: 0;
+      font-family: inherit;
+      font-size: inherit;
+      color: inherit;
+      cursor: pointer;
     }
 
     .seleccionado {
@@ -244,21 +240,20 @@
 
     .contenedor3 {
       display: grid;
-      grid-template-columns: 1fr 1fr 1fr; /* Opcional: tres columnas de igual tamaño */
+      grid-template-columns: 1fr 1fr 1fr;
     }
     .columna {
-      /* Estilos para cada columna */
     }
     .imagenes-musica {
-      width: 100px; /* Ajusta el tamaño de las imágenes según sea necesario */
+      width: 100px;
       height: 100px;
     }
     .links {
-      text-decoration: none; /* Quitar subrayado */
-      color: #000000; /* Color del enlace */
-      font-size: 25px; /* Tamaño de fuente */
+      text-decoration: none;
+      color: #000000;
+      font-size: 25px;
     }
     .links:hover {
-      color: #fc0000; /* Cambiar color al pasar el mouse */
+      color: #fc0000;
     }
 </style>
