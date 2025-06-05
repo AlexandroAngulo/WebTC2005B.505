@@ -335,7 +335,7 @@ namespace PaginaWebOxxo.Model
             using (MySqlConnection conexion = GetConnection())
             {
                 conexion.Open();
-                string desactivar = @"UPDATE usuariopersonalizacion AS up JOIN personalizacion AS p ON up.IdPersonalizacion = p.IdPersonalizacion SET up.Equipado = 0 WHERE up.NumEmpleado = @NumEmpleado AND up.IdPersonalizacion != @IdPersonalizacion";
+                string desactivar = @"DELETE FROM PersonajeActual WHERE NumEmpleado = @NumEmpleado;";
                 using (MySqlCommand cmd1 = new MySqlCommand(desactivar, conexion))
                 {
                     cmd1.Parameters.AddWithValue("@NumEmpleado", numEmpleado);
@@ -343,7 +343,7 @@ namespace PaginaWebOxxo.Model
                     cmd1.ExecuteNonQuery();
                 }
 
-                string activar = @"UPDATE usuariopersonalizacion AS up JOIN personalizacion AS p ON up.IdPersonalizacion = p.IdPersonalizacion SET up.Equipado = 1 WHERE up.NumEmpleado = @NumEmpleado AND up.IdPersonalizacion = @IdPersonalizacion";
+                string activar = @"INSERT INTO PersonajeActual (NumEmpleado, IdPersonalizacion) VALUES (@NumEmpleado, @IdPersonalizacion)";
                 using (MySqlCommand cmd2 = new MySqlCommand(activar, conexion))
                 {
                     cmd2.Parameters.AddWithValue("@NumEmpleado", numEmpleado);
@@ -360,7 +360,7 @@ namespace PaginaWebOxxo.Model
                 conexion.Open();
                 
 
-                string desactivar = @"UPDATE usuariopersonalizacionM AS upm JOIN personalizacionM AS pm ON upm.IdPersonalizacion = pm.IdPersonalizacion SET upm.EquipadoM = 0 WHERE upm.NumEmpleado = @NumEmpleado AND upm.IdPersonalizacion != @IdPersonalizacion";
+                string desactivar = @"DELETE FROM MusicaActual Where NumEmpleado = @NumEmpleado;";
                 using (MySqlCommand cmd1 = new MySqlCommand(desactivar, conexion))
                 {
                     cmd1.Parameters.AddWithValue("@NumEmpleado", numEmpleado);
@@ -369,8 +369,8 @@ namespace PaginaWebOxxo.Model
                     cmd1.ExecuteNonQuery();
                 }
 
-                
-                string activar = @"UPDATE usuariopersonalizacionM AS upm JOIN personalizacionM AS pm ON upm.IdPersonalizacion = pm.IdPersonalizacion SET upm.EquipadoM = 1 WHERE upm.NumEmpleado = @NumEmpleado AND upm.IdPersonalizacion = @IdPersonalizacion";
+
+                string activar = @"INSERT INTO MusicaActual (NumEmpleado, IdPersonalizacion) VALUES (@NumEmpleado, @IdPersonalizacion)";
                 using (MySqlCommand cmd2 = new MySqlCommand(activar, conexion))
                 {
                     cmd2.Parameters.AddWithValue("@NumEmpleado", numEmpleado);
@@ -380,32 +380,30 @@ namespace PaginaWebOxxo.Model
             }
         }
 
-        public int ObtenerIdPersonalizacion(string nombre, string tipo)
+        public int ObtenerIdPersonalizacion(string nombre)
         {
             using (MySqlConnection conexion = GetConnection())
             {
                 conexion.Open();
-                string query = "SELECT IdPersonalizacion FROM personalizacion WHERE NombreAspecto = @Nombre AND TipoAspecto = @Tipo LIMIT 1";
+                string query = "SELECT IdPersonalizacion FROM personalizacion WHERE NombreAspecto = @Nombre;";
                 using (MySqlCommand cmd = new MySqlCommand(query, conexion))
                 {
                     cmd.Parameters.AddWithValue("@Nombre", nombre);
-                    cmd.Parameters.AddWithValue("@Tipo", tipo);
                     object resultado = cmd.ExecuteScalar();
                     return resultado != null ? Convert.ToInt32(resultado) : 0;
                 }
             }
         }
 
-        public int ObtenerIdPersonalizacionM(string nombre, string tipo)
+        public int ObtenerIdPersonalizacionMusica(string nombre)
         {
             using (MySqlConnection conexion = GetConnection())
             {
                 conexion.Open();
-                string query = "SELECT IdPersonalizacion FROM personalizacionM WHERE NombreAspectoM = @Nombre AND TipoAspectoM = @Tipo LIMIT 1";
+                string query = "SELECT IdPersonalizacion FROM MusicaPersonalizacion WHERE NombreMusica = @Nombre";
                 using (MySqlCommand cmd = new MySqlCommand(query, conexion))
                 {
                     cmd.Parameters.AddWithValue("@Nombre", nombre);
-                    cmd.Parameters.AddWithValue("@Tipo", tipo);
                     object resultado = cmd.ExecuteScalar();
                     return resultado != null ? Convert.ToInt32(resultado) : 0;
                 }
@@ -417,12 +415,11 @@ namespace PaginaWebOxxo.Model
             using (MySqlConnection conexion = GetConnection())
             {
                 conexion.Open();
-                string query = @"
-                    SELECT p.NombreAspecto
-                    FROM usuariopersonalizacion AS up
-                    JOIN personalizacion AS p ON up.IdPersonalizacion = p.IdPersonalizacion
-                    WHERE up.NumEmpleado = @NumEmpleado AND up.Equipado = 1 AND p.TipoAspecto = 'PERSONAJE'
-                    LIMIT 1";
+                string query = @"SELECT p.NombreAspecto
+                                FROM personalizacion AS p
+                                JOIN PersonajeActual AS pA ON p.IdPersonalizacion = pA.IdPersonalizacion
+                                WHERE pA.NumEmpleado = @NumEmpleado AND pA.IdPersonalizacion  = p.IdPersonalizacion
+                                LIMIT 1;";
 
                 using (MySqlCommand cmd = new MySqlCommand(query, conexion))
                 {
@@ -438,12 +435,11 @@ namespace PaginaWebOxxo.Model
             using (MySqlConnection conexion = GetConnection())
             {
                 conexion.Open();
-                string query = @"
-                    SELECT pm.NombreAspectoM
-                    FROM usuariopersonalizacionM AS upm
-                    JOIN personalizacionM AS pm ON upm.IdPersonalizacion = pm.IdPersonalizacion
-                    WHERE upm.NumEmpleado = @NumEmpleado AND upm.EquipadoM = 1
-                    LIMIT 1";
+                string query = @"SELECT pm.NombreMusica
+                                FROM MusicaPersonalizacion AS pm
+                                JOIN MusicaActual AS mA ON pm.IdPersonalizacion = mA.IdPersonalizacion
+                                WHERE mA.NumEmpleado = @NumEmpleado AND mA.IdPersonalizacion  = pm.IdPersonalizacion
+                                LIMIT 1";
 
                 using (MySqlCommand cmd = new MySqlCommand(query, conexion))
                 {
