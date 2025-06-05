@@ -30,7 +30,7 @@ public class PersonajeModel : PageModel
     {
         int numEmpleado = (int)HttpContext.Session.GetInt32("numEmpleado");
     
-        int id = _context.ObtenerIdPersonalizacion(personaje, "Personaje");
+        int id = _context.ObtenerIdPersonalizacion(personaje);
     
         if (id > 0)
         {
@@ -45,7 +45,7 @@ public class PersonajeModel : PageModel
     {
         int numEmpleado = (int)HttpContext.Session.GetInt32("numEmpleado");
 
-        int id2 = _context.ObtenerIdPersonalizacionM(track, "Musica");
+        int id2 = _context.ObtenerIdPersonalizacionMusica(track);
 
         if (id2 > 0)
         {
