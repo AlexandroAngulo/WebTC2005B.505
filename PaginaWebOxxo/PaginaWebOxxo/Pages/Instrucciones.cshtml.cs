@@ -7,5 +7,25 @@ namespace PaginaWebOxxo.Pages;
 
 public class InstruccionesModel : PageModel
 {
+    private readonly DataBaseContext _context;
 
+
+    public InstruccionesModel(DataBaseContext context)
+    {
+        _context = context;
+    }
+
+    public List<InstruccionVideojuego> Instrucciones { get; set; }
+
+    public void OnGet()
+    {
+        Instrucciones = _context.ObtenerTodasLasInstrucciones();
+    }
+    public void OnPost()
+    {
+        Instrucciones = _context.ObtenerTodasLasInstrucciones();
+    }
+    
+    
+    
 }
