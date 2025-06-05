@@ -86,11 +86,11 @@
         <div class="col-lg-5 ps-5" style="padding-left: 8rem !important;">
             <h4 class="mb-4 fw-semibold text-center">Insignias obtenidas</h4>
             <div class="d-flex flex-column gap-4 align-items-center">
-                <img src="/imagenes/insignia1@(@Model.estadisticas.TotalEstrellas >= 3 ? "gold" : "gris").png" alt="Level 1" class="insigniaimagen">
+                <img src="/imagenes/insignia1@(@Model.estadisticas?.TotalEstrellas >= 3 ? "gold" : "gris").png" alt="Level 1" class="insigniaimagen">
                 <br>
-                <img src="/imagenes/insignia2@(@Model.estadisticas.TotalEstrellas >= 6 ? "gold" : "gris").png" alt="Level 2" class="insigniaimagen">
+                <img src="/imagenes/insignia2@(@Model.estadisticas?.TotalEstrellas >= 6 ? "gold" : "gris").png" alt="Level 2" class="insigniaimagen">
                 <br>
-                <img src="/imagenes/insignia3@(@Model.estadisticas.TotalEstrellas >= 9 ? "gold" : "gris").png" alt="Level 3" class="insigniaimagen">
+                <img src="/imagenes/insignia3@(@Model.estadisticas?.TotalEstrellas >= 9 ? "gold" : "gris").png" alt="Level 3" class="insigniaimagen">
             </div>
         </div>
     </div>

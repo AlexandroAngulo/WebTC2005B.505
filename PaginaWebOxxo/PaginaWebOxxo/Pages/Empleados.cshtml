@@ -98,7 +98,7 @@
                             <select asp-for="numEmpleado" class="form-select form-select-lg">
                             @foreach (var empleado in Model.ListaEmpleadosNoAsignados)
                             {
-                                <option value="@empleado.NumEmpleado">@empleado.Nombre @empleado.ApellidoP ( @empleado.NumEmpleado )</option>
+                                <option value="@empleado.NumEmpleado">@empleado.Nombre @empleado.ApellidoP - @empleado.NumEmpleado</option>
                             }
                             </select>
                         </div>
