@@ -115,6 +115,37 @@ namespace PaginaWebOxxo.Model
             return contacto;
         }
 
+        public List<InstruccionVideojuego> ObtenerTodasLasInstrucciones()
+        {
+            List<InstruccionVideojuego> instrucciones = new List<InstruccionVideojuego>();
+
+            using (MySqlConnection conexion = new MySqlConnection(ConnectionString))
+            {
+                conexion.Open();
+                string query = "SELECT id_instruccion, titulo, contenido FROM InstruccionesVideojuego";
+
+                using (MySqlCommand cmd = new MySqlCommand(query, conexion))
+                {
+                    using (MySqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            InstruccionVideojuego instruccion = new InstruccionVideojuego
+                            {
+                                id_instruccion = Convert.ToInt32(reader["id_instruccion"]),
+                                titulo = reader["titulo"].ToString(),
+                                contenido = reader["contenido"].ToString()
+                            };
+
+                            instrucciones.Add(instruccion);
+                        }
+                    }
+                }
+            }
+
+            return instrucciones;
+        }
+
         public void ActualizarTelefono(int numEmpleado, string telefono)
         {
             using (MySqlConnection conexion = GetConnection())
