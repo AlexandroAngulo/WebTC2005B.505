@@ -4,38 +4,39 @@
     ViewData["Title"] = "Instrucciones";
 }
 
+<body>
+    <div class="container" style="text-align: center;">
+        <h2>Instrucciones del Videojuego</h2>
+        <br>
 
-<div class="container" style="text-align: center;">
-    <h2>Instrucciones del Videojuego</h2>
-    <br>
+        @if (Model.Instrucciones != null && Model.Instrucciones.Count > 0)
+        {
+            <div class="row">
+                @foreach (var instruccion in Model.Instrucciones)
+                {
+                    <div class="col-md-6 mb-4">
+                        <div class="card shadow-sm">
 
-    @if (Model.Instrucciones != null && Model.Instrucciones.Count > 0)
-    {
-        <div class="row">
-            @foreach (var instruccion in Model.Instrucciones)
-            {
-                <div class="col-md-6 mb-4">
-                    <div class="card shadow-sm">
-
-                        <div class="card-body">
-                            <h5 class="card-title text-danger">@instruccion.titulo</h5>
-                            <p class="card-text">@instruccion.contenido</p>
+                            <div class="card-body">
+                                <h5 class="card-title text-danger">@instruccion.titulo</h5>
+                                <p class="card-text">@instruccion.contenido</p>
+                            </div>
+                            @if (instruccion.titulo == "Personajes")
+                            {
+                                <img src="/imagenes/personajes1.png" class="card-img-top" alt="Personajes">
+                                <img src="/imagenes/personajes2.png" class="card-img-top" alt="Personajes">
+                            }
                         </div>
-                        @if (instruccion.titulo == "Personajes")
-                        {
-                            <img src="/imagenes/personajes1.png" class="card-img-top" alt="Personajes">
-                            <img src="/imagenes/personajes2.png" class="card-img-top" alt="Personajes">
-                        }
                     </div>
-                </div>
-            }
-        </div>
-    }
-    else
-    {
-        <div class="alert alert-info">No hay instrucciones disponibles.</div>
-    }
-</div>
-<div style="text-align: center;">
-    <h2>Videojuego</h2>
-</div>
+                }
+            </div>
+        }
+        else
+        {
+            <div class="alert alert-info">No hay instrucciones disponibles.</div>
+        }
+    </div>
+    <div style="text-align: center;">
+        <h2>Videojuego</h2>
+    </div>
+</body>
