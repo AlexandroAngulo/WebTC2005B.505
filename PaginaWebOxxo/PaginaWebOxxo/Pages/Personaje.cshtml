@@ -22,6 +22,7 @@
         <br>
         <br>
         <h3>Elegir Personaje</h3>
+        <br>
         <div class="contenedor">
           <form method="post" asp-page-handler="EquiparPersonaje" class="elemento">
               <input type="hidden" name="personaje" value="JEFE" />
@@ -65,6 +66,7 @@
     <div class="columna-derecha">
         <div>
         <h3>Elegir Música del Menú</h3>
+        <br>
           <div class="contenedor3">
               <form method="post" asp-page-handler="EquiparTrack" class="elemento">
                   <input type="hidden" name="track" value="TRACK1" />
@@ -100,13 +102,28 @@
         <br>
         <br>
         <br>
+        <br>
+        <br>
+        <br>
 
         <div>
         <h3>Recompensas</h3>
+        <br>
+        <br>
         <ul>
-            <li><a class="link-warning link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover" href="CanjeRecompensas">Tiempo Aire</a></li>
-            <li><a class="link-warning link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover" href="CanjeRecompensas">Puntos Spin</a></li>
-            <li><a class="link-warning link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover" href="CanjeRecompensas">Cupones</a></li>
+            <li>
+              <button type="button" class="fs-3 custom-link-button" style="background:none; border:none; cursor:pointer;"  onclick="location.href='CanjeRecompensas'">Solicita Tiempo Aire</button>
+            </li>
+            <br>
+            <br>
+            <li>
+              <button type="button" class="fs-3 custom-link-button" style="background:none; border:none; cursor:pointer;"  onclick="location.href='CanjeRecompensas'"> Canjea por Puntos Spin</button>
+            </li>
+            <br>
+            <br>
+            <li>
+              <button type="button" class="fs-3 custom-link-button" style="background:none; border:none; cursor:pointer;"  onclick="location.href='CanjeRecompensas'">Obten Cupones</button>
+            </li>
         </ul>
         </div>
     </div>
@@ -114,14 +131,20 @@
 
 <div class="modal fade" id="empleadoModal" tabindex="-1" aria-labelledby="empleadoModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="empleadoModalLabel">¡Cambio éxitoso!</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+    <div class="modal-content text-center p-4">
+      <div class="modal-header border-0 justify-content-center">
+        <div class="bg-success bg-gradient text-white rounded-circle d-flex align-items-center justify-content-center" style="width: 60px; height: 60px;">
+          <i class="bi bi-check-lg fs-2"></i>
+        </div>
+      </div>
+      <div class="modal-body">
+        <h5 class="modal-title mb-3" id="empleadoModalLabel">¡Cambio exitoso!</h5>
+        <p class="mb-0">Ahora puedes ingresar al juego con tus cambios realizados.</p>
       </div>
     </div>
   </div>
 </div>
+
 
 <script>
   document.addEventListener("DOMContentLoaded", function () {
@@ -150,112 +173,3 @@
 </script>
 
 </body>
-
-<style>
-    .contenedor {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      grid-template-rows: repeat(2, 1fr);
-      gap: 30px;
-      width: 500px;
-      height: 500px;
-    }
-
-    .elemento {
-      align-items: center;
-      padding: 10px;
-      transition: all 0.3s ease;
-      transform: scale(1.02);
-    }
-    .elemento:hover {
-      transform: scale(1.05);
-    }
-
-    .contenedor2 {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 30px;
-      width: 500px;
-      height: 200px;
-    }
-
-
-    .layout-principal {
-      display: flex;
-      gap: 40px;
-      padding: 20px;
-    }
-
-    .columna-izquierda {
-      flex: 1;
-    }
-
-    .columna-derecha {
-      flex: 1;
-      padding: 50px;
-    }
-
-    .botonayuda {
-      position: fixed;
-      top: 20px;
-      right: 20px;
-      background-color: #f1f1f1;
-      border: none;
-      border-radius: 50%;
-      width: 40px;
-      height: 40px;
-      font-size: 20px;
-      font-weight: bold;
-      color: #333;
-      cursor: pointer;
-      z-index: 999;
-    }
-
-    .botonayuda:hover {
-    background-color: #e0e0e0;
-    }
-
-    button {
-      border: none;
-      background: transparent;
-      padding: 0;
-      font-family: inherit;
-      font-size: inherit;
-      color: inherit;
-      cursor: pointer;
-    }
-
-  .seleccionado {
-    background: #f28c8c;
-    border-radius: 12px;
-    padding: 10px;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    transform: scale(1.02);
-  }
-
-  .seleccionado:hover {
-    background: #f46f6f; /* Un tono más intenso del original */
-    transform: scale(1.08);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
-  }
-
-    .contenedor3 {
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
-    }
-    .columna {
-    }
-    .imagenes-musica {
-      width: 100px;
-      height: 100px;
-    }
-    .links {
-      text-decoration: none;
-      color: #000000;
-      font-size: 25px;
-    }
-    .links:hover {
-      color: #fc0000;
-    }
-</style>

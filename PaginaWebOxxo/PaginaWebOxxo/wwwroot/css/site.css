@@ -123,7 +123,7 @@ ul li:hover a{
 }
 
 .sidebar ul li {
-  margin-bottom: 20px;
+  margin-bottom: 2px;
 }
 
 label #btn{
@@ -207,4 +207,128 @@ section{
 
 .boton-redondo {
     border-radius: 20px;
+}
+
+
+/* Estilos para la pagina de personajes */
+.custom-link-button {
+  position: relative;
+  display: inline-block;
+  color : #ed5c32;
+}
+
+.custom-link-button::after {
+  content: "";
+  color: #ed5c32;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  border-bottom: 4px solid currentColor;
+  opacity: 0.40;
+  transition: opacity 0.3s;
+  transition: transform 0.3s ease;
+  transform: scaleX(1);
+  transform-origin: left;
+}
+.custom-link-button:hover::after {
+  opacity: 1.5;
+  color : #ed5c32;
+}
+.contenedor {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  gap: 30px;
+  width: 500px;
+  height: 500px;
+}
+.elemento {
+  align-items: center;
+  transition: all 0.3s ease;
+  transform: scale(1.02);
+  padding: 8px 12px;
+  min-width: 100px;
+  margin-bottom: 4px;
+}
+.elemento:hover {
+  transform: scale(1.05);
+}
+.contenedor2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 30px;
+  width: 500px;
+  height: 200px;
+}
+.layout-principal {
+  display: flex;
+  gap: 40px;
+  padding: 20px;
+}
+.columna-izquierda {
+  flex: 1;
+}
+.columna-derecha {
+  flex: 1;
+  padding: 50px;
+}
+.botonayuda {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background-color: #f1f1f1;
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  font-size: 20px;
+  font-weight: bold;
+  color: #333;
+  cursor: pointer;
+  z-index: 999;
+}
+.botonayuda:hover {
+background-color: #e0e0e0;
+}
+button {
+  border: none;
+  background: transparent;
+  padding: 0;
+  font-family: inherit;
+  font-size: inherit;
+  color: inherit;
+  cursor: pointer;
+}
+.seleccionado {
+  background: #f28c8c;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+  box-shadow: 0 8px 4px rgba(0, 0, 0, 0.1);
+  transform: scale(1.02);
+  padding: 8px 12px;
+  min-width: 100px;
+  margin-bottom: 1px;
+}
+.seleccionado:hover {
+  background: #f46f6f;
+  transform: scale(1.08);
+  box-shadow: 0 12px 6px rgba(0, 0, 0, 0.15);
+}
+.contenedor3 {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+.imagenes-musica {
+  width: 100px;
+  height: 100px;
+}
+.links {
+  list-style-type: none;
+  padding: 0;
+}
+.links:hover {
+  transform: none;
+  margin-left: 0;
+  text-indent: 0;
 }
