@@ -28,7 +28,7 @@
               <button type="submit" class=" @(Model.PersonajeSeleccionado == "JEFE" ? "seleccionado" : "")">
                   <div style="display: flex; flex-direction: column; align-items: center;">
                       <img src="imagenes/Personaje3PW.png" alt="">
-                      <p style="font-size:25px">JEFE</p>
+                      <p style="font-size:25px; color: #000000;">JEFE</p>
                   </div>
               </button>
           </form>
@@ -37,7 +37,7 @@
               <button type="submit" class="@(Model.PersonajeSeleccionado == "ALEX" ? "seleccionado" : "")">
                   <div style="display: flex; flex-direction: column; align-items: center;">
                       <img src="imagenes/Personaje2PW.png" alt="">
-                      <p style="font-size:25px">ALEX</p>
+                      <p style="font-size:25px; color: #000000;">ALEX</p>
                   </div>
               </button>
           </form>
@@ -46,7 +46,7 @@
               <button type="submit" class="@(Model.PersonajeSeleccionado == "ADAM" ? "seleccionado" : "")">
                   <div style="display: flex; flex-direction: column; align-items: center;">
                       <img src="imagenes/Personaje4PW.png" alt="">
-                      <p style="font-size:25px">ADAM</p>
+                      <p style="font-size:25px; color: #000000;">ADAM</p>
                   </div>
               </button>
           </form>
@@ -55,7 +55,7 @@
               <button type="submit" class="@(Model.PersonajeSeleccionado == "AMELIA" ? "seleccionado" : "")">
                   <div style="display: flex; flex-direction: column; align-items: center;">
                       <img src="imagenes/Personaje1PW.png" alt="">
-                      <p style="font-size:25px">AMELIA</p>
+                      <p style="font-size:25px; color: #000000;">AMELIA</p>
                   </div>
               </button>
           </form>
@@ -71,7 +71,7 @@
                   <button type="submit" class="@(Model.TrackSeleccionado == "TRACK1" ? "seleccionado" : "")">
                       <div style="display: flex; flex-direction: column; align-items: center;">
                           <img src="imagenes/Cancion.png" alt="" class="imagenes-musica">
-                          <p style="font-size: 20px;">Pista 1</p>
+                          <p style="font-size: 20px; color: #000000;">Pista 1</p>
                       </div>
                   </button>
               </form>
@@ -80,7 +80,7 @@
                     <button type="submit" class="@(Model.TrackSeleccionado == "TRACK2" ? "seleccionado" : "")">
                         <div style="display: flex; flex-direction: column; align-items: center;">
                             <img src="imagenes/Cancion.png" alt="" class="imagenes-musica">
-                            <p style="font-size: 20px;">Pista 2</p>
+                            <p style="font-size: 20px; color: #000000;">Pista 2</p>
                         </div>
                     </button>
                 </form>
@@ -89,7 +89,7 @@
                     <button type="submit" class="@(Model.TrackSeleccionado == "TRACK3" ? "seleccionado" : "")">
                         <div style="display: flex; flex-direction: column; align-items: center;">
                             <img src="imagenes/Cancion.png" alt="" class="imagenes-musica">
-                            <p style="font-size: 20px;">Pista 3</p>
+                            <p style="font-size: 20px; color: #000000;">Pista 3</p>
                         </div>
                     </button>
                 </form>
@@ -104,9 +104,9 @@
         <div>
         <h3>Recompensas</h3>
         <ul>
-            <li><a class="links" href="CanjeRecompensas">Tiempo Aire</a></li>
-            <li><a class="links" href="CanjeRecompensas">Puntos Spin</a></li>
-            <li><a class="links" href="CanjeRecompensas">Cupones</a></li>
+            <li><a class="link-warning link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover" href="CanjeRecompensas">Tiempo Aire</a></li>
+            <li><a class="link-warning link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover" href="CanjeRecompensas">Puntos Spin</a></li>
+            <li><a class="link-warning link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover" href="CanjeRecompensas">Cupones</a></li>
         </ul>
         </div>
     </div>
@@ -225,18 +225,20 @@
       cursor: pointer;
     }
 
-    .seleccionado {
-      background: #f28c8c;
-      border-radius: 12px;
-      transition: all 0.3s ease;
-      transform: scale(1.02);
-    }
+  .seleccionado {
+    background: #f28c8c;
+    border-radius: 12px;
+    padding: 10px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transform: scale(1.02);
+  }
 
-    .seleccionado:hover {
-      transform: scale(1.05);
-    }
-
-
+  .seleccionado:hover {
+    background: #f46f6f; /* Un tono más intenso del original */
+    transform: scale(1.08);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  }
 
     .contenedor3 {
       display: grid;

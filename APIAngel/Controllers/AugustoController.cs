@@ -70,7 +70,7 @@ public class AugustoController2 : ControllerBase
             var cancion = new Cancion
             {
                 IdPersonalizacionM = reader.GetInt32("IdPersonalizacion"),
-                NombreAspectoM = reader.GetString("NombreMusica")
+                NombreMusica = reader.GetString("NombreMusica")
             };
             canciones.Add(cancion);
         }
