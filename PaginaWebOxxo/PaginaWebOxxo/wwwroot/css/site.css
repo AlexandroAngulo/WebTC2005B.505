@@ -153,6 +153,12 @@ section{
   transition: all .5s;
 }
 
+.img-perfil {
+    width: 150px;
+    height: 150px;
+    object-fit: contain;
+    background-color: #f0f0f0; /* fondo neutro */
+}
 /*!
  * Styles para el menu de capacitaiones
  */

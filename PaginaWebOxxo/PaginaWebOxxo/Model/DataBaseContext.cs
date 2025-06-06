@@ -200,8 +200,8 @@ namespace PaginaWebOxxo.Model
             using (MySqlConnection conexion = GetConnection())
             {
                 conexion.Open();
-                string query = @"SELECT NumEmpleado, IdNivel, FechaIntento, Estrellas, Puntuacion, TiempoNivel 
-                                FROM nivelusuario 
+                string query = @"SELECT nu.NumEmpleado, nu.IdNivel, nu.FechaIntento, nu.Estrellas, nu.Puntuacion, nu.TiempoNivel, n.NombreNivel
+                                FROM nivelusuario nu JOIN niveles n ON nu.IdNivel = n.IdNivel 
                                 WHERE NumEmpleado = @NumEmpleado";
 
                 using (MySqlCommand cmd = new MySqlCommand(query, conexion))
@@ -219,7 +219,8 @@ namespace PaginaWebOxxo.Model
                                 FechaIntento = Convert.ToDateTime(reader["FechaIntento"]),
                                 Estrellas = Convert.ToInt32(reader["Estrellas"]),
                                 Puntuacion = Convert.ToInt32(reader["Puntuacion"]),
-                                TiempoNivel = Convert.ToInt32(reader["TiempoNivel"])
+                                TiempoNivel = Convert.ToInt32(reader["TiempoNivel"]),
+                                NombreNivel = reader["NombreNivel"].ToString(),
                             };
                             progresos.Add(nivel);
                         }

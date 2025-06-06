@@ -7,19 +7,19 @@
 <body>
     <h1 class="color_letras cal-sans-regular">@ViewData["Title"]</h1><br>
     <div class="col-md-5 d-flex align-items-center">
-            <img src="@Model.Usuario.fotoPerfil" alt="Foto de Trabajador" class="rounded-circle me-3" width="150" height="150">
-            <div>
-                <h3 class="fs-2 cal-sans-regular">@Model.Usuario.Nombre @Model.Usuario.ApellidoP</h3>
-                <p class="fs-3 text-muted">@Model.Usuario.Puesto</p>
-            </div>
+        <img src="@Model.Usuario.fotoPerfil" alt="Foto de Trabajador" class="rounded-circle me-3 img-perfil" width="150" height="150">
+        <div>
+            <h3 class="fs-2 cal-sans-regular">@Model.Usuario.Nombre @Model.Usuario.ApellidoP</h3>
+            <p class="fs-3 text-muted">@Model.Usuario.Puesto</p>
         </div>
-    <br />
+    </div>
+    <br>
 
     @foreach (var progreso in Model.Progresos)
     {
         var estrellas = Model.ObtenerEstadoEstrellas(progreso.Estrellas);
         <div class="mb-4">
-            <h4 class="fw-bold">Minijuego @progreso.IdNivel</h4>
+            <h4 class="fw-bold">@progreso.NombreNivel</h4>
             <div class="d-flex justify-content-between align-items-center mb-2">
                 <div class="progress barra flew-grow-1 me-3">
                     <div class="progress-bar bg-warining text-dark barra-cap" style="width:@Model.ObtenerPorcentajeBarra(progreso.Estrellas)">

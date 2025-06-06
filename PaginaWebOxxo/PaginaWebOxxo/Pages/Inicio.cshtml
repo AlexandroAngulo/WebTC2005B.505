@@ -4,17 +4,17 @@
     ViewData["Title"] = "Tus Estadísticas";
 }
 <body class="container-fluid px-5">
-    <h1 class="color_letras cal-sans-regular">@ViewData["Title"]</h1>
+    <h1 class="color_letras cal-sans-regular">@ViewData["Title"]</h1><br>
 
-    <div class="d-flex align-items-center">
-        <img src="@Model.Usuario.fotoPerfil" alt="Foto de Trabajador" class="rounded-circle me-3" width="150" height="150">
+    <div class="col-md-5 d-flex align-items-center">
+        <img src="@Model.Usuario.fotoPerfil" alt="Foto de Trabajador" class="rounded-circle me-3 img-perfil" width="150" height="150">
         <div>
             <h3 class="fs-2 cal-sans-regular">@Model.Usuario.Nombre @Model.Usuario.ApellidoP</h3>
             <p class="fs-3 text-muted">@Model.Usuario.Puesto</p>
         </div>
     </div>
-
     <br />
+
     <h3>Estadísticas</h3>
 
     <div class="container-fluid ">

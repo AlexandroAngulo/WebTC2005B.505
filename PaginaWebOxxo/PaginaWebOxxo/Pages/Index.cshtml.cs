@@ -44,7 +44,7 @@ namespace PaginaWebOxxo.Pages
                 HttpContext.Session.SetInt32("IdTipoPuesto", Usuario.IdTipoPuesto);
                 if (Usuario.IdTipoPuesto == 2)
                 {
-                    return Redirect($"Lider?numEmpleado={NumEmpleado.Value}");
+                    return Redirect($"DashboardAsesor?numEmpleado={NumEmpleado.Value}");
                 }
                 else
                 {
