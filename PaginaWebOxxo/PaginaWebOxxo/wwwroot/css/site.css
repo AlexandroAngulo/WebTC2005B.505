@@ -36,18 +36,11 @@ body {
   text-align: start;
 }
 
-
-/*!
- * Styles para el Side Bar Menu.
- */
-
-
  .cal-sans-regular {
   font-family: "Cal Sans", sans-serif;
   font-weight: 400;
   font-style: normal;
 }
-
 
 *{
   padding: 0;
@@ -59,14 +52,36 @@ body {
 body {
   font-family: 'Roboto', sans-serif;
 }
+
+ 
+/* Sidebar oculta */
+.no-sidebar .main-content {
+    margin: 0 auto;
+    padding: 20px;
+    max-width: 800px; 
+}
+
+/* Oculta sidebar si aplica */
+.no-sidebar .sidebar {
+    display: none;
+}
+
+/* Styles para el Side Bar Menu. */
 .sidebar {
   position: fixed;
-  left: 0px;
+  left: 0;
   top: 0;
   width: 255px;
   height: 100%;
   background: #ED1C24;
   z-index: 1000;
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar-footer {
+  text-align: center;
+  padding-bottom: 20px; 
 }
 
 .sidebar header {
@@ -77,6 +92,14 @@ body {
   background: #063146;
   user-select: none;
 }
+
+.sidebar ul {
+  flex-grow: 1; 
+  margin: 0;
+  padding: 0;
+  overflow-y: auto;
+}
+
 .sidebar ul a{
   display: block;
   height: 100%;
@@ -85,16 +108,22 @@ body {
   line-height: 65px;
   font-size: 22px;
   color: white;
-  padding-left: 0;
+  padding-left: 30px;
   box-sizing: border-box;
   transition: .4s;
 }
+
 ul li:hover a{
-  padding-left: 30px;
+  padding-left: 45px;
 }
+
 .sidebar ul a i{
   margin-right: 16px;
   font-size: 25px;
+}
+
+.sidebar ul li {
+  margin-bottom: 2px;
 }
 
 label #btn{
@@ -105,6 +134,7 @@ label #btn{
   padding: 6px 12px;
   transition: all .5s;
 }
+
 label #cancel{
   z-index: 1111;
   left: -195px;
@@ -150,3 +180,155 @@ section{
   width: 100px;
   height: 100px;
  }
+
+/*!Styles para empleados*/
+@keyframes parpadeo {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0;
+    }
+}
+
+.estatus-circulo {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: inline-block;
+    animation: parpadeo 5s infinite;
+}
+
+.circulo {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+
+.boton-redondo {
+    border-radius: 20px;
+}
+
+
+/* Estilos para la pagina de personajes */
+.custom-link-button {
+  position: relative;
+  display: inline-block;
+  color : #ed5c32;
+}
+
+.custom-link-button::after {
+  content: "";
+  color: #ed5c32;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  border-bottom: 4px solid currentColor;
+  opacity: 0.40;
+  transition: opacity 0.3s;
+  transition: transform 0.3s ease;
+  transform: scaleX(1);
+  transform-origin: left;
+}
+.custom-link-button:hover::after {
+  opacity: 1.5;
+  color : #ed5c32;
+}
+.contenedor {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  gap: 30px;
+  width: 500px;
+  height: 500px;
+}
+.elemento {
+  align-items: center;
+  transition: all 0.3s ease;
+  transform: scale(1.02);
+  padding: 8px 12px;
+  min-width: 100px;
+  margin-bottom: 4px;
+}
+.elemento:hover {
+  transform: scale(1.05);
+}
+.contenedor2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 30px;
+  width: 500px;
+  height: 200px;
+}
+.layout-principal {
+  display: flex;
+  gap: 40px;
+  padding: 20px;
+}
+.columna-izquierda {
+  flex: 1;
+}
+.columna-derecha {
+  flex: 1;
+  padding: 50px;
+}
+.botonayuda {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background-color: #f1f1f1;
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  font-size: 20px;
+  font-weight: bold;
+  color: #333;
+  cursor: pointer;
+  z-index: 999;
+}
+.botonayuda:hover {
+background-color: #e0e0e0;
+}
+button {
+  border: none;
+  background: transparent;
+  padding: 0;
+  font-family: inherit;
+  font-size: inherit;
+  color: inherit;
+  cursor: pointer;
+}
+.seleccionado {
+  background: #f28c8c;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+  box-shadow: 0 8px 4px rgba(0, 0, 0, 0.1);
+  transform: scale(1.02);
+  padding: 8px 12px;
+  min-width: 100px;
+  margin-bottom: 1px;
+}
+.seleccionado:hover {
+  background: #f46f6f;
+  transform: scale(1.08);
+  box-shadow: 0 12px 6px rgba(0, 0, 0, 0.15);
+}
+.contenedor3 {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+.imagenes-musica {
+  width: 100px;
+  height: 100px;
+}
+.links {
+  list-style-type: none;
+  padding: 0;
+}
+.links:hover {
+  transform: none;
+  margin-left: 0;
+  text-indent: 0;
+}

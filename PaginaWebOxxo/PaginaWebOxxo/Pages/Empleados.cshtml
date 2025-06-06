@@ -1,0 +1,123 @@
+@page
+@model EmpleadosModel
+@{
+    ViewData["Title"] = "Gestión de Empleados";
+}
+
+<body class="container-fluid px-5">
+    <h1 class="color_letras cal-sans-regular">@ViewData["Title"]</h1><br>
+
+    <div class="row align-items-center justify-content-between mb-4 py-4 text-center">
+        <div class="col-md-5 color_letras cal-sans-regular fs-3">Empleado</div>
+        <div class="col-md-2 color_letras cal-sans-regular fs-3">Horario</div>
+        <div class="col-md-2 color_letras cal-sans-regular fs-3">Estatus</div>
+        <div class="col-md-2 color_letras cal-sans-regular fs-3">Editar</div>
+    </div>
+
+    <div class="row align-items-center justify-content-between mb-4 py-4">
+        <div class="col-md-5 d-flex align-items-center">
+            <img src="@Model.Lider.fotoPerfil" alt="Foto de Trabajador" class="rounded-circle me-3" width="150" height="150">
+            <div>
+                <h3 class="fs-2 cal-sans-regular">@Model.Lider.Nombre @Model.Lider.ApellidoP</h3>
+                <p class="fs-3 text-muted">@Model.Lider.Puesto</p>
+            </div>
+        </div>
+        <div class="col-md-2 text-md-center fs-4">
+            @Model.Lider.horarioInicio.ToString(@"hh\:mm") - @Model.Lider.horarioFin.ToString(@"hh\:mm")
+        </div>
+        <div class="col-md-2 d-flex align-items-center justify-content-center">
+            <div class="estatus-circulo @Model.Lider.ColorEstatus"></div>
+        </div>
+        <div class="col-md-2 text-center">
+            <form method="post" asp-page-handler="EditarLider">
+                <input type="hidden" name="numEmpleado" value="@Model.Lider.NumEmpleado" />
+                <button type="submit" class="btn btn-secondary rounded-circle p-3">
+                    <i class="fa-solid fa-pencil fs-4"></i>
+                </button>
+            </form>
+        </div>
+    </div>
+
+    @foreach (var empleado in Model.ListaEmpleados)
+    {
+        <div class="row align-items-center justify-content-between mb-4 py-4">
+            <div class="col-md-5 d-flex align-items-center">
+                <img src="@empleado.fotoPerfil"
+                     alt="Foto de Trabajador" class="rounded-circle me-3" width="150" height="150">
+                <div>
+                    <h3 class="fs-2 cal-sans-regular">@empleado.Nombre @empleado.ApellidoP</h3>
+                    <p class="fs-3 text-muted">@empleado.Puesto</p>
+                </div>
+            </div>
+            <div class="col-md-2 text-md-center fs-4">
+                @empleado.horarioInicio.ToString(@"hh\:mm") - @empleado.horarioFin.ToString(@"hh\:mm")
+            </div>
+            <div class="col-md-2 d-flex align-items-center justify-content-center">
+                <div class="estatus-circulo @empleado.ColorEstatus"></div>
+            </div>
+            <div class="col-md-2 text-center">
+                <form method="post" asp-page-handler="EditarEmpleado">
+                    <input type="hidden" name="NumEmpleado" value="@empleado.NumEmpleado" />
+                    <button type="submit" class="btn btn-secondary rounded-circle p-3">
+                        <i class="fa-solid fa-pencil fs-4"></i>
+                    </button>
+                </form>
+            </div>
+        </div>
+    }<br>
+
+    <div class="row align-items-center justify-content-between mb-4 py-4">
+        <div class="col-md-3 text-md-center">
+            @if (Model.Lider.IdTipoPuesto == 1) 
+            {
+                <button class="btn btn-secondary w-100 boton-redondo fs-3 cal-sans-regular text-white" data-bs-toggle="modal" data-bs-target="#empleadoModal">Asignar otro empleado</button>
+            }
+        </div>
+
+        <div class="col-md-3 d-flex align-items-center justify-content-center gap-3 fs-4">
+            <span class="color_letras cal-sans-regular">Activo</span>
+            <div class="circulo bg-success"></div>
+        </div>
+        <div class="col-md-3 d-flex align-items-center justify-content-center gap-3 fs-4">
+            <span class="color_letras cal-sans-regular">Inactivo</span>
+            <div class="circulo bg-warning"></div>
+        </div>
+        <div class="col-md-3 d-flex align-items-center justify-content-center gap-3 fs-4">
+            <span class="color_letras cal-sans-regular">Ausente</span>
+            <div class="circulo bg-danger"></div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="empleadoModal" aria-labelledby="empleadoModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content">
+                <form method="post" asp-page-handler="AgregarEmpleado">
+                    <div class="modal-header">
+                        <h3 class="fs-2 cal-sans-regular">Agregar Empleado</h3>
+                    </div>
+                    <div class="modal-body">
+                        <input type="hidden" name="numLider" value="@Model.Lider.NumEmpleado" />
+                        <div class="mb-3">
+                            <select asp-for="numEmpleado" class="form-select form-select-lg">
+                            @foreach (var empleado in Model.ListaEmpleadosNoAsignados)
+                            {
+                                <option value="@empleado.NumEmpleado">@empleado.Nombre @empleado.ApellidoP - @empleado.NumEmpleado</option>
+                            }
+                            </select>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <div class="row w-100">
+                            <div class="col-6">
+                                <button type="submit" class="btn btn-primary w-100">Agregar</button>
+                            </div>
+                            <div class="col-6">
+                                <button type="button" class="btn btn-secondary w-100" data-bs-dismiss="modal">Cancelar</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>

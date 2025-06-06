@@ -1,10 +1,46 @@
 ﻿@page
 @model IndexModel
 @{
-    ViewData["Title"] = "Home page";
+    ViewData["Title"] = "Iniciar Sesión" ;
+    ViewData["OcultarSidebar"] = true;
 }
 
 <body>
+  <div class="container-fluid px-5">
+    <div class="text-center my-4">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/66/Oxxo_Logo.svg/2560px-Oxxo_Logo.svg.png" width="187" alt="Logo Oxxo" />
+    </div>
 
+    <div class="mx-auto" style="max-width: 75%;">
+      <form method="post" class="border rounded-4 p-5 shadow-sm bg-light">
+        <div class="mb-3 color_letras" style="max-width: 90%; margin: 0 auto;">
+          <label class="form-label fw-semibold fs-3">Número de Empleado</label>
+          <input asp-for="NumEmpleado" class="form-control form-control-lg w-100" type="number" placeholder="Número de Empleado"/>
+          <span asp-validation-for="NumEmpleado" class="text-danger"></span>
+        </div>
 
+        <div class="mb-5 color_letras" style="max-width: 90%; margin: 0 auto;">
+          <label class="form-label fw-semibold fs-3">Contraseña</label>
+          <input asp-for="Contraseña" class="form-control form-control-lg w-100" type="password" placeholder="Contraseña"/>
+          <span asp-validation-for="Contraseña" class="text-danger"></span>
+        </div>
+
+        <div class="text-center" style="max-width: 75%; margin: 0 auto;">
+          <input class="btn btn-danger btn-color-danger btn-lg w-100" type="submit" asp-page-handler="VerificarContraseña" value="Iniciar Sesión" />
+        </div>
+
+        <div class="my-4"></div>
+      </form>
+    </div>
+  </div>
 </body>
+
+
+<style>
+    .mb-4{
+        color: red;
+    }
+    .color_letras {
+    color: red;
+}
+</style>

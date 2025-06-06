@@ -1,0 +1,175 @@
+@page
+@model PersonajeModel
+@{
+    ViewData["Title"] = "Personalización y Canje";
+}
+
+<body>
+    <div>
+        <button class="botonayuda" title="Para saber más de Oxxo clickea aquí" onclick="window.open('https://www.oxxo.com/','_blank')"><i class="fa-solid fa-question"></i></button>
+    </div>
+    <div class="layout-principal">
+    <div class="columna-izquierda">
+        <h1 class="color_letras cal-sans-regular">@ViewData["Title"]</h1><br>
+        <div class="d-flex contenedor2">
+            <img src="@Model.Lider.fotoPerfil" alt="Foto de Trabajador" class="rounded-circle me-3" width="150" height="150">
+            <div>
+                <h3 class="fs-2 cal-sans-regular">@Model.Lider.Nombre @Model.Lider.ApellidoP</h3>
+                <p class="fs-3 text-muted">@Model.Lider.Puesto</p>
+            </div>
+            </figure>
+        </div>
+        <br>
+        <br>
+        <h3>Elegir Personaje</h3>
+        <br>
+        <div class="contenedor">
+          <form method="post" asp-page-handler="EquiparPersonaje" class="elemento">
+              <input type="hidden" name="personaje" value="JEFE" />
+              <button type="submit" class=" @(Model.PersonajeSeleccionado == "JEFE" ? "seleccionado" : "")">
+                  <div style="display: flex; flex-direction: column; align-items: center;">
+                      <img src="imagenes/Personaje3PW.png" alt="">
+                      <p style="font-size:25px; color: #000000;">JEFE</p>
+                  </div>
+              </button>
+          </form>
+          <form method="post" asp-page-handler="EquiparPersonaje" class="elemento">
+              <input type="hidden" name="personaje" value="ALEX" />
+              <button type="submit" class="@(Model.PersonajeSeleccionado == "ALEX" ? "seleccionado" : "")">
+                  <div style="display: flex; flex-direction: column; align-items: center;">
+                      <img src="imagenes/Personaje2PW.png" alt="">
+                      <p style="font-size:25px; color: #000000;">ALEX</p>
+                  </div>
+              </button>
+          </form>
+          <form method="post" asp-page-handler="EquiparPersonaje" class=" elemento">
+              <input type="hidden" name="personaje" value="ADAM" />
+              <button type="submit" class="@(Model.PersonajeSeleccionado == "ADAM" ? "seleccionado" : "")">
+                  <div style="display: flex; flex-direction: column; align-items: center;">
+                      <img src="imagenes/Personaje4PW.png" alt="">
+                      <p style="font-size:25px; color: #000000;">ADAM</p>
+                  </div>
+              </button>
+          </form>
+          <form method="post" asp-page-handler="EquiparPersonaje" class="elemento">
+              <input type="hidden" name="personaje" value="AMELIA" />
+              <button type="submit" class="@(Model.PersonajeSeleccionado == "AMELIA" ? "seleccionado" : "")">
+                  <div style="display: flex; flex-direction: column; align-items: center;">
+                      <img src="imagenes/Personaje1PW.png" alt="">
+                      <p style="font-size:25px; color: #000000;">AMELIA</p>
+                  </div>
+              </button>
+          </form>
+        </div>
+    </div>
+
+    <div class="columna-derecha">
+        <div>
+        <h3>Elegir Música del Menú</h3>
+        <br>
+          <div class="contenedor3">
+              <form method="post" asp-page-handler="EquiparTrack" class="elemento">
+                  <input type="hidden" name="track" value="TRACK1" />
+                  <button type="submit" class="@(Model.TrackSeleccionado == "TRACK1" ? "seleccionado" : "")">
+                      <div style="display: flex; flex-direction: column; align-items: center;">
+                          <img src="imagenes/Cancion.png" alt="" class="imagenes-musica">
+                          <p style="font-size: 20px; color: #000000;">Pista 1</p>
+                      </div>
+                  </button>
+              </form>
+                <form method="post" asp-page-handler="EquiparTrack" class="elemento">
+                    <input type="hidden" name="track" value="TRACK2" />
+                    <button type="submit" class="@(Model.TrackSeleccionado == "TRACK2" ? "seleccionado" : "")">
+                        <div style="display: flex; flex-direction: column; align-items: center;">
+                            <img src="imagenes/Cancion.png" alt="" class="imagenes-musica">
+                            <p style="font-size: 20px; color: #000000;">Pista 2</p>
+                        </div>
+                    </button>
+                </form>
+                <form method="post" asp-page-handler="EquiparTrack" class="elemento">
+                    <input type="hidden" name="track" value="TRACK3" />
+                    <button type="submit" class="@(Model.TrackSeleccionado == "TRACK3" ? "seleccionado" : "")">
+                        <div style="display: flex; flex-direction: column; align-items: center;">
+                            <img src="imagenes/Cancion.png" alt="" class="imagenes-musica">
+                            <p style="font-size: 20px; color: #000000;">Pista 3</p>
+                        </div>
+                    </button>
+                </form>
+          </div>
+        </div>
+
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+
+        <div>
+        <h3>Recompensas</h3>
+        <br>
+        <br>
+        <ul>
+            <li>
+              <button type="button" class="fs-3 custom-link-button" style="background:none; border:none; cursor:pointer;"  onclick="location.href='CanjeRecompensas'">Solicita Tiempo Aire</button>
+            </li>
+            <br>
+            <br>
+            <li>
+              <button type="button" class="fs-3 custom-link-button" style="background:none; border:none; cursor:pointer;"  onclick="location.href='CanjeRecompensas'"> Canjea por Puntos Spin</button>
+            </li>
+            <br>
+            <br>
+            <li>
+              <button type="button" class="fs-3 custom-link-button" style="background:none; border:none; cursor:pointer;"  onclick="location.href='CanjeRecompensas'">Obten Cupones</button>
+            </li>
+        </ul>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="empleadoModal" tabindex="-1" aria-labelledby="empleadoModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content text-center p-4">
+      <div class="modal-header border-0 justify-content-center">
+        <div class="bg-success bg-gradient text-white rounded-circle d-flex align-items-center justify-content-center" style="width: 60px; height: 60px;">
+          <i class="bi bi-check-lg fs-2"></i>
+        </div>
+      </div>
+      <div class="modal-body">
+        <h5 class="modal-title mb-3" id="empleadoModalLabel">¡Cambio exitoso!</h5>
+        <p class="mb-0">Ahora puedes ingresar al juego con tus cambios realizados.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    document.querySelectorAll('form[action*="EquiparPersonaje"]').forEach(form => {
+        form.addEventListener('submit', function (e) {
+            e.preventDefault();
+            const modal = new bootstrap.Modal(document.getElementById('empleadoModal'));
+            modal.show();
+            setTimeout(() => {
+                form.submit();
+            }, 2000);
+        });
+    });
+    document.querySelectorAll('form[action*="EquiparTrack"]').forEach(form => {
+        form.addEventListener('submit', function (e) {
+            e.preventDefault();
+            const modal = new bootstrap.Modal(document.getElementById('empleadoModal'));
+            modal.show();
+            setTimeout(() => {
+                form.submit();
+            }, 2000);
+        });
+    });
+});
+
+</script>
+
+</body>

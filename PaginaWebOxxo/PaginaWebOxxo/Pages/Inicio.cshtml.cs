@@ -1,34 +1,41 @@
 using PaginaWebOxxo.Model;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using MySql.Data.MySqlClient;
-
+using System.Linq;
 
 namespace PaginaWebOxxo.Pages
 {
     public class InicioModel : PageModel
     {
+        public int EmpleadoId { get; set; }
         private readonly DataBaseContext _context;
+
         public InicioModel(DataBaseContext context)
         {
             _context = context;
         }
 
         public Estadisticas EstadisticasUsuario { get; set; }
-
-        public Usuarios Usuario {get; set;}
-
+        public Usuarios Usuario { get; set; }
         public int TotalEstrellas { get; set; }
 
-        public void OnGet()
+        [BindProperty]
+        public int? numEmpleado { get; set; } 
+
+        public void OnGet(int? numEmpleado)
         {
-            int numEmpleado = 12345; 
-            EstadisticasUsuario = _context.ObtenerMonedasPorEmpleado(numEmpleado);
-            Usuario = _context.ObtenerUsuarioPorEmpleados(numEmpleado);
-            
-            var progresos = _context.ObtenerProgresoPorEmpleado(numEmpleado);
+
+            int empleadoId = numEmpleado ?? HttpContext.Session.GetInt32("numEmpleado") ?? 0;
+
+            HttpContext.Session.SetInt32("numEmpleado", empleadoId);
+
+            EmpleadoId = empleadoId;
+
+            EstadisticasUsuario = _context.ObtenerMonedasPorEmpleado(empleadoId);
+            Usuario = _context.ObtenerUsuarioPorEmpleados(empleadoId);
+
+            var progresos = _context.ObtenerProgresoPorEmpleado(empleadoId);
             TotalEstrellas = progresos.Sum(p => p.Estrellas);
         }
-
     }
 }

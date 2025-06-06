@@ -48,8 +48,6 @@ button.accept-policy {
 }
 
 
-
-/* Esta parte nos ayuda a crear un espacio entre el menu lateral y demas contenido de la pagina*/
 main, section {
   margin-left: 250px;
   padding: 2rem;

@@ -1,21 +1,178 @@
 @page
 @model LiderModel
 @{
-    ViewData["Title"] = "Estadisticas de Lider de Tienda";
+    ViewData["Title"] = "Perfil";
 }
 
-<body>
-    <h1 class="color_letras cal-sans-regular">@ViewData["Title"]</h1>
-    <div class="d-flex align-items-center">
-        <img src="https://previews.123rf.com/images/spaxia/spaxia1206/spaxia120600038/14011204-sonrisa-hombre-trabajador-de-la-construcci%C3%B3n-aislada-en-blanco.jpg" alt="Foto de Trabajador" class="rounded-circle me-3" width="150" height="150">
-        <figure class="mb-0">
-            <blockquote class="blockquote">
-                <p class="fs-2 cal-sans-regular">Diego Garcia</p>
-            </blockquote>
-            <figcaption class="blockquote-footer fs-3">
-                Líder de Tienda
-            </figcaption>
-        </figure>
+
+
+<div class="container-fluid px-5">
+   <h1 class="color_letras cal-sans-regular">@ViewData["Title"]</h1><br>
+
+    <div class="top-section">
+    <div class="d-flex align-items-center justify-content-between gap-4 flex-wrap">
+
+        <!-- Foto y nombre -->
+        <div class="d-flex align-items-center gap-4">
+            <img src="@Model.Usuario.fotoPerfil" alt="Foto de Trabajador" class="rounded-circle me-3" width="150" height="150">
+            <div>
+                <h3 class="fw-bold mb-1">@Model.Usuario.Nombre @Model.Usuario.ApellidoP @Model.Usuario.ApellidoM</h3>
+            </div>
+        </div>
+
+        <!-- Badges Sexo/Ocupación/Edad -->
+        <div>
+            <table class="table table-sm table-hover mb-0" style="max-width: 500px; margin-left: 200px;">
+                <thead>
+                    <tr>
+                        <th scope="col">Sexo</th>
+                        <th scope="col">Edad</th>
+                        <th scope="col">Ocupación</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>@Model.Usuario.genero</td>
+                        <td>@Model.Usuario.Edad</td>
+                        <td>@Model.Usuario.Puesto</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
-    <br />
-</body>
+</div>
+
+    <!-- Botón de ayuda arriba-->
+    <button class="botonayuda" title="Para saber más de Oxxo clickea aquí" onclick="window.open('https://www.oxxo.com/','_blank')"><i class="fa-solid fa-question"></i></button>
+
+   <br>
+   <br>
+    <div class="row gx-5">
+    
+        <div class="col-lg-7">
+            <form method="post" asp-page-handler="Actualizar">
+                <input type="hidden" name="numEmpleado" value="@Model.contacto.NumEmpleado" />
+                <div class="mb-4">
+                    <label class="form-label">Teléfono</label>
+                    <input type="text" id="telefonoinput" name="Telefono" value="@Model.contacto?.telefono" class="form-control rounded-4" disabled />
+                    <span asp-validation-for="Telefono" class="text-danger"></span>
+                    <small id="telefono-error" class="text-danger d-none">El teléfono debe tener exactamente 10 dígitos.</small>
+                    <br>
+                    <div class="d-flex gap-2 mt-2">
+                        <button type="button" class="btn btn-danger" onclick="habilitartelefono()">Editar Teléfono</button>
+                        <button class="btn btn-warning" type="submit" asp-page-handler="Actualizar">Actualizar</button>
+                    </div>
+
+                </div>
+                <div class="mb-4">
+                    <label class="form-label">Correo electrónico</label>
+                    <input type="email" value= @Model.contacto?.correo class="form-control rounded-4" disabled />
+                </div>
+                <div class="mb-4">
+                    <label class="form-label">Número de empleado</label>
+                    <input type="text" disabled value= @Model.contacto.NumEmpleado  class="form-control rounded-4" />
+
+                </div>
+                <div class="mb-4">
+                    <label class="form-label">Dirección</label>
+                    <textarea disabled class="form-control rounded-4" rows="5">@(
+                        "Codigo Postal: " + @Model.contacto?.codigoPostal + "\n" +
+                        "Municipio: " + @Model.contacto?.municipio + "\n" +
+                        "Colonia: " + @Model.contacto?.colonia + "\n" +
+                        "Estado: " + @Model.contacto?.estado
+                    )</textarea>
+                </div>
+            </form>
+        </div>
+
+        
+        <div class="col-lg-5 ps-5" style="padding-left: 8rem !important;">
+            <h4 class="mb-4 fw-semibold text-center">Insignias obtenidas</h4>
+            <div class="d-flex flex-column gap-4 align-items-center">
+                <img src="/imagenes/insignia1@(@Model.estadisticas?.TotalEstrellas >= 3 ? "gold" : "gris").png" alt="Level 1" class="insigniaimagen">
+                <br>
+                <img src="/imagenes/insignia2@(@Model.estadisticas?.TotalEstrellas >= 6 ? "gold" : "gris").png" alt="Level 2" class="insigniaimagen">
+                <br>
+                <img src="/imagenes/insignia3@(@Model.estadisticas?.TotalEstrellas >= 9 ? "gold" : "gris").png" alt="Level 3" class="insigniaimagen">
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .form-label {
+        font-size: 1.2rem;
+        font-weight: 500;
+    }
+
+    .form-control {
+        font-size: 1.1rem;
+        padding: 0.8rem 1.2rem;
+    }
+
+    textarea.form-control {
+        resize: none;
+        text-align: left;
+    }
+
+    .badge-custom {
+        font-size: 1rem;
+        padding: 0.6rem 1rem;
+        border-radius: 0.75rem;
+        text-align: center;
+        line-height: 1.2;
+        white-space: nowrap;
+    }
+
+    .badge-custom small {
+        font-size: 0.75rem;
+        display: block;
+    }
+
+    .imagenperfil {
+        width: 130px;
+        height: 130px;
+        object-fit: cover;
+        border-radius: 50%;
+    }
+
+    .insigniaimagen {
+        width: 120px;
+    }
+
+    .top-section {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        margin-bottom: 3rem;
+        flex-wrap: wrap;
+        position: relative;
+    }
+
+    .badges-top {
+        display: flex;
+        gap: 1rem;
+        flex-wrap: wrap;
+        justify-content: flex-end;
+    }
+
+    .botonayuda {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background-color: #f1f1f1;
+        border: none;
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+        font-size: 20px;
+        font-weight: bold;
+        color: #333;
+        cursor: pointer;
+        z-index: 999;
+    }
+
+    .botonayuda:hover {
+        background-color: #e0e0e0;
+    }
+</style>
