@@ -68,7 +68,10 @@
 
     <div class="row align-items-center justify-content-between mb-4 py-4">
         <div class="col-md-3 text-md-center">
-            <button class="btn btn-secondary w-100 boton-redondo fs-3 cal-sans-regular text-white" data-bs-toggle="modal" data-bs-target="#empleadoModal">Asignar otro empleado</button>
+            @if (Model.Lider.IdTipoPuesto == 1) 
+            {
+                <button class="btn btn-secondary w-100 boton-redondo fs-3 cal-sans-regular text-white" data-bs-toggle="modal" data-bs-target="#empleadoModal">Asignar otro empleado</button>
+            }
         </div>
 
         <div class="col-md-3 d-flex align-items-center justify-content-center gap-3 fs-4">

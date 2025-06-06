@@ -1,7 +1,7 @@
 @page
 @model LiderModel
 @{
-    ViewData["Title"] = "Perfil de Líder de Tienda";
+    ViewData["Title"] = "Perfil";
 }
 
 
@@ -51,7 +51,7 @@
                 <input type="hidden" name="numEmpleado" value="@Model.contacto.NumEmpleado" />
                 <div class="mb-4">
                     <label class="form-label">Teléfono</label>
-                    <input type="text" id="telefonoinput" name="Telefono" value="@Model.contacto.telefono" class="form-control rounded-4" disabled />
+                    <input type="text" id="telefonoinput" name="Telefono" value="@Model.contacto?.telefono" class="form-control rounded-4" disabled />
                     <span asp-validation-for="Telefono" class="text-danger"></span>
                     <small id="telefono-error" class="text-danger d-none">El teléfono debe tener exactamente 10 dígitos.</small>
                     <br>
@@ -63,7 +63,7 @@
                 </div>
                 <div class="mb-4">
                     <label class="form-label">Correo electrónico</label>
-                    <input type="email" value= @Model.contacto.correo class="form-control rounded-4" disabled />
+                    <input type="email" value= @Model.contacto?.correo class="form-control rounded-4" disabled />
                 </div>
                 <div class="mb-4">
                     <label class="form-label">Número de empleado</label>
@@ -73,10 +73,10 @@
                 <div class="mb-4">
                     <label class="form-label">Dirección</label>
                     <textarea disabled class="form-control rounded-4" rows="5">@(
-                        "Codigo Postal: " + @Model.contacto.codigoPostal + "\n" +
-                        "Municipio: " + @Model.contacto.municipio + "\n" +
-                        "Colonia: " + @Model.contacto.colonia + "\n" +
-                        "Estado: " + @Model.contacto.estado
+                        "Codigo Postal: " + @Model.contacto?.codigoPostal + "\n" +
+                        "Municipio: " + @Model.contacto?.municipio + "\n" +
+                        "Colonia: " + @Model.contacto?.colonia + "\n" +
+                        "Estado: " + @Model.contacto?.estado
                     )</textarea>
                 </div>
             </form>

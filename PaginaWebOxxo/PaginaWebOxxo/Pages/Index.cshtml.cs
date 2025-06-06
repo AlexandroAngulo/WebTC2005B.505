@@ -22,6 +22,8 @@ namespace PaginaWebOxxo.Pages
         [Required(ErrorMessage = "Debes ingresar la contraseña.")]
         public string Contraseña { get; set; }
 
+        private Usuarios Usuario { get; set; }
+
         public void OnGet()
         {
             HttpContext.Session.Clear();
@@ -38,7 +40,16 @@ namespace PaginaWebOxxo.Pages
             if (datosLogin != null && datosLogin.Contraseña == Contraseña)
             {
                 HttpContext.Session.SetInt32("numEmpleado", NumEmpleado.Value);
-                return Redirect($"Inicio?numEmpleado={NumEmpleado.Value}");
+                Usuario = _context.ObtenerUsuarioPorEmpleados(NumEmpleado.Value);
+                HttpContext.Session.SetInt32("IdTipoPuesto", Usuario.IdTipoPuesto);
+                if (Usuario.IdTipoPuesto == 2)
+                {
+                    return Redirect($"Lider?numEmpleado={NumEmpleado.Value}");
+                }
+                else
+                {
+                    return Redirect($"Inicio?numEmpleado={NumEmpleado.Value}");
+                }
             }
             else
             {

@@ -10,20 +10,34 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
     <script src="https://kit.fontawesome.com/7425508e16.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
-
 </head>
 <body class="@(ViewData["OcultarSidebar"] as bool? ?? false ? "no-sidebar" : "with-sidebar")">
 
     <div class="sidebar">
+        @{
+            int tipoPuesto = Context.Session.GetInt32("IdTipoPuesto") ?? 0;
+        }
         <br />
         <ul>
-            <li><a href="Inicio"><i class="fas fa-home"></i>Inicio</a></li>
             <li><a href="Lider"><i class="fas fa-user"></i>Perfil</a></li>
+            
+            @if (tipoPuesto == 1)
+            {
+                <li><a href="Inicio"><i class="fas fa-home"></i>Estadísticas</a></li>
+            }
+            else if (tipoPuesto == 2)
+            {
+                <li><a href="DashboardAsesor"><i class="fa-solid fa-chart-column"></i>Líderes</a></li>
+            }
+
             <li><a href="Empleados"><i class="fas fa-users"></i>Empleados</a></li>
-            <li><a href="Capacitaciones"><i class="fa-regular fa-file-lines"></i>Capacitaciones</a></li>
-            <li><a href="Personaje"><i class="fa-regular fa-chess-pawn"></i>Personalización</a></li>
-            <li><a href="Instrucciones"><i class="fas fa-gear"></i>Instrucciones</a></li>
-            <li><a href="Index"><i class="fa-solid fa-right-from-bracket"></i></i>Cerrar Sesión</a></li>
+            
+            @if (tipoPuesto == 1){
+                <li><a href="Capacitaciones"><i class="fa-regular fa-file-lines"></i>Capacitaciones</a></li>
+                <li><a href="Personaje"><i class="fa-regular fa-chess-pawn"></i>Personalización</a></li>
+                <li><a href="Instrucciones"><i class="fas fa-gear"></i>Instrucciones</a></li>
+            }
+            <li><a href="Index"><i class="fa-solid fa-right-from-bracket"></i>Cerrar Sesión</a></li>
         </ul>
         <div class="sidebar-footer">
             <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/66/Oxxo_Logo.svg/2560px-Oxxo_Logo.svg.png" width="187px"/>
