@@ -122,7 +122,7 @@ namespace PaginaWebOxxo.Model
             using (MySqlConnection conexion = new MySqlConnection(ConnectionString))
             {
                 conexion.Open();
-                string query = "SELECT id_instruccion, titulo, contenido FROM InstruccionesVideojuego";
+                string query = "SELECT * FROM InstruccionesVideojuego";
 
                 using (MySqlCommand cmd = new MySqlCommand(query, conexion))
                 {

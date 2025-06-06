@@ -18,7 +18,7 @@ public class LeaderboardController : ControllerBase
         using var conexion = new MySqlConnection(ConnectionString);
         conexion.Open();
 
-        string query = @"SELECT NumEmpleado, SUM(Puntuacion) AS PuntuacionTotal FROM nivelusuario GROUP BY NumEmpleado ORDER BY PuntuacionTotal DESC LIMIT 10;";
+        string query = @"SELECT u.Nombre, u.ApellidoP, SUM(nu.Puntuacion) AS PuntuacionTotal, SUM(nu.Estrellas) AS TotalEstrellas FROM nivelusuario nu JOIN usuarios u ON u.NumEmpleado = nu.NumEmpleado GROUP BY nu.NumEmpleado ORDER BY PuntuacionTotal DESC LIMIT 10;";
 
         using var cmd = new MySqlCommand(query, conexion);
         using var reader = cmd.ExecuteReader();
@@ -27,8 +27,10 @@ public class LeaderboardController : ControllerBase
         {
             var usuario = new Leaderboard
             {
-                NumEmpleado = reader.GetInt32("NumEmpleado"),
-                PuntuacionTotal = reader.GetInt32("PuntuacionTotal")
+                Nombre = reader.GetString("Nombre"),
+                ApellidoP = reader.GetString("ApellidoP"),
+                PuntuacionTotal = reader.GetInt32("PuntuacionTotal"),
+                TotalEstrellas = reader.GetInt32("TotalEstrellas")
             };
 
             lista.Add(usuario);

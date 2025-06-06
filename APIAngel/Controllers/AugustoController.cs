@@ -77,3 +77,35 @@ public class AugustoController2 : ControllerBase
         return Ok(canciones);
     }
 } 
+
+[Route("[controller]")]
+public class AugustoController3 : ControllerBase
+{
+    public string ConnectionString = "Server=mysql-a0f09b6-dario-ceda.b.aivencloud.com;Port=15915;Database=Proyecto;Uid=avnadmin;password=AVNS_x1ewxXkuSiLMKWdUhD2;";
+
+    [HttpGet("ObtenerEstrellas")]
+    public IActionResult ObtenerEstrellas(int numEmpleado)
+    {
+        using var conexion = new MySqlConnection(ConnectionString);
+        conexion.Open();
+
+        string query = @"SELECT SUM(nu.Estrellas) AS TotalEstrellas FROM 
+        estadisticas e LEFT JOIN nivelusuario nu ON e.NumEmpleado = nu.NumEmpleado WHERE 
+        e.NumEmpleado = @NumEmpleado";
+
+        using var cmd = new MySqlCommand(query, conexion);
+        cmd.Parameters.AddWithValue("@NumEmpleado", numEmpleado);
+
+        using var reader = cmd.ExecuteReader();
+        var estrellas = new List<Estrella>();
+        while (reader.Read())
+        {
+            var estrella = new Estrella
+            {
+                TotalEstrellas = reader.GetInt32("TotalEstrellas")
+            };
+            estrellas.Add(estrella);
+        }
+        return Ok(estrellas);
+    }
+}

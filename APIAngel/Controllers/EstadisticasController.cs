@@ -24,7 +24,7 @@ public class EstadisticasController : ControllerBase
         MySqlCommand cmd = new MySqlCommand(); //Query
         cmd.CommandType = CommandType.StoredProcedure;
         cmd.CommandText = "ObtenerEstadisticasPorEmpleado"; //el nombre del store prosedure de la base de datos
-        cmd.Parameters.AddWithValue("@emp_id", NumEmpleado);
+        cmd.Parameters.AddWithValue("@num_id", NumEmpleado);
         cmd.Connection = conexion; //sobre esta conexion
 
         Estadisticas Estad1 = new Estadisticas();
