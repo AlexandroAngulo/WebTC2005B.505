@@ -26,6 +26,10 @@
                                 <img src="/imagenes/personajes1.png" class="card-img-top" alt="Personajes">
                                 <img src="/imagenes/personajes2.png" class="card-img-top" alt="Personajes">
                             }
+                            @if (instruccion.titulo == "Historia")
+                            {
+                              <img src="/imagenes/secuestro.png" class="card-img-top imagen-instruccion" alt="Historia">
+                            }
                         </div>
                     </div>
                 }
@@ -156,3 +160,11 @@
     </script>
     </div>
 </body>
+<style>
+  .imagen-instruccion {
+    width: 400px;
+    height: auto;
+    margin: 0 auto 15px auto;
+    display: block;
+  }
+</style>
