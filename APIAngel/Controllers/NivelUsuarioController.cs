@@ -16,7 +16,7 @@ public class NivelUsuarioController : ControllerBase
         using var conexion = new MySqlConnection(ConnectionString);
         conexion.Open();
 
-        string query = @"UPDATE nivelusuario SET FechaIntento = @FechaIntento, Estrellas = @Estrellas, Puntuacion = @Puntuacion, TiempoNivel = @TiempoNivel WHERE NumEmpleado = @NumEmpleado AND IdNivel = @IdNivel";
+        string query = @"UPDATE nivelusuario SET FechaIntento = @FechaIntento, Estrellas = @Estrellas, Puntuacion = @Puntuacion, TiempoNivel = @TiempoNivel WHERE NumEmpleado = @NumEmpleado AND IdNivel = @IdNivel AND @Puntuacion > Puntuacion";
 
         MySqlCommand cmd = new MySqlCommand(query, conexion);
         cmd.Parameters.AddWithValue("@FechaIntento", DateTime.Now);
