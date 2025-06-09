@@ -38,10 +38,9 @@
     </div>
     <div style="text-align: center;">
         <h2>Videojuego</h2>
-    </div>
-
+    
         <div id="unity-container" class="unity-desktop">
-      <canvas id="unity-canvas" width=960 height=600 tabindex="-1"></canvas>
+      <canvas id="unity-canvas" width=2160 height=1620 tabindex="-1"></canvas>
       <div id="unity-loading-bar">
         <div id="unity-logo"></div>
         <div id="unity-progress-bar-empty">
@@ -83,13 +82,13 @@
         updateBannerVisibility();
       }
 
-      var buildUrl = "JuegoReto/Build";
-      var loaderUrl = buildUrl + "/JuegoReto.loader.js";
+      var buildUrl = "Videojuegofinal/Build";
+      var loaderUrl = buildUrl + "/Videojuegofinal.loader.js";
       var config = {
         arguments: [],
-        dataUrl: buildUrl + "/JuegoReto.data",
-        frameworkUrl: buildUrl + "/JuegoReto.framework.js",
-        codeUrl: buildUrl + "/JuegoReto.wasm",
+        dataUrl: buildUrl + "/Videojuegofinal.data",
+        frameworkUrl: buildUrl + "/Videojuegofinal.framework.js",
+        codeUrl: buildUrl + "/Videojuegofinal.wasm",
         streamingAssetsUrl: "StreamingAssets",
         companyName: "DefaultCompany",
         productName: "Reto",
@@ -130,7 +129,7 @@
 
       } else {
         // Desktop style: Render the game canvas in a window that can be maximized to fullscreen:
-        canvas.style.width = "960px";
+        canvas.style.width = "800px";
         canvas.style.height = "600px";
       }
 
@@ -155,4 +154,5 @@
       document.body.appendChild(script);
 
     </script>
+    </div>
 </body>
