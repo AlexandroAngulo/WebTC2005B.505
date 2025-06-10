@@ -59,7 +59,6 @@
     </div>
     <div style="text-align: center;">
         <h2>Videojuego</h2>
-    
         <div id="unity-container" class="unity-desktop">
       <canvas id="unity-canvas" width=2160 height=1620 tabindex="-1"></canvas>
       <div id="unity-loading-bar">
@@ -103,13 +102,13 @@
         updateBannerVisibility();
       }
 
-      var buildUrl = "Videojuegofinal/Build";
-      var loaderUrl = buildUrl + "/Videojuegofinal.loader.js";
+      var buildUrl = "Vjf/Build";
+      var loaderUrl = buildUrl + "/Vjf.loader.js";
       var config = {
         arguments: [],
-        dataUrl: buildUrl + "/Videojuegofinal.data",
-        frameworkUrl: buildUrl + "/Videojuegofinal.framework.js",
-        codeUrl: buildUrl + "/Videojuegofinal.wasm",
+        dataUrl: buildUrl + "/Vjf.data",
+        frameworkUrl: buildUrl + "/Vjf.framework.js",
+        codeUrl: buildUrl + "/Vjf.wasm",
         streamingAssetsUrl: "StreamingAssets",
         companyName: "DefaultCompany",
         productName: "Reto",
