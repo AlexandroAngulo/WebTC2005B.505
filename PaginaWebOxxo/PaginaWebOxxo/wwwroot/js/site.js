@@ -9,3 +9,28 @@ function habilitartelefono()
         input.removeAttribute("disabled");
         input.focus();
     }
+
+  document.addEventListener("DOMContentLoaded", function () {
+    document.querySelectorAll('form[action*="EquiparPersonaje"]').forEach(form => {
+        form.addEventListener('submit', function (e) {
+            e.preventDefault();
+            const modal = new bootstrap.Modal(document.getElementById('empleadoModal'));
+            modal.show();
+            setTimeout(() => {
+                form.submit();
+            }, 2000);
+        });
+    });
+    
+    document.querySelectorAll('form[action*="EquiparTrack"]').forEach(form => {
+        form.addEventListener('submit', function (e) {
+            e.preventDefault();
+            const modal = new bootstrap.Modal(document.getElementById('empleadoModal'));
+            modal.show();
+            setTimeout(() => {
+                form.submit();
+            }, 2000);
+        });
+    });
+});
+
